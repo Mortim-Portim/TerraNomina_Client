@@ -41,13 +41,15 @@ func (g *TerraNomina) Update(screen *ebiten.Image) error {
 
 
 func (g *TerraNomina) Initializing(screen *ebiten.Image) error {
-	BackImg.Update(g.frame)
-	BackImg.DrawImageObj(screen)
+	TITLE_BackImg.Update(g.frame)
+	TITLE_BackImg.DrawImageObj(screen)
 	if g.lastLoadingState != g.loadingState {
-		LoadingBar.Update(int(g.loadingState))
+		TITLE_LoadingBar.Update(int(g.loadingState))
+		TITLE_Name.Update(int(g.loadingState))
 		g.lastLoadingState = g.loadingState
 	}
-	LoadingBar.DrawImageObj(screen)
+	TITLE_LoadingBar.DrawImageObj(screen)
+	TITLE_Name.DrawImageObj(screen)
 	return nil
 }
 func (g *TerraNomina) Init() {

@@ -3,7 +3,7 @@ package Game
 import (
 	"github.com/hajimehoshi/ebiten"
 	"marvin/GraphEng/GE"
-	fonts "marvin/TerraNomina_Client/.res/Fonts"
+	//fonts "marvin/TerraNomina_Client/.res/Fonts"
 )
 
 func StartGame(g ebiten.Game) {
@@ -23,12 +23,12 @@ func StartGame(g ebiten.Game) {
 
 func Start() {
 	GE.Init("")
-	GE.StandardFont = GE.ParseFontFromBytes(fonts.MONO_TTF)
 	GE.SetLogFile(RES+"/log.txt")
 	
 	InitParams(RES+"/params.txt")
 	
 	tn := &TerraNomina{first:true, States:make(map[int]GameState)}
+	tn.States[0] = GetTitleScreen(tn)
 	
 	StartGame(tn)
 }

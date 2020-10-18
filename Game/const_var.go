@@ -22,7 +22,7 @@ var (
 	
 	ICON_SIZES = []int{16,32,48,64,128,256}
 	
-	BackImg, LoadingBar *GE.Animation
+	TITLE_BackImg, TITLE_LoadingBar, TITLE_Name *GE.Animation
 )
 
 

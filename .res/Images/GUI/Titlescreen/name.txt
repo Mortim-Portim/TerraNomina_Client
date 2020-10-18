@@ -1,0 +1,2 @@
+spriteWidth:1920
+updatePeriod:0

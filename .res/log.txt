@@ -34,3 +34,399 @@ marvin/TerraNomina_Client/Game.Start()
 	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
 main.main()
 	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc00096a480, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6776c0, 0xc001b2b310)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fb500, 0xc001b2b310)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6776c0, 0xc001b2b310)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67b420, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082780, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6776c0, 0xc001b53300)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fb500, 0xc001b53300)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6776c0, 0xc001b53300)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67b420, 0xc000112c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082300, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6776c0, 0xc000095050)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fb500, 0xc000095050)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6776c0, 0xc000095050)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67b420, 0xc000072ba0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000104780, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc000111a40)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc000111a40)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc000111a40)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000112c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082480, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc000a43380)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc000a43380)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc000a43380)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082780, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc0001991b0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc0001991b0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc0001991b0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc00096a480, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc000123350)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc000123350)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc000123350)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000094c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082480, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc0009f9200)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc0009f9200)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc0009f9200)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000001e00, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc0000139e0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc0000139e0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc0000139e0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc0009ec480, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc0000c5500)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc0000c5500)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc0000c5500)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000001e00, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc001c18fa0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc001c18fa0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc001c18fa0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082900, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679060, 0xc0000db2b0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fce00, 0xc0000db2b0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679060, 0xc0000db2b0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:40
+marvin/TerraNomina_Client/Game.StartGame(0x67cdc0, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:33 +0x12d
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000106780, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679000, 0xc001b793e0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcda0, 0xc001b793e0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679000, 0xc001b793e0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cd60, 0xc000114c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc0009ec180, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679000, 0xc001bcd360)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcda0, 0xc001bcd360)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679000, 0xc001bcd360)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cd60, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000001b00, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x679000, 0xc000013670)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcda0, 0xc000013670)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x679000, 0xc000013670)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cd60, 0xc000072c00)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000001800, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6791c0, 0xc0000755d0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcee0, 0xc0000755d0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6791c0, 0xc0000755d0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cf20, 0xc000114cc0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082600, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6791c0, 0xc00007d560)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcee0, 0xc00007d560)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6791c0, 0xc00007d560)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cf20, 0xc000134030)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000001c80, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6791c0, 0xc000245620)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcee0, 0xc000245620)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6791c0, 0xc000245620)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cf20, 0xc000072cc0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000001b00, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6791c0, 0xc0000df250)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcee0, 0xc0000df250)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6791c0, 0xc0000df250)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cf20, 0xc000072cc0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082780, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6791c0, 0xc000a0b190)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcee0, 0xc000a0b190)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6791c0, 0xc000a0b190)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cf20, 0xc000072cc0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000082780, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6791c0, 0xc000013510)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcee0, 0xc000013510)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6791c0, 0xc000013510)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cf20, 0xc00011acc0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
+ShitImDying: Cannot update state 0, does not exist
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x46f520, 0xc000236300, 0x4)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x6791c0, 0xc000205370)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:263 +0x26
+panic(0x5fcee0, 0xc000205370)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x6791c0, 0xc000205370)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:268 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:39
+marvin/TerraNomina_Client/Game.StartGame(0x67cf20, 0xc0002082d0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:19 +0x1b8
+marvin/TerraNomina_Client/Game.Start()
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:32 +0xed
+main.main()
+	/home/marvin/go/src/marvin/TerraNomina_Client/main.go:8 +0x25
