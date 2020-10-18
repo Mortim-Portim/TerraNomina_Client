@@ -16,8 +16,10 @@ func StartGame(g ebiten.Game) {
 	ebiten.SetMaxTPS(FPS)
 	ebiten.SetRunnableOnUnfocused(true)
 	if err := ebiten.RunGame(g); err != nil {
+		g.(*TerraNomina).Close()
 		CheckErr(err)
 	}
+	g.(*TerraNomina).Close()
 	GE.CloseLogFile()
 }
 
