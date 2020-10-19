@@ -44,17 +44,21 @@ func (t *Connecting) Start(g *TerraNomina, oldState int) {
 	t.ipAddr = USER_INPUT_IP_ADDR
 	t.loadingAnim.Start(nil,nil)
 	
-	err := Client.MakeConn(t.ipAddr)
-	CheckErr(err)
-	ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) (bool) {
-		if msg[0] == MAP_REQUEST {
-			t.mapData = msg[1:]
+	go func(){
+		fmt.Printf("Connecting to '%s'\n", t.ipAddr)
+		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) (bool) {
+			if msg[0] == MAP_REQUEST {
+				t.mapData = msg[1:]
+			}
+			return true
 		}
-		return true
-	}
-	time.Sleep(time.Second)
-	
-	Client.Send([]byte{MAP_REQUEST})
+		err := Client.MakeConn(t.ipAddr)
+		CheckErr(err)
+		time.Sleep(time.Second)
+		data := []byte{MAP_REQUEST}
+		fmt.Println("sending: ", data)
+		Client.Send(data)
+	}()
 }
 func (t *Connecting) Stop(g *TerraNomina, newState int) {
 	fmt.Print("Connecting  -------->")

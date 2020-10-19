@@ -490,3 +490,171 @@ github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(
 	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
 created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
 	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
+ShitImDying: dial tcp 192.168.71.36:8080: connect: connection refused
+Stacktrace: goroutine 19 [running]:
+runtime/debug.Stack(0xc00a8fa260, 0xc0001c9758, 0x45a0e5)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x889740, 0xc00a47b8b0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:284 +0x26
+panic(0x7c51a0, 0xc00a47b8b0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x889740, 0xc00a47b8b0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:289 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:47
+marvin/TerraNomina_Client/Game.(*Connecting).Start(0xc000068320, 0xc000073710, 0x3)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/connecting.go:48 +0xde
+marvin/TerraNomina_Client/Game.(*TerraNomina).ChangeState(0xc000073710, 0x4, 0x1, 0xc7c700)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:121 +0xd2
+marvin/TerraNomina_Client/Game.(*PlayMenu).Init.func1(0xc0001f6d40)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:42 +0x6f
+marvin/GraphEng/GE.(*Button).Update(0xc0001f6d40, 0x16a)
+	/home/marvin/go/src/marvin/GraphEng/GE/button.go:67 +0xec
+marvin/TerraNomina_Client/Game.(*PlayMenu).Update(0xc00000e320, 0xc0001f6340, 0x3, 0xc000074208)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:69 +0x70
+marvin/TerraNomina_Client/Game.(*TerraNomina).Update(0xc000073710, 0xc0001f6340, 0x0, 0x0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:42 +0x1be
+github.com/hajimehoshi/ebiten.(*imageDumper).update(0xc00005c000, 0xc0001f6340, 0xc0001b4030, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/imagedumper_desktop.go:106 +0x4e
+github.com/hajimehoshi/ebiten.(*imageDumperGame).Update(0xc00000e340, 0xc0001f6340, 0xc96d40, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/run.go:237 +0x45
+github.com/hajimehoshi/ebiten.(*uiContext).update(0xce2120, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:306 +0x123
+github.com/hajimehoshi/ebiten.(*uiContext).Update(0xce2120, 0xc0001c9e10, 0x891ec0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:251 +0xb3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).update(0xc7c680, 0x20001, 0x1)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:867 +0x308
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).loop(0xc7c680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:913 +0xcf
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).run(0xc7c680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:768 +0x2f3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(0xc7c680, 0xc00005ef00)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
+created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
+ShitImDying: dial tcp 192.168.71.36:8080: connect: connection refused
+Stacktrace: goroutine 6 [running]:
+runtime/debug.Stack(0xc000ffd780, 0xc004361758, 0x45a0e5)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x889740, 0xc0035fc0a0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:284 +0x26
+panic(0x7c51a0, 0xc0035fc0a0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x889740, 0xc0035fc0a0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:289 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:47
+marvin/TerraNomina_Client/Game.(*Connecting).Start(0xc0000681e0, 0xc000093710, 0x3)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/connecting.go:48 +0xde
+marvin/TerraNomina_Client/Game.(*TerraNomina).ChangeState(0xc000093710, 0x4, 0x1, 0xc7c700)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:121 +0xd2
+marvin/TerraNomina_Client/Game.(*PlayMenu).Init.func1(0xc0009af340)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:42 +0x6f
+marvin/GraphEng/GE.(*Button).Update(0xc0009af340, 0x26d)
+	/home/marvin/go/src/marvin/GraphEng/GE/button.go:67 +0xec
+marvin/TerraNomina_Client/Game.(*PlayMenu).Update(0xc00000e140, 0xc001aee100, 0x3, 0xc000094208)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:69 +0x70
+marvin/TerraNomina_Client/Game.(*TerraNomina).Update(0xc000093710, 0xc001aee100, 0x0, 0x0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:42 +0x1be
+github.com/hajimehoshi/ebiten.(*imageDumper).update(0xc0009ae000, 0xc001aee100, 0xc00097c090, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/imagedumper_desktop.go:106 +0x4e
+github.com/hajimehoshi/ebiten.(*imageDumperGame).Update(0xc00000e160, 0xc001aee100, 0xc96d40, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/run.go:237 +0x45
+github.com/hajimehoshi/ebiten.(*uiContext).update(0xce2120, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:306 +0x123
+github.com/hajimehoshi/ebiten.(*uiContext).Update(0xce2120, 0xc004361e10, 0x891ec0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:251 +0xb3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).update(0xc7c680, 0x20001, 0x1)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:867 +0x308
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).loop(0xc7c680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:913 +0xcf
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).run(0xc7c680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:768 +0x2f3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(0xc7c680, 0xc00005ea80)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
+created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
+ShitImDying: dial tcp 192.168.71.36:8080: connect: connection refused
+Stacktrace: goroutine 6 [running]:
+runtime/debug.Stack(0xc001b3b660, 0xc001a69738, 0x45a0e5)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x8897e0, 0xc000b6d220)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:284 +0x26
+panic(0x7c5240, 0xc000b6d220)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x8897e0, 0xc000b6d220)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:289 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:47
+marvin/TerraNomina_Client/Game.(*Connecting).Start(0xc000068320, 0xc000072840, 0x3)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/connecting.go:49 +0x16c
+marvin/TerraNomina_Client/Game.(*TerraNomina).ChangeState(0xc000072840, 0x4, 0x1, 0xc7d700)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:121 +0xd2
+marvin/TerraNomina_Client/Game.(*PlayMenu).Init.func1(0xc001aba600)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:42 +0x6f
+marvin/GraphEng/GE.(*Button).Update(0xc001aba600, 0x14d)
+	/home/marvin/go/src/marvin/GraphEng/GE/button.go:67 +0xec
+marvin/TerraNomina_Client/Game.(*PlayMenu).Update(0xc00000e280, 0xc000148140, 0x3, 0xc000074208)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:69 +0x70
+marvin/TerraNomina_Client/Game.(*TerraNomina).Update(0xc000072840, 0xc000148140, 0x0, 0x0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:42 +0x1be
+github.com/hajimehoshi/ebiten.(*imageDumper).update(0xc00005c200, 0xc000148140, 0xc001a5c030, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/imagedumper_desktop.go:106 +0x4e
+github.com/hajimehoshi/ebiten.(*imageDumperGame).Update(0xc00000e2a0, 0xc000148140, 0xc97d40, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/run.go:237 +0x45
+github.com/hajimehoshi/ebiten.(*uiContext).update(0xce3120, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:306 +0x123
+github.com/hajimehoshi/ebiten.(*uiContext).Update(0xce3120, 0xc001a69e10, 0x891fa0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:251 +0xb3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).update(0xc7d680, 0x20001, 0x1)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:867 +0x308
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).loop(0xc7d680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:913 +0xcf
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).run(0xc7d680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:768 +0x2f3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(0xc7d680, 0xc00005ec60)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
+created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
+ShitImDying: dial tcp 192.168.71.36:8080: connect: connection refused
+Stacktrace: goroutine 22 [running]:
+runtime/debug.Stack(0xc00267d360, 0xc001acb738, 0x45a0e5)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x8897e0, 0xc00262f310)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:284 +0x26
+panic(0x7c5240, 0xc00262f310)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x8897e0, 0xc00262f310)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:289 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:47
+marvin/TerraNomina_Client/Game.(*Connecting).Start(0xc000068320, 0xc00010b0e0, 0x3)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/connecting.go:49 +0x16c
+marvin/TerraNomina_Client/Game.(*TerraNomina).ChangeState(0xc00010b0e0, 0x4, 0x1, 0xc7d700)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:121 +0xd2
+marvin/TerraNomina_Client/Game.(*PlayMenu).Init.func1(0xc001bbf240)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:42 +0x6f
+marvin/GraphEng/GE.(*Button).Update(0xc001bbf240, 0x163)
+	/home/marvin/go/src/marvin/GraphEng/GE/button.go:67 +0xec
+marvin/TerraNomina_Client/Game.(*PlayMenu).Update(0xc0001182e0, 0xc00005c800, 0x3, 0xc000074208)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/playMenu.go:69 +0x70
+marvin/TerraNomina_Client/Game.(*TerraNomina).Update(0xc00010b0e0, 0xc00005c800, 0x0, 0x0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:42 +0x1be
+github.com/hajimehoshi/ebiten.(*imageDumper).update(0xc00005c140, 0xc00005c800, 0xc000072b10, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/imagedumper_desktop.go:106 +0x4e
+github.com/hajimehoshi/ebiten.(*imageDumperGame).Update(0xc000118300, 0xc00005c800, 0xc97d40, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/run.go:237 +0x45
+github.com/hajimehoshi/ebiten.(*uiContext).update(0xce3120, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:306 +0x123
+github.com/hajimehoshi/ebiten.(*uiContext).Update(0xce3120, 0xc001acbe10, 0x891fa0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:251 +0xb3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).update(0xc7d680, 0x20001, 0x1)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:867 +0x308
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).loop(0xc7d680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:913 +0xcf
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).run(0xc7d680, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:768 +0x2f3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(0xc7d680, 0xc00005ec60)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
+created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
