@@ -45,7 +45,7 @@ func (t *Connecting) Start(g *TerraNomina, oldState int) {
 	t.loadingAnim.Start(nil,nil)
 	
 	go func(){
-		fmt.Printf("Connecting to '%s'\n", t.ipAddr)
+		//fmt.Printf("Connecting to '%s'\n", t.ipAddr)
 		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) (bool) {
 			if msg[0] == MAP_REQUEST {
 				t.mapData = msg[1:]
@@ -56,7 +56,7 @@ func (t *Connecting) Start(g *TerraNomina, oldState int) {
 		CheckErr(err)
 		time.Sleep(time.Second)
 		data := []byte{MAP_REQUEST}
-		fmt.Println("sending: ", data)
+		//fmt.Println("sending: ", data)
 		Client.Send(data)
 	}()
 }

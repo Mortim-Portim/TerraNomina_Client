@@ -61,7 +61,10 @@ var (
 	WorldStructure *GE.WorldStructure
 )
 
-
+//Should be saved to a file
+var (
+	
+)
 
 
 
