@@ -1,2 +1,2 @@
-spriteWidth:1920
+spriteWidth:100
 updatePeriod:0

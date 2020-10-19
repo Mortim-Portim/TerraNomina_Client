@@ -21,6 +21,9 @@ type TerraNomina struct {
 	interrupt chan os.Signal
 }
 func (g *TerraNomina) Update(screen *ebiten.Image) error {
+	if Keyli != nil {
+		Keyli.UpdateMapped()
+	}
 	if g.first {
 		g.loadingState = 0
 		g.lastLoadingState = 0
@@ -41,8 +44,11 @@ func (g *TerraNomina) Update(screen *ebiten.Image) error {
 func (g *TerraNomina) Close() {
 	state, ok := g.States[g.currentState]
 	if ok {
-		state.Stop(g)
+		state.Stop(g, -1)
 	}
+	Soundtrack.FadeOut()
+	time.Sleep(time.Duration(float64(time.Second)*(GE.STANDARD_FADE_TIME+0.5)))
+	fmt.Println()
 }
 
 
@@ -63,6 +69,20 @@ func (g *TerraNomina) Initializing(screen *ebiten.Image) error {
 	return nil
 }
 func (g *TerraNomina) Init() {
+	done := make(chan struct{})
+	go func(){
+		for i := 0; i <= 30; i ++ {
+			g.loadingState = uint8(i)
+			time.Sleep(time.Millisecond*100)
+		}
+		<-done
+		g.frame = 0
+		newState := g.currentState
+		g.currentState = -1
+		g.ChangeState(newState)
+		g.initializing = false
+	}()
+	
 	g.interrupt = make(chan os.Signal, 1)
 	signal.Notify(g.interrupt, os.Interrupt)
 	go func(){
@@ -72,33 +92,36 @@ func (g *TerraNomina) Init() {
 		return
 	}()
 	
-	mt, err := GE.LoadSounds(RES+SOUNDTRACK_FILES+"/main")
+	st, err := GE.LoadSoundTrack(RES+SOUNDTRACK_FILES)
 	CheckErr(err)
-	bt, err := GE.LoadSounds(RES+SOUNDTRACK_FILES+"/battle")
-	CheckErr(err)
-	MainTheme = mt; BattleTheme = bt
-	
-	for i := 0; i < 30; i ++ {
-		g.loadingState = uint8(i)
-		time.Sleep(time.Millisecond*100)
+	Soundtrack = st
+	st.Play(SOUNDTRACK_MAIN)
+	for _,state := range(g.States) {
+		state.Init(g)
 	}
-	g.frame = 0
-	newState := g.currentState
-	g.currentState = -1
-	g.ChangeState(newState)
-	g.initializing = false
+	
+	Keyli = &GE.KeyLi{}
+	Keyli.Reset()
+	Keyli.LoadConfig(RES+KEYLI_MAPPER_FILE)
+	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
+	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})
+	
+	close(done)
 }
-func (g *TerraNomina) ChangeState(newState int) {
+func (g *TerraNomina) ChangeState(newState int) error {
 	if _,ok := g.States[newState]; ok {
 		if _,ok := g.States[g.currentState]; ok {
-			g.States[g.currentState].Stop(g)
+			g.States[g.currentState].Stop(g, newState)
 		}
+		g.States[newState].Start(g, g.currentState)
 		g.currentState = newState
-		g.States[g.currentState].Start(g)
+		return nil
 	}
+	return errors.New(fmt.Sprintf("Cannot change to state %v, does not exist", g.currentState))
 }
 type GameState interface {
-	Start(g *TerraNomina)
-	Stop(g *TerraNomina)
+	Init(g *TerraNomina)
+	Start(g *TerraNomina, lastState int)
+	Stop(g *TerraNomina, nextState int)
 	Update(screen *ebiten.Image) error
 }

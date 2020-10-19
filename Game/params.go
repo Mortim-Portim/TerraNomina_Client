@@ -27,6 +27,6 @@ func InitParams(path string) {
 	nameParams := &GE.Params{}; nameParams.LoadFromFile(RES+TITELSCREEN_FILES+"/name.txt")
 	name, err3 := GE.LoadEbitenImg(RES+TITELSCREEN_FILES+"/name.png")
 	CheckErr(err3)
-	TITLE_Name = GE.GetAnimationFromParams(0, 0, XRES, YRES/3.32, nameParams, name)
+	TITLE_Name = GE.GetAnimationFromParams(0, 0, XRES, XRES*0.19, nameParams, name)
 }
 

@@ -30,7 +30,10 @@ func Start() {
 	InitParams(RES+"/params.txt")
 	
 	tn := &TerraNomina{first:true, States:make(map[int]GameState)}
-	tn.States[0] = GetTitleScreen(tn)
+	tn.States[TITLESCREEN_STATE] = GetTitleScreen(tn)
+	tn.States[OPTIONS_MENU_STATE] = GetOptionsMenu(tn)
+	tn.States[PLAY_MENU_STATE] = GetPlayMenu(tn)
+	tn.States[CONNECTING_STATE] = GetConnecting(tn)
 	
 	StartGame(tn)
 }
