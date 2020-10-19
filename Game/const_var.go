@@ -2,6 +2,7 @@ package Game
 
 import (
 	"marvin/GraphEng/GE"
+	"marvin/GameConn/GC"
 )
 
 const (
@@ -16,8 +17,12 @@ const (
 	TITELSCREEN_FILES = 	IMAGE_FILES+"/GUI/Titlescreen"
 	PLAYMENU_FILES = 		IMAGE_FILES+"/GUI/PlayMenu"
 	BUTTON_FILES =			IMAGE_FILES+"/GUI/Buttons"
+	CONNECTING_FILES =		IMAGE_FILES+"/GUI/Connecting"
 	SOUNDTRACK_FILES = 		AUDIO_FILES+"/Soundtrack"
 	KEYLI_MAPPER_FILE =							"/keyli.txt"
+	
+	STRUCTURE_FILES = 							"/Maps/structures"
+	TILE_FILES = 								"/Maps/tiles"
 	
 	ICON_FORMAT = "png"
 	
@@ -26,11 +31,14 @@ const (
 	OPTIONS_MENU_STATE = 		2
 	PLAY_MENU_STATE = 			3
 	CONNECTING_STATE = 			4
+	INGAME_STATE = 				5
 	
 	SOUNDTRACK_MAIN =			"main"
 	SOUNDTRACK_ORK =			"ork"
 	SOUNDTRACK_BATTLE_INTRO =	"battle_intro"
 	SOUNDTRACK_BATTLE_CYCLE =	"battle_cycle"
+	
+	MAP_REQUEST = 				GC.MESSAGE_TYPES+0
 )
 var (
 	PARAMETER *GE.Params
@@ -47,6 +55,10 @@ var (
 	
 	USER_INPUT_IP_ADDR string
 	
+	Client *GC.Client
+	ClientManager *GC.ClientManager
+	
+	WorldStructure *GE.WorldStructure
 )
 
 

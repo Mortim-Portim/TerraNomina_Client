@@ -3,6 +3,7 @@ package Game
 import (
 	"github.com/hajimehoshi/ebiten"
 	"marvin/GraphEng/GE"
+	"marvin/GameConn/GC"
 	//fonts "marvin/TerraNomina_Client/.res/Fonts"
 )
 
@@ -26,6 +27,7 @@ func StartGame(g ebiten.Game) {
 func Start() {
 	GE.Init("")
 	GE.SetLogFile(RES+"/log.txt")
+	GC.InitSyncVarStandardTypes()
 	
 	InitParams(RES+"/params.txt")
 	

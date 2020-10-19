@@ -2,6 +2,7 @@ package Game
 
 import (
 	"marvin/GraphEng/GE"
+	"marvin/GameConn/GC"
 	"github.com/hajimehoshi/ebiten"
 	"time"
 	"fmt"
@@ -21,6 +22,7 @@ type TerraNomina struct {
 	interrupt chan os.Signal
 }
 func (g *TerraNomina) Update(screen *ebiten.Image) error {
+	defer func(){g.frame ++}()
 	if Keyli != nil {
 		Keyli.UpdateMapped()
 	}
@@ -105,6 +107,9 @@ func (g *TerraNomina) Init() {
 	Keyli.LoadConfig(RES+KEYLI_MAPPER_FILE)
 	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
 	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})
+	
+	Client = GC.GetNewClient()
+	ClientManager = GC.GetClientManager(Client)
 	
 	close(done)
 }
