@@ -77,7 +77,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 		}
 		x,y := i.wrld.Middle()
 		if !i.wrld.Collides(x+hori, y+vert) {
-			i.wrld.Move(hori,vert, true)
+			i.wrld.Move(hori,vert, true, false)
 		}
 		i.changer = !i.changer
 	}
