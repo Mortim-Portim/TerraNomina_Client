@@ -20,6 +20,8 @@ type TerraNomina struct {
 	lastLoadingState, loadingState uint8
 	initializing bool
 	interrupt chan os.Signal
+	
+	
 }
 func (g *TerraNomina) Update(screen *ebiten.Image) error {
 	defer func(){g.frame ++}()
