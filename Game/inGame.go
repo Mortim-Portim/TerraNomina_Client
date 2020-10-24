@@ -37,6 +37,7 @@ func (i *InGame) Start(g *TerraNomina, oldState int) {
 	i.wrld = WorldStructure
 	w := i.wrld.GetTileS(); h := PLAYER_MODELL_HEIGHT*w
 	i.playerAnim.SetParams(XRES/2-w/2, YRES/2-h*0.75, w, h)
+	i.wrld.SetLightLevel(30)
 }
 func (i *InGame) Stop(g *TerraNomina, newState int) {
 	fmt.Print("InGame      -------->")
@@ -76,7 +77,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 		}
 		x,y := i.wrld.Middle()
 		if !i.wrld.Collides(x+hori, y+vert) {
-			i.wrld.Move(hori,vert)
+			i.wrld.Move(hori,vert, true)
 		}
 		i.changer = !i.changer
 	}
@@ -87,9 +88,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	
 	i.wrld.DrawLights(false)
 	
-	i.wrld.DrawBack(screen)
-	i.playerAnim.DrawAnim(screen)
-	i.wrld.DrawFront(screen)
+	i.wrld.Draw(screen)
 	
 	msg := fmt.Sprintf(`TPS: %0.2f`, ebiten.CurrentTPS())
 	ebitenutil.DebugPrint(screen, msg)

@@ -658,3 +658,87 @@ github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(
 	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
 created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
 	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
+ShitImDying: dial tcp: lookup 918273.13: no such host
+Stacktrace: goroutine 13 [running]:
+runtime/debug.Stack(0xc0016363c0, 0xc0001002a0, 0xc000045d50)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x894160, 0xc00163f130)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:284 +0x26
+panic(0x7cdd20, 0xc00163f130)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x894160, 0xc00163f130)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:289 +0x77
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/start.go:48
+marvin/TerraNomina_Client/Game.(*Connecting).Start.func1(0xc000146320)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/connecting.go:57 +0x131
+created by marvin/TerraNomina_Client/Game.(*Connecting).Start
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/connecting.go:47 +0xc5
+ShitImDying: Should not be reached
+Stacktrace: goroutine 9 [running]:
+runtime/debug.Stack(0xc000080400, 0x7f12cc52e7d0, 0x0)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x894580, 0xc0035c0870)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:284 +0x26
+panic(0x7b3140, 0xc0035c0870)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x894580, 0xc0035c0870)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:289 +0x77
+marvin/GraphEng/GE.(*WorldStructure).Draw(0xc000507c20, 0xc000276840)
+	/home/marvin/go/src/marvin/GraphEng/GE/worldStructure.go:72 +0x17c
+marvin/TerraNomina_Client/Game.(*InGame).Update(0xc00000e300, 0xc000276840, 0x5, 0xc000074228)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/inGame.go:90 +0x23b
+marvin/TerraNomina_Client/Game.(*TerraNomina).Update(0xc000073800, 0xc000276840, 0x0, 0x0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:44 +0x1be
+github.com/hajimehoshi/ebiten.(*imageDumper).update(0xc0002be200, 0xc000276840, 0xc000246570, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/imagedumper_desktop.go:106 +0x4e
+github.com/hajimehoshi/ebiten.(*imageDumperGame).Update(0xc00000e320, 0xc000276840, 0xca6fc0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/run.go:237 +0x45
+github.com/hajimehoshi/ebiten.(*uiContext).update(0xcf2c60, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:306 +0x123
+github.com/hajimehoshi/ebiten.(*uiContext).Update(0xcf2c60, 0xc0000bbe10, 0x89d120)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:251 +0xb3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).update(0xc8c6c0, 0x20001, 0x1)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:867 +0x308
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).loop(0xc8c6c0, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:913 +0xcf
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).run(0xc8c6c0, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:768 +0x2f3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(0xc8c6c0, 0xc00005eea0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
+created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
+ShitImDying: Should not be reached: x:17, y:7, w:21, h:19
+Stacktrace: goroutine 8 [running]:
+runtime/debug.Stack(0xc000039800, 0x7f0b60ec97d0, 0x0)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+marvin/GraphEng/GE.ShitImDying.func1(0x8947a0, 0xc00a3037c0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:284 +0x26
+panic(0x7b3320, 0xc00a3037c0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+marvin/GraphEng/GE.ShitImDying(0x8947a0, 0xc00a3037c0)
+	/home/marvin/go/src/marvin/GraphEng/GE/generall.go:289 +0x77
+marvin/GraphEng/GE.(*WorldStructure).Draw(0xc00013fc20, 0xc00005cc00)
+	/home/marvin/go/src/marvin/GraphEng/GE/worldStructure.go:72 +0x17c
+marvin/TerraNomina_Client/Game.(*InGame).Update(0xc00000e300, 0xc00005cc00, 0x5, 0xc000074228)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/inGame.go:90 +0x23b
+marvin/TerraNomina_Client/Game.(*TerraNomina).Update(0xc000073800, 0xc00005cc00, 0x0, 0x0)
+	/home/marvin/go/src/marvin/TerraNomina_Client/Game/game.go:44 +0x1be
+github.com/hajimehoshi/ebiten.(*imageDumper).update(0xc00005ccc0, 0xc00005cc00, 0xc000a944e0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/imagedumper_desktop.go:106 +0x4e
+github.com/hajimehoshi/ebiten.(*imageDumperGame).Update(0xc00000e320, 0xc00005cc00, 0xca6fc0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/run.go:237 +0x45
+github.com/hajimehoshi/ebiten.(*uiContext).update(0xcf2c60, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:306 +0x123
+github.com/hajimehoshi/ebiten.(*uiContext).Update(0xcf2c60, 0xc0006a5e10, 0x89d340)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/uicontext.go:251 +0xb3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).update(0xc8c6c0, 0x20001, 0x1)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:867 +0x308
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).loop(0xc8c6c0, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:913 +0xcf
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).run(0xc8c6c0, 0x0, 0x0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:768 +0x2f3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(0xc8c6c0, 0xc00005eea0)
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
+created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
+	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
