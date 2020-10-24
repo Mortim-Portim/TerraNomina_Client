@@ -29,13 +29,13 @@ type Connecting struct {
 
 func (t *Connecting) Init(g *TerraNomina) {
 	fmt.Println("Initializing Connecting")
-	lps := &GE.Params{}; err := lps.LoadFromFile(RES+CONNECTING_FILES+"/loading.txt"); CheckErr(err)
-	limg, err := GE.LoadEbitenImg(RES+CONNECTING_FILES+"/loading.png")
+	lps := &GE.Params{}; err := lps.LoadFromFile(F_CONNECTING+"/loading.txt"); CheckErr(err)
+	limg, err := GE.LoadEbitenImg(F_CONNECTING+"/loading.png")
 	CheckErr(err)
 	t.loadingAnim = GE.GetAnimationFromParams(0,0,XRES,YRES, lps, limg)
 	t.loadingAnim.Init(nil,nil)
 	
-	t.background, err = GE.LoadImgObj(RES+CONNECTING_FILES+"/back.png", XRES, YRES, 0, 0, 0)
+	t.background, err = GE.LoadImgObj(F_CONNECTING+"/back.png", XRES, YRES, 0, 0, 0)
 	CheckErr(err)
 }
 func (t *Connecting) Start(g *TerraNomina, oldState int) {
@@ -77,7 +77,7 @@ func (t *Connecting) Update(screen *ebiten.Image) error {
 }
 
 func (t *Connecting) LoadWorld(data []byte) {
-	wrld, err := GE.GetWorldStructureFromBytes(0,0,XRES,YRES, data, RES+TILE_FILES, RES+STRUCTURE_FILES)
+	wrld, err := GE.GetWorldStructureFromBytes(0,0,XRES,YRES, data, F_TILES, F_STRUCTURES)
 	CheckErr(err)
 	WorldStructure = wrld
 	

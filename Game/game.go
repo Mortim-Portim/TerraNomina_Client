@@ -48,6 +48,7 @@ func (g *TerraNomina) Close() {
 	if ok {
 		state.Stop(g, -1)
 	}
+	Keyli.SaveConfig(F_KEYLI_MAPPER)
 	Soundtrack.FadeOut()
 	time.Sleep(time.Duration(float64(time.Second)*(GE.STANDARD_FADE_TIME+0.5)))
 	fmt.Println()
@@ -94,22 +95,24 @@ func (g *TerraNomina) Init() {
 		return
 	}()
 	
-	st, err := GE.LoadSoundTrack(RES+SOUNDTRACK_FILES)
+	st, err := GE.LoadSoundTrack(F_SOUNDTRACK)
 	CheckErr(err)
 	Soundtrack = st
 	st.Play(SOUNDTRACK_MAIN)
-	for _,state := range(g.States) {
-		state.Init(g)
-	}
 	
 	Keyli = &GE.KeyLi{}
 	Keyli.Reset()
-	Keyli.LoadConfig(RES+KEYLI_MAPPER_FILE)
+	Keyli.LoadConfig(F_KEYLI_MAPPER)
+	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
 	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
 	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})
 	
 	Client = GC.GetNewClient()
 	ClientManager = GC.GetClientManager(Client)
+	
+	for _,state := range(g.States) {
+		state.Init(g)
+	}
 	
 	close(done)
 }

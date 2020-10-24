@@ -14,19 +14,21 @@ func InitParams(path string) {
 	
 	xres,yres := ebiten.ScreenSizeInFullscreen(); XRES = float64(xres); YRES = float64(yres)
 	
-	backParams := &GE.Params{}; backParams.LoadFromFile(RES+TITELSCREEN_FILES+"/back.txt")
-	back, err2 := GE.LoadEbitenImg(RES+TITELSCREEN_FILES+"/back.png")
+	backParams := &GE.Params{}; backParams.LoadFromFile(F_TITLESCREEN+"/back.txt")
+	back, err2 := GE.LoadEbitenImg(F_TITLESCREEN+"/back.png")
 	CheckErr(err2)
 	TITLE_BackImg = GE.GetAnimationFromParams(0, 0, XRES, YRES, backParams, back)
 	
-	loadingParams := &GE.Params{}; loadingParams.LoadFromFile(RES+TITELSCREEN_FILES+"/loading.txt")
-	loading, err2 := GE.LoadEbitenImg(RES+TITELSCREEN_FILES+"/loading.png")
+	loadingParams := &GE.Params{}; loadingParams.LoadFromFile(F_TITLESCREEN+"/loading.txt")
+	loading, err2 := GE.LoadEbitenImg(F_TITLESCREEN+"/loading.png")
 	CheckErr(err2)
 	TITLE_LoadingBar = GE.GetAnimationFromParams(0, 0, XRES, YRES, loadingParams, loading)
 	
-	nameParams := &GE.Params{}; nameParams.LoadFromFile(RES+TITELSCREEN_FILES+"/name.txt")
-	name, err3 := GE.LoadEbitenImg(RES+TITELSCREEN_FILES+"/name.png")
+	nameParams := &GE.Params{}; nameParams.LoadFromFile(F_TITLESCREEN+"/name.txt")
+	name, err3 := GE.LoadEbitenImg(F_TITLESCREEN+"/name.png")
 	CheckErr(err3)
 	TITLE_Name = GE.GetAnimationFromParams(0, 0, XRES, XRES*0.19, nameParams, name)
+	
+	left_key_id, right_key_id, up_key_id, down_key_id = 0,1,2,3
 }
 

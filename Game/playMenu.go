@@ -21,11 +21,11 @@ type PlayMenu struct {
 
 func (t *PlayMenu) Init(g *TerraNomina) {
 	fmt.Println("Initializing PlayMenu")
-	characterTab,err := GE.LoadEbitenImg(RES+PLAYMENU_FILES+"/character.png")
+	characterTab,err := GE.LoadEbitenImg(F_PLAYMENU+"/character.png")
 	CheckErr(err)
-	serverTab,err    := GE.LoadEbitenImg(RES+PLAYMENU_FILES+"/server.png")
+	serverTab,err    := GE.LoadEbitenImg(F_PLAYMENU+"/server.png")
 	CheckErr(err)
-	playBtnImg,err   := GE.LoadEbitenImg(RES+PLAYMENU_FILES+"/play.png")
+	playBtnImg,err   := GE.LoadEbitenImg(F_PLAYMENU+"/play.png")
 	CheckErr(err)
 	w,h := playBtnImg.Size(); rel := float64(h)/float64(w)
 	W := XRES*PLAY_MENU_PLAY_BUTTON_WIDTH; H := W*rel

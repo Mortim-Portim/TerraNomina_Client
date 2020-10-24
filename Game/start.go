@@ -8,7 +8,7 @@ import (
 )
 
 func StartGame(g ebiten.Game) {
-	icons, err := GE.InitIcons(RES+ICON_FILES, ICON_SIZES, ICON_FORMAT)
+	icons, err := GE.InitIcons(F_ICONS, ICON_SIZES, ICON_FORMAT)
 	CheckErr(err)
 	ebiten.SetWindowIcon(icons)
 	ebiten.SetWindowTitle("Terra Nomina")

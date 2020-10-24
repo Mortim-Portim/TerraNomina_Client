@@ -20,9 +20,9 @@ type TitleScreen struct {
 
 func (t *TitleScreen) Init(g *TerraNomina) {
 	fmt.Println("Initializing TitleScreen")
-	Play_i, err 	 := GE.LoadEbitenImg(RES+BUTTON_FILES+"/play.png"); CheckErr(err)
-	Character_i, err := GE.LoadEbitenImg(RES+BUTTON_FILES+"/character.png"); CheckErr(err)
-	Options_i, err	 := GE.LoadEbitenImg(RES+BUTTON_FILES+"/options.png"); CheckErr(err)
+	Play_i, err 	 := GE.LoadEbitenImg(F_BUTTONS+"/play.png"); CheckErr(err)
+	Character_i, err := GE.LoadEbitenImg(F_BUTTONS+"/character.png"); CheckErr(err)
+	Options_i, err	 := GE.LoadEbitenImg(F_BUTTONS+"/options.png"); CheckErr(err)
 	
 	w := TITLESCREEN_BUTTON_WIDTH*XRES; h := w*TITLESCREEN_BUTTON_HEIGHT_REL
 	Play_B      := GE.GetImageButton(Play_i     , XRES-w*1.5, YRES/3    , w, h)
