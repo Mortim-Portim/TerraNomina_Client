@@ -21,10 +21,8 @@ type CharacterMenu struct {
 	currRace  int
 }
 
-type RaceImg []*GE.WObj
-
-func getRace(name string, x, y float64) (group *GE.Group) {
-	title := &Image{GE.GetTextImage(name, x, y, 50, GE.StandardFont, color.Black, &color.RGBA{168, 255, 68, 255})}
+func getRace(race *Race, x, y float64) (group *GE.Group) {
+	title := GE.GetTextImage(race.name, x+300, y+50, 50, GE.StandardFont, color.Black, &color.RGBA{168, 255, 68, 255})
 	group = GE.GetGroup(title)
 	return
 }
@@ -32,18 +30,14 @@ func getRace(name string, x, y float64) (group *GE.Group) {
 func (menu *CharacterMenu) Init(g *TerraNomina) {
 	rx, ry := 100.0, 100.0
 
-	img, _ := GE.LoadImgObj(F_CHARACTERMENU+"/racetemplate.png", 700, 500, rx, ry, 0)
-	racebackground := &Image{img}
-
+	racebackground, _ := GE.LoadImgObj(F_CHARACTERMENU+"/racetemplate.png", 700, 500, rx, ry, 0)
 	menu.racething = GE.GetGroup(racebackground)
 	menu.racething.Init(nil, nil)
 
-	menu.races = []*GE.Group{
-		getRace("Elv", rx+300, ry+50),
-	}
-
-	for _, race := range menu.races {
-		race.Init(nil, nil)
+	for _, race := range Races {
+		group := getRace(race, rx, ry)
+		group.Init(nil, nil)
+		menu.races = append(menu.races, group)
 	}
 
 	menu.currRace = 0
