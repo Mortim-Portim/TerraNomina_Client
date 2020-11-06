@@ -20,14 +20,15 @@ const (
 	F_AUDIO      = RES + "/Audio"
 	F_SOUNDTRACK = F_AUDIO + "/Soundtrack"
 
-	F_IMAGES      = RES + "/Images"
-	F_GUI         = F_IMAGES + "/GUI"
-	F_TITLESCREEN = F_GUI + "/Titlescreen"
-	F_PLAYMENU    = F_GUI + "/PlayMenu"
-	F_BUTTONS     = F_GUI + "/Buttons"
-	F_CONNECTING  = F_GUI + "/Connecting"
-	F_ANIMS       = F_IMAGES + "/Anims"
-	F_DAYNIGHT    = F_ANIMS + "/DayNight"
+	F_IMAGES        = RES + "/Images"
+	F_GUI           = F_IMAGES + "/GUI"
+	F_TITLESCREEN   = F_GUI + "/Titlescreen"
+	F_PLAYMENU      = F_GUI + "/PlayMenu"
+	F_CHARACTERMENU = F_GUI + "/CharacterMenu"
+	F_BUTTONS       = F_GUI + "/Buttons"
+	F_CONNECTING    = F_GUI + "/Connecting"
+	F_ANIMS         = F_IMAGES + "/Anims"
+	F_DAYNIGHT      = F_ANIMS + "/DayNight"
 
 	/**
 	RES = 									"./.res"

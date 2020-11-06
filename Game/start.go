@@ -38,7 +38,7 @@ func Start() {
 	tn.States[PLAY_MENU_STATE] = GetPlayMenu(tn)
 	tn.States[CONNECTING_STATE] = GetConnecting(tn)
 	tn.States[INGAME_STATE] = GetInGame(tn)
-	tn.States[CHARACTER_MENU_STATE] = getCharacterMenu()
+	tn.States[CHARACTER_MENU_STATE] = GetCharacterMenu(tn)
 
 	StartGame(tn)
 }
