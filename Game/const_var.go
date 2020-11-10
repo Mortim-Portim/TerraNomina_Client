@@ -14,6 +14,7 @@ const (
 	F_KEYLI_MAPPER = RES + "/keyli.txt"
 	F_ICONS        = RES + "/Icons"
 	F_MAPS         = RES + "/Maps"
+	F_CHARACTER    = RES + "/Character"
 	F_STRUCTURES   = F_MAPS + "/structures"
 	F_TILES        = F_MAPS + "/tiles"
 

@@ -32,6 +32,7 @@ func Start() {
 
 	InitParams(RES + "/params.txt")
 	InitRaces()
+	InitClasses()
 
 	tn := &TerraNomina{first: true, States: make(map[int]GameState)}
 	tn.States[TITLESCREEN_STATE] = GetTitleScreen(tn)

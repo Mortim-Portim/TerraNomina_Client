@@ -742,3 +742,67 @@ github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(
 	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x72
 created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
 	/home/marvin/go/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x136
+ShitImDying: open ./.res/Images/GUI/CharacterMenu/backgroundHalf-Elv.png: The system cannot find the file specified.
+Stacktrace: goroutine 7 [running]:
+runtime/debug.Stack(0xc000b0b500, 0x30, 0x30)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0xd84e00, 0xc000b0b500)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:301 +0x2d
+panic(0xcbb100, 0xc000b0b500)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0xd84e00, 0xc000b0b500)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:306 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:52
+marvin/TerraNomina_Client/Game.getRace(0xc00004a370, 0xc000b10b40, 0xc0001c3140)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:77 +0x118
+marvin/TerraNomina_Client/Game.(*CharacterMenu).initRace(0xc00024a100)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:70 +0x5ce
+marvin/TerraNomina_Client/Game.(*CharacterMenu).Init(0xc00024a100, 0xc00008d0b0)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:35 +0x32
+marvin/TerraNomina_Client/Game.(*TerraNomina).Init(0xc00008d0b0)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:116 +0x43a
+created by marvin/TerraNomina_Client/Game.(*TerraNomina).Update
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:37 +0x279
+ShitImDying: open ./.res/Character: is a directory
+Stacktrace: goroutine 50 [running]:
+runtime/debug.Stack(0xc000000000, 0xc0a2ca, 0xc000b00400)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0xfa4ea0, 0xc00c597260)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:301 +0x2d
+panic(0xedb120, 0xc00c597260)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0xfa4ea0, 0xc00c597260)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:306 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:52
+marvin/TerraNomina_Client/Game.(*CharacterMenu).save(0xc000186100)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:206 +0x88
+marvin/TerraNomina_Client/Game.(*CharacterMenu).Init.func1(0xc0000c6c80)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:46 +0x4b
+marvin/GraphEng/GE.(*Button).Update(0xc0000c6c80, 0x0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/button.go:67 +0xed
+marvin/GraphEng/GE.(*Group).Update(0xc0004962a0, 0x0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/group.go:70 +0x59
+marvin/TerraNomina_Client/Game.(*CharacterMenu).Update(0xc000186100, 0xc00032e800, 0x1, 0xc00009a648)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:159 +0x105
+marvin/TerraNomina_Client/Game.(*TerraNomina).Update(0xc00012ede0, 0xc00032e800, 0x0, 0x0)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:44 +0x1c2
+github.com/hajimehoshi/ebiten.(*imageDumper).update(0xc00001e7c0, 0xc00032e800, 0xc00027c840, 0x0)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/imagedumper_desktop.go:106 +0x5d
+github.com/hajimehoshi/ebiten.(*imageDumperGame).Update(0xc0000049e0, 0xc00032e800, 0x1165480, 0x0)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/run.go:237 +0x4b
+github.com/hajimehoshi/ebiten.(*uiContext).update(0x1224fc0, 0x0, 0x0)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/uicontext.go:306 +0x127
+github.com/hajimehoshi/ebiten.(*uiContext).Update(0x1224fc0, 0xc0002d9e50, 0xfab8a0)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/uicontext.go:251 +0xb6
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).update(0x1220100, 0xc0002d9ea0, 0x0)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:867 +0x308
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).loop(0x1220100, 0x0, 0x0)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:913 +0xac
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).run(0x1220100, 0x0, 0x0)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:768 +0x2f3
+github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(0x1220100, 0xc0000f8840)
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x79
+created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
+	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x13c
