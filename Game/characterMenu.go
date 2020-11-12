@@ -84,7 +84,7 @@ func (menu *CharacterMenu) initRace() {
 func getRace(race *Race) (group *GE.Group) {
 	title := GE.GetTextImage(race.name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.14)
-	stats := GE.GetTextImage(fmt.Sprintf("STR: %v DEX: %v INT: %v CHA: %v", race.attributes[0], race.attributes[1], race.attributes[2], race.attributes[3]), XRES*0.5, YRES*0.33, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
+	stats := GE.GetTextImage(fmt.Sprintf("STR: %v DEX: %v INT: %v CHA: %v", race.attributes[0], race.attributes[1], race.attributes[2], race.attributes[3]), XRES*0.52, YRES*0.32, YRES*0.06, GE.StandardFont, color.Black, color.Transparent)
 
 	subraces := make([]GE.UpdateAble, len(race.subraces))
 	for i, subrace := range race.subraces {
