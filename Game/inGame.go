@@ -88,7 +88,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	i.wrld.UpdateLightLevel(1)
 
 	i.playerAnim.Update(i.parent.frame)
-	i.playerAnim.LightLevel = i.wrld.GetLightLevel()
+	i.playerAnim.LightLevel = int16(i.wrld.GetLightLevel())
 
 	i.wrld.Draw(screen)
 

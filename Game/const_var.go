@@ -14,7 +14,7 @@ const (
 	F_KEYLI_MAPPER = RES + "/keyli.txt"
 	F_ICONS        = RES + "/Icons"
 	F_MAPS         = RES + "/Maps"
-	F_CHARACTER    = RES + "/Character"
+	F_CHARACTER    = RES + "/Character/"
 	F_STRUCTURES   = F_MAPS + "/structures"
 	F_TILES        = F_MAPS + "/tiles"
 
@@ -64,6 +64,7 @@ const (
 	SOUNDTRACK_BATTLE_CYCLE = "battle_cycle"
 
 	MAP_REQUEST = GC.MESSAGE_TYPES + 0
+	CHAR_SEND   = GC.MESSAGE_TYPES + 1
 
 	PLAYER_MODELL_HEIGHT = 2
 )
