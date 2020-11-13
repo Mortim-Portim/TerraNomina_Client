@@ -806,3 +806,25 @@ github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(
 	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x79
 created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
 	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x13c
+ShitImDying: open ./.res/Images/Anims/DayNight/Elv.txt: The system cannot find the file specified.
+Stacktrace: goroutine 35 [running]:
+runtime/debug.Stack(0xc00045daa8, 0xbde7bf, 0x30)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0x1022640, 0xc000b160f0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:325 +0x2d
+panic(0xf56c60, 0xc000b160f0)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0x1022640, 0xc000b160f0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:330 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:50
+marvin/TerraNomina_Client/Game.getRace(0x129da00, 0x4)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:89 +0x4c5
+marvin/TerraNomina_Client/Game.(*CharacterMenu).initRace(0xc00004e090)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:80 +0x60a
+marvin/TerraNomina_Client/Game.(*CharacterMenu).Init(0xc00004e090, 0xc00004d110)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:43 +0x65
+marvin/TerraNomina_Client/Game.(*TerraNomina).Init(0xc00004d110)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:116 +0x43a
+created by marvin/TerraNomina_Client/Game.(*TerraNomina).Update
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:37 +0x279

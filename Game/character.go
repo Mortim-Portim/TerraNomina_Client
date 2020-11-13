@@ -16,16 +16,18 @@ type Class struct {
 }
 
 var Races []*Race = []*Race{
-	{"Elv", 1, []uint8{0, 2, 2, 0}, []string{"Wood Elv", "High Elv"}},
-	{"Human", 0, []uint8{1, 1, 1, 1}, []string{"Urban Human", "Country-Side Human", "Mountain Tribe"}},
-	{"Half-Elv", 2, []uint8{0, 2, 0, 2}, []string{"Dark Elv", "City Elv"}},
-	{"Ork", 3, []uint8{3, 0, 0, 0}, []string{"Mountain Ork", "Cave Ork"}},
+	{"Elv", []int8{0, 2, 2, 0}, []string{"Wood Elv", "High Elv"}},
+	{"Human", []int8{1, 1, 1, 1}, []string{"Urban Human", "Country-Side Human", "Mountain Tribe"}},
+	{"Half-Elv", []int8{0, 2, 0, 2}, []string{"Dark Elv", "City Elv"}},
+	{"Ork", []int8{3, 0, 0, 0}, []string{"Mountain Ork", "Cave Ork"}},
+	{"Goblin", []int8{-1, 2, 0, 2}, []string{"Ravin Goblin", "Sever Goblin"}},
+	{"Dwarf", []int8{+2, 0, +2, 0}, []string{"Hill Dwarf", "Mountain Dwarf"}},
+	{"Halfling", []int8{0, -1, +1, +3}, []string{"Rock Halfling", "Forest Halfling"}},
 }
 
 type Race struct {
 	name       string
-	imgID      int
-	attributes []uint8
+	attributes []int8
 	subraces   []string //will change later, placeholder
 }
 
@@ -36,7 +38,7 @@ func LoadChar(name string) []byte {
 	return file
 }
 
-func SaveChar(name string, attribute []uint8) {
+func SaveChar(name string, attribute []int8) {
 	file, err := os.Create(F_CHARACTER + name + ".char")
 	CheckErr(err)
 
