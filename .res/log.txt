@@ -828,3 +828,89 @@ marvin/TerraNomina_Client/Game.(*TerraNomina).Init(0xc00004d110)
 	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:116 +0x43a
 created by marvin/TerraNomina_Client/Game.(*TerraNomina).Update
 	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:37 +0x279
+ShitImDying: open ./.res/Entities/creatures/test/WOBJ.png: The system cannot find the file specified.
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x0, 0x6a, 0xc000a8dd28)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0x6d68c0, 0xc000104db0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:325 +0x2d
+panic(0x60a0a0, 0xc000104db0)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0x6d68c0, 0xc000104db0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:330 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:57
+marvin/TerraNomina_Client/Game.Start()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:48 +0x418
+main.main()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/main.go:8 +0x27
+ShitImDying: open ./.res/Entities/creatures/dwarf/WOBJ.png: The system cannot find the file specified.
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x0, 0x6a, 0xc000a8dd28)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0xfd68c0, 0xc000104db0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:325 +0x2d
+panic(0xf0a0a0, 0xc000104db0)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0xfd68c0, 0xc000104db0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:330 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:57
+marvin/TerraNomina_Client/Game.Start()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:48 +0x418
+main.main()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/main.go:8 +0x27
+ShitImDying: open ./.res/Entities/creatures/dwarf/WOBJ.png: The system cannot find the file specified.
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x0, 0x68, 0xc000b17d28)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0xc168c0, 0xc00012fcb0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:325 +0x2d
+panic(0xb4a0a0, 0xc00012fcb0)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0xc168c0, 0xc00012fcb0)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:330 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:57
+marvin/TerraNomina_Client/Game.Start()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:48 +0x418
+main.main()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/main.go:8 +0x27
+ShitImDying: open ./.res/Entities/creatures/dwarf/WOBJ.png: The system cannot find the file specified.
+Stacktrace: goroutine 1 [running, locked to thread]:
+runtime/debug.Stack(0x0, 0x6a, 0xc000aabd28)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0x11068c0, 0xc00012ed50)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:325 +0x2d
+panic(0x103a0a0, 0xc00012ed50)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0x11068c0, 0xc00012ed50)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:330 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:57
+marvin/TerraNomina_Client/Game.Start()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:48 +0x418
+main.main()
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/main.go:8 +0x27
+ShitImDying: open ./.res/Character/Elv/idle_R.txt: The system cannot find the path specified.
+Stacktrace: goroutine 37 [running]:
+runtime/debug.Stack(0xc000411aa8, 0x3ae7bf, 0x30)
+	c:/go/src/runtime/debug/stack.go:24 +0xa5
+marvin/GraphEng/GE.ShitImDying.func1(0x7f3980, 0xc00080ef30)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:325 +0x2d
+panic(0x727cc0, 0xc00080ef30)
+	c:/go/src/runtime/panic.go:969 +0x176
+marvin/GraphEng/GE.ShitImDying(0x7f3980, 0xc00080ef30)
+	C:/Users/gosei/go-workspace/src/marvin/GraphEng/GE/generall.go:330 +0x85
+marvin/TerraNomina_Client/Game.CheckErr(...)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/start.go:50
+marvin/TerraNomina_Client/Game.getRace(0xa6e1c0, 0x7)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:99 +0x485
+marvin/TerraNomina_Client/Game.(*CharacterMenu).initRace(0xc00008c270)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:90 +0x60a
+marvin/TerraNomina_Client/Game.(*CharacterMenu).Init(0xc00008c270, 0xc00004d110)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/characterMenu.go:47 +0x68
+marvin/TerraNomina_Client/Game.(*TerraNomina).Init(0xc00004d110)
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:116 +0x43a
+created by marvin/TerraNomina_Client/Game.(*TerraNomina).Update
+	C:/Users/gosei/go-workspace/src/marvin/TerraNomina_Client/Game/game.go:37 +0x279

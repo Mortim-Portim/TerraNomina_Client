@@ -31,6 +31,9 @@ const (
 	F_ANIMS         = F_IMAGES + "/Anims"
 	F_DAYNIGHT      = F_ANIMS + "/DayNight"
 
+	F_ENTITY   = RES + "/Entities"
+	F_CREATURE = F_ENTITY + "/creatures"
+
 	/**
 	RES = 									"./.res"
 	AUDIO_FILES = 								"/Audio"

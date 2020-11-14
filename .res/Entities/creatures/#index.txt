@@ -1,1 +1,7 @@
-test
+dwarf
+elv
+goblin
+half-elv
+halfling
+human
+ork

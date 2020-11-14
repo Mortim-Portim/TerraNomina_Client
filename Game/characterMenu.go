@@ -38,6 +38,7 @@ type CharacterMenu struct {
 	//Stats
 	statsthing *GE.Group
 	attpicture []*GE.ImageObj
+	sum        *GE.ImageObj
 	attributes []int8
 }
 
@@ -71,10 +72,10 @@ func (menu *CharacterMenu) initRace() {
 	nextbutton := GE.GetTextButton("Next", "", GE.StandardFont, XRES*0.1, YRES*0.83, YRES*0.12, color.Black, &color.RGBA{255, 0, 0, 255})
 	nextbutton.RegisterOnLeftEvent(func(btn *GE.Button) {
 		if !btn.LPressed {
-			menu.attributes = Races[menu.currRace].attributes
 			menu.state = 1
 
-			for i, num := range menu.attributes {
+			for i, num := range Races[menu.currRace].attributes {
+				menu.attributes[i] = num
 				menu.changeAttribute(i, int(num))
 			}
 		}
@@ -95,11 +96,11 @@ func getRace(race *Race) (group *GE.Group) {
 	title := GE.GetTextImage(race.name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.14)
 	stats := GE.GetTextImage(fmt.Sprintf("STR: %v DEX: %v INT: %v CHA: %v", race.attributes[0], race.attributes[1], race.attributes[2], race.attributes[3]), XRES*0.52, YRES*0.32, YRES*0.06, GE.StandardFont, color.Black, color.Transparent)
-	anim, err := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_DAYNIGHT+"/"+race.name+".txt", F_DAYNIGHT+"/"+race.name+".png")
+	anim, err := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_CREATURE+"/"+race.name+"/idle_R.txt", F_CREATURE+"/"+race.name+"/idle_R.png")
+	CheckErr(err)
 	anim.ScaleToOriginalSize()
 	anim.ScaleDim(YRES*0.48, 1)
 	anim.SetMiddle(XRES*0.15, YRES*0.53)
-	CheckErr(err)
 
 	subraces := make([]GE.UpdateAble, len(race.subraces))
 	for i, subrace := range race.subraces {
@@ -199,8 +200,11 @@ func (menu *CharacterMenu) initStats() {
 		lbutton.Data = i
 		lbutton.RegisterOnLeftEvent(func(button *GE.Button) {
 			if button.LPressed {
-				menu.attributes[button.Data.(int)]--
-				menu.changeAttribute(button.Data.(int), int(menu.attributes[button.Data.(int)]))
+				index := button.Data.(int)
+				if menu.attributes[index] > 0 {
+					menu.attributes[index]--
+					menu.changeAttribute(index, int(menu.attributes[index]))
+				}
 			}
 		})
 		buttons[i*3+1] = lbutton
@@ -210,8 +214,11 @@ func (menu *CharacterMenu) initStats() {
 		rbutton.Data = i
 		rbutton.RegisterOnLeftEvent(func(button *GE.Button) {
 			if button.LPressed {
-				menu.attributes[button.Data.(int)]++
-				menu.changeAttribute(button.Data.(int), int(menu.attributes[button.Data.(int)]))
+				index := button.Data.(int)
+				if menu.attributes[index] < 8 {
+					menu.attributes[index]++
+					menu.changeAttribute(index, int(menu.attributes[index]))
+				}
 			}
 		})
 		buttons[i*3+2] = rbutton
@@ -221,16 +228,38 @@ func (menu *CharacterMenu) initStats() {
 		nums[i] = numimg
 	}
 
+	sumlabel := GE.GetTextImage("10 / 10", 0, YRES*0.4, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
+	sumlabel.X = XRES*0.4 - sumlabel.W
+	menu.sum = sumlabel
+
 	menu.statsthing = GE.GetGroup(buttons...)
 	menu.statsthing.Init(nil, nil)
 
 	menu.attpicture = nums
+
+	menu.attributes = make([]int8, 4)
 }
+
+var pointmap []int = []int{1, 1, 2, 2, 3, 3, 4, 4}
 
 func (menu *CharacterMenu) changeAttribute(index, newvalue int) {
 	oldimg := menu.attpicture[index]
 	menu.attpicture[index] = GE.GetTextImage(strconv.Itoa(newvalue), 0, oldimg.Y, oldimg.H, GE.StandardFont, color.Black, color.Transparent)
 	menu.attpicture[index].SetMiddleX(XRES * 0.325)
+
+	menu.attributes[index] = int8(newvalue)
+
+	score := 10
+
+	for i := range menu.attributes {
+		for l := Races[menu.currRace].attributes[i]; l < menu.attributes[i]; l++ {
+			score -= pointmap[l]
+		}
+		fmt.Print("\n")
+	}
+
+	menu.sum = GE.GetTextImage(strconv.Itoa(score)+" / 10", 0, YRES*0.4, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
+	menu.sum.X = XRES*0.4 - menu.sum.W
 }
 
 func (menu *CharacterMenu) Start(g *TerraNomina, lastState int) {
@@ -290,6 +319,8 @@ func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
 		for _, img := range menu.attpicture {
 			img.Draw(screen)
 		}
+
+		menu.sum.Draw(screen)
 	}
 
 	return nil
