@@ -1,7 +1,7 @@
 package Game
 
 import (
-	"marvin/GraphEng/GE"
+	"github.com/mortim-portim/GraphEng/GE"
 
 	"github.com/hajimehoshi/ebiten"
 )

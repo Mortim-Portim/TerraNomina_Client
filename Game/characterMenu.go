@@ -3,23 +3,28 @@ package Game
 import (
 	"fmt"
 	"image/color"
-	"marvin/GraphEng/GE"
 	"strconv"
+
+	"github.com/mortim-portim/GraphEng/GE"
 
 	"github.com/hajimehoshi/ebiten"
 )
+
+var arrow *ebiten.Image
 
 func GetCharacterMenu(parent *TerraNomina) (cm *CharacterMenu) {
 	cm = &CharacterMenu{parent: parent}
 	return
 }
 
-var arrow *ebiten.Image
+//todo: change race to class 0.5 second
+//todo: review code
 
 type CharacterMenu struct {
 	parent *TerraNomina
 	state  int
 	close  bool
+	frame  *int
 
 	//Races
 	racething   *GE.Group
@@ -35,15 +40,19 @@ type CharacterMenu struct {
 
 	//Stats
 	statsthing *GE.Group
-	attpicture []*GE.ImageObj
-	sum        *GE.ImageObj
 	name       *GE.EditText
-	profselect []*GE.Button
-	profcount  int
+
+	attpicture []*GE.ImageObj
 	attributes []int8
+	sum        *GE.ImageObj
+
+	profselect    []*GE.Button
+	profpicture   *GE.Group
+	proficiencies []int8
+	profcount     int
 }
 
-func (menu *CharacterMenu) Init(g *TerraNomina) {
+func (menu *CharacterMenu) Init() {
 	arrow, _ = GE.LoadEbitenImg(F_CHARACTERMENU + "/arrow.png")
 
 	menu.initRace()
@@ -75,9 +84,10 @@ func (menu *CharacterMenu) initRace() {
 		if !btn.LPressed {
 			menu.state = 1
 
+			menu.resetStats()
+
 			for i, num := range Races[menu.currRace].Attributes {
-				menu.attributes[i] = num
-				menu.changeAttribute(i, int(num))
+				menu.changeAttribute(i, num)
 			}
 
 			for _, prof := range Races[menu.currRace].Profencies {
@@ -109,8 +119,8 @@ func getRace(race *Race) (group *GE.Group) {
 	title := GE.GetTextImage(race.Name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.12)
 	stats := GE.GetTextImage(fmt.Sprintf("STR:%v | DEX:%v | INT:%v | CHA:%v", race.Attributes[0], race.Attributes[1], race.Attributes[2], race.Attributes[3]), XRES*0.5, YRES*0.32, YRES*0.06, GE.StandardFont, color.Black, color.Transparent)
-	anim, err := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_CREATURE+"/"+race.Name+"/idle_R.txt", F_CREATURE+"/"+race.Name+"/idle_R.png")
-	CheckErr(err)
+	anim, _ := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_CREATURE+"/"+race.Name+"/idle_R.txt", F_CREATURE+"/"+race.Name+"/idle_R.png")
+
 	anim.ScaleToOriginalSize()
 	anim.ScaleDim(YRES*0.48, 1)
 	anim.SetMiddle(XRES*0.15, YRES*0.53)
@@ -207,7 +217,7 @@ func (menu *CharacterMenu) changeClass(delta int) {
 }
 
 var stats []string = []string{"Strength", "Dexterity", "Intelligence", "Charisma"}
-var proficiencies []string = []string{"Strength", "Dexterity", "Intelligence", "Charisma", "Endurance", "Persuasion", "Deception", "Performance", "Insight", "Thievery", "Stealth", "Acrobatics", "Nature", "Arcana", "Perception", "Craftsmanship", "Dungeoneering"}
+var proficiencies []string = []string{"Strength (STR)", "Dexterity (DEX)", "Intelligence (INT)", "Charisma (CHA)", "Endurance (STR)", "Persuasion (CHA)", "Deception (CHA)", "Performance (CHA)", "Insight (INT)", "Thievery (DEX)", "Stealth (DEX)", "Acrobatics (DEX)", "Nature (INT)", "Arcana (INT)", "Perception (INT)", "Craftsmanship (INT)", "Dungeoneering"}
 var abtoprof []int = []int{ABIL_STRENGTH, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_CHARISMA, ABIL_STRENGTH, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_INTELLIGENCE, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE}
 
 func (menu *CharacterMenu) initStats() {
@@ -223,8 +233,7 @@ func (menu *CharacterMenu) initStats() {
 			if button.LPressed {
 				index := button.Data.(int)
 				if menu.attributes[index] > 0 {
-					menu.attributes[index]--
-					menu.changeAttribute(index, int(menu.attributes[index]))
+					menu.changeAttribute(index, -1)
 				}
 			}
 		})
@@ -237,8 +246,7 @@ func (menu *CharacterMenu) initStats() {
 			if button.LPressed {
 				index := button.Data.(int)
 				if menu.attributes[index] < 8 {
-					menu.attributes[index]++
-					menu.changeAttribute(index, int(menu.attributes[index]))
+					menu.changeAttribute(index, +1)
 				}
 			}
 		})
@@ -251,6 +259,8 @@ func (menu *CharacterMenu) initStats() {
 
 	profscore := make([]GE.UpdateAble, len(proficiencies))
 	menu.profselect = make([]*GE.Button, len(proficiencies))
+	menu.profpicture = GE.GetGroup()
+	menu.profpicture.Member = make([]GE.UpdateAble, len(proficiencies))
 
 	clear, _ := GE.LoadEbitenImg(F_CHARACTERMENU + "/CheckboxClear.png")
 	checked, _ := GE.LoadEbitenImg(F_CHARACTERMENU + "/CheckboxChecked.png")
@@ -258,14 +268,14 @@ func (menu *CharacterMenu) initStats() {
 	for i, prof := range proficiencies {
 		profscore[i] = GE.GetTextImage(prof, XRES*0.6, YRES*(0.05+float64(i)*0.05), YRES*0.03, GE.StandardFont, color.Black, color.Transparent)
 
-		profselect := GE.GetButton(&GE.ImageObj{clear, nil, XRES * 0.03, XRES * 0.03, XRES * 0.72, YRES * (0.04 + float64(i)*0.05), 0}, checked)
+		profselect := GE.GetButton(&GE.ImageObj{clear, nil, XRES * 0.03, XRES * 0.03, XRES * 0.77, YRES * (0.04 + float64(i)*0.05), 0}, checked)
 		profselect.Data = false
 		profselect.RegisterOnLeftEvent(func(btn *GE.Button) {
 			if btn.LPressed && !btn.Data.(bool) {
 				if btn.DrawDark {
 					menu.profcount--
 				} else {
-					if menu.profcount <= Races[menu.currRace].Extraprof {
+					if menu.profcount < Races[menu.currRace].Extraprof {
 						menu.profcount++
 					} else {
 						return
@@ -275,7 +285,11 @@ func (menu *CharacterMenu) initStats() {
 			}
 		})
 		menu.profselect[i] = profselect
+
+		menu.profpicture.Member[i] = GE.GetTextImage("0", XRES*0.83, YRES*(0.05+float64(i)*0.05), YRES*0.03, GE.StandardFont, color.Black, color.Transparent)
 	}
+
+	menu.profpicture.Init(nil, nil)
 
 	sumlabel := GE.GetTextImage("10 / 10", 0, YRES*0.47, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
 	sumlabel.X = XRES*0.4 - sumlabel.W
@@ -323,12 +337,12 @@ func (menu *CharacterMenu) initStats() {
 
 var pointmap []int = []int{1, 1, 2, 2, 3, 3, 4, 4}
 
-func (menu *CharacterMenu) changeAttribute(index, newvalue int) {
-	oldimg := menu.attpicture[index]
-	menu.attpicture[index] = GE.GetTextImage(strconv.Itoa(newvalue), 0, oldimg.Y, oldimg.H, GE.StandardFont, color.Black, color.Transparent)
-	menu.attpicture[index].SetMiddleX(XRES * 0.325)
+func (menu *CharacterMenu) changeAttribute(index int, deltavalue int8) {
+	menu.attributes[index] += deltavalue
 
-	menu.attributes[index] = int8(newvalue)
+	oldimg := menu.attpicture[index]
+	menu.attpicture[index] = GE.GetTextImage(strconv.Itoa(int(menu.attributes[index])), 0, oldimg.Y, oldimg.H, GE.StandardFont, color.Black, color.Transparent)
+	menu.attpicture[index].SetMiddleX(XRES * 0.325)
 
 	score := 10
 
@@ -342,7 +356,22 @@ func (menu *CharacterMenu) changeAttribute(index, newvalue int) {
 	menu.sum.X = XRES*0.4 - menu.sum.W
 }
 
-func (menu *CharacterMenu) Start(g *TerraNomina, lastState int) {
+func (menu *CharacterMenu) changeProfencies(index int, deltavalue int8) {
+	menu.proficiencies[index] += deltavalue
+}
+
+func (menu *CharacterMenu) resetStats() {
+	for i := range menu.attpicture {
+		menu.changeAttribute(i, 0)
+	}
+
+	for _, but := range menu.profselect {
+		but.DrawDark = false
+		but.Data = false
+	}
+}
+
+func (menu *CharacterMenu) Start(lastState int) {
 	fmt.Print("--------> CharacterMenu   \n")
 
 	for i, race := range Races {
@@ -357,7 +386,7 @@ func (menu *CharacterMenu) Start(g *TerraNomina, lastState int) {
 	menu.close = false
 }
 
-func (menu *CharacterMenu) Stop(g *TerraNomina, nextState int) {
+func (menu *CharacterMenu) Stop(nextState int) {
 	fmt.Print("CharacterMenu ------>")
 
 	for i := range menu.rbackground {
@@ -370,15 +399,15 @@ func (menu *CharacterMenu) Stop(g *TerraNomina, nextState int) {
 }
 
 func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
-	down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
+	/*down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
 	if (changed && !down) || menu.close {
 		menu.GetBack()
 		return nil
-	}
+	}*/
 
 	screen.Fill(color.RGBA{168, 255, 68, 255})
 
-	curframe := menu.parent.GetCurrentFrame()
+	curframe := *menu.frame
 
 	switch menu.state {
 	case 0:
@@ -412,6 +441,8 @@ func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
 			img.Update(curframe)
 			img.Draw(screen)
 		}
+
+		menu.profpicture.Draw(screen)
 	}
 
 	return nil

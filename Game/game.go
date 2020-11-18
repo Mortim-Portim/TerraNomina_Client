@@ -4,11 +4,12 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"marvin/GameConn/GC"
-	"marvin/GraphEng/GE"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/mortim-portim/GameConn/GC"
+	"github.com/mortim-portim/GraphEng/GE"
 
 	"github.com/hajimehoshi/ebiten"
 )
@@ -48,7 +49,7 @@ func (g *TerraNomina) Update(screen *ebiten.Image) error {
 func (g *TerraNomina) Close() {
 	state, ok := g.States[g.currentState]
 	if ok {
-		state.Stop(g, -1)
+		state.Stop(-1)
 	}
 	Keyli.SaveConfig(F_KEYLI_MAPPER)
 	Soundtrack.FadeOut()
@@ -108,7 +109,7 @@ func (g *TerraNomina) Init() {
 	ClientManager = GC.GetClientManager(Client)
 
 	for _, state := range g.States {
-		state.Init(g)
+		state.Init()
 	}
 
 	close(done)
@@ -116,9 +117,9 @@ func (g *TerraNomina) Init() {
 func (g *TerraNomina) ChangeState(newState int) error {
 	if _, ok := g.States[newState]; ok {
 		if _, ok := g.States[g.currentState]; ok {
-			g.States[g.currentState].Stop(g, newState)
+			g.States[g.currentState].Stop(newState)
 		}
-		g.States[newState].Start(g, g.currentState)
+		g.States[newState].Start(g.currentState)
 		g.currentState = newState
 		return nil
 	}
@@ -130,8 +131,8 @@ func (g *TerraNomina) GetCurrentFrame() int {
 }
 
 type GameState interface {
-	Init(g *TerraNomina)
-	Start(g *TerraNomina, lastState int)
-	Stop(g *TerraNomina, nextState int)
+	Init()
+	Start(lastState int)
+	Stop(nextState int)
 	Update(screen *ebiten.Image) error
 }

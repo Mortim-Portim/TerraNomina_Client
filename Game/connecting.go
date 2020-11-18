@@ -2,9 +2,10 @@ package Game
 
 import (
 	"fmt"
-	"marvin/GameConn/GC"
-	"marvin/GraphEng/GE"
 	"time"
+
+	"github.com/mortim-portim/GameConn/GC"
+	"github.com/mortim-portim/GraphEng/GE"
 
 	"github.com/hajimehoshi/ebiten"
 )
@@ -27,7 +28,7 @@ type Connecting struct {
 	mapData []byte
 }
 
-func (t *Connecting) Init(g *TerraNomina) {
+func (t *Connecting) Init() {
 	fmt.Println("Initializing Connecting")
 	lps := &GE.Params{}
 	err := lps.LoadFromFile(F_CONNECTING + "/loading.txt")
@@ -40,7 +41,7 @@ func (t *Connecting) Init(g *TerraNomina) {
 	t.background, err = GE.LoadImgObj(F_CONNECTING+"/back.png", XRES, YRES, 0, 0, 0)
 	CheckErr(err)
 }
-func (t *Connecting) Start(g *TerraNomina, oldState int) {
+func (t *Connecting) Start(oldState int) {
 	fmt.Print("--------> Connecting \n")
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
@@ -66,7 +67,7 @@ func (t *Connecting) Start(g *TerraNomina, oldState int) {
 		Client.Send(data)
 	}()
 }
-func (t *Connecting) Stop(g *TerraNomina, newState int) {
+func (t *Connecting) Stop(newState int) {
 	fmt.Print("Connecting  -------->")
 	t.loadingAnim.Stop(nil, nil)
 }

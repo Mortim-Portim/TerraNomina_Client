@@ -1,8 +1,8 @@
 package Game
 
 import (
-	"marvin/GameConn/GC"
-	"marvin/GraphEng/GE"
+	"github.com/mortim-portim/GameConn/GC"
+	"github.com/mortim-portim/GraphEng/GE"
 )
 
 const (

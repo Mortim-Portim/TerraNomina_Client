@@ -58,15 +58,13 @@ type Race struct {
 }
 
 func LoadChar(name string) []byte {
-	file, err := ioutil.ReadFile(F_CHARACTER + name + ".char")
-	CheckErr(err)
+	file, _ := ioutil.ReadFile(F_CHARACTER + name + ".char")
 
 	return file
 }
 
 func SaveChar(name string, race int8, class int8, attribute []int8, profencies []int8) {
-	file, err := os.Create(F_CHARACTER + "/" + name + ".char")
-	CheckErr(err)
+	file, _ := os.Create(F_CHARACTER + "/" + name + ".char")
 
 	defer file.Close()
 

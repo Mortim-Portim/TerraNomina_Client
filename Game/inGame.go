@@ -2,7 +2,8 @@ package Game
 
 import (
 	"fmt"
-	"marvin/GraphEng/GE"
+
+	"github.com/mortim-portim/GraphEng/GE"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
@@ -21,7 +22,7 @@ type InGame struct {
 	playerAnim *GE.DayNightAnim
 }
 
-func (i *InGame) Init(g *TerraNomina) {
+func (i *InGame) Init() {
 	fmt.Println("Initializing InGame")
 	Keyli.MappIDToKey(left_key_id, ebiten.KeyLeft)
 	Keyli.MappIDToKey(right_key_id, ebiten.KeyRight)
@@ -35,7 +36,7 @@ func (i *InGame) Init(g *TerraNomina) {
 	CheckErr(err)
 	i.playerAnim = anim
 }
-func (i *InGame) Start(g *TerraNomina, oldState int) {
+func (i *InGame) Start(oldState int) {
 	fmt.Print("--------> InGame     \n")
 	i.wrld = WorldStructure
 	w := i.wrld.GetTileS()
@@ -43,7 +44,7 @@ func (i *InGame) Start(g *TerraNomina, oldState int) {
 	i.playerAnim.SetParams(XRES/2-w/2, YRES/2-h*0.75, w, h)
 	i.wrld.SetLightLevel(30)
 }
-func (i *InGame) Stop(g *TerraNomina, newState int) {
+func (i *InGame) Stop(newState int) {
 	fmt.Print("InGame      -------->")
 }
 func (i *InGame) Update(screen *ebiten.Image) error {

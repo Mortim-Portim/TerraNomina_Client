@@ -7,22 +7,23 @@ import (
 )
 
 func GetOptionsMenu(g *TerraNomina) *OptionsMenu {
-	return &OptionsMenu{parent:g}
+	return &OptionsMenu{parent: g}
 }
+
 type OptionsMenu struct {
-	parent *TerraNomina
+	parent   *TerraNomina
 	oldState int
 }
 
-func (t *OptionsMenu) Init(g *TerraNomina) {
+func (t *OptionsMenu) Init() {
 	fmt.Println("Initializing OptionsMenu")
-	
+
 }
-func (t *OptionsMenu) Start(g *TerraNomina, oldState int) {
+func (t *OptionsMenu) Start(oldState int) {
 	fmt.Print("--------> OptionsMenu\n")
 	t.oldState = oldState
 }
-func (t *OptionsMenu) Stop(g *TerraNomina, newState int) {
+func (t *OptionsMenu) Stop(newState int) {
 	fmt.Print("OptionsMenu -------->")
 }
 func (t *OptionsMenu) Update(screen *ebiten.Image) error {
@@ -30,7 +31,7 @@ func (t *OptionsMenu) Update(screen *ebiten.Image) error {
 	if changed && !down {
 		t.GetBack()
 	}
-	
+
 	return nil
 }
 
