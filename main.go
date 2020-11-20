@@ -1,7 +1,7 @@
 package main
 
 import (
-	"marvin/TerraNomina_Client/Game"
+	"github.com/mortim-portim/TerraNomina_Client/Game"
 )
 
 func main() {

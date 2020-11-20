@@ -11,20 +11,20 @@ import (
 )
 
 var arrow *ebiten.Image
+var number []*ebiten.Image
 
 func GetCharacterMenu(parent *TerraNomina) (cm *CharacterMenu) {
 	cm = &CharacterMenu{parent: parent}
 	return
 }
 
-//todo: change race to class 0.5 second
 //todo: review code
+//todo: music
 
 type CharacterMenu struct {
 	parent *TerraNomina
 	state  int
 	close  bool
-	frame  *int
 
 	//Races
 	racething   *GE.Group
@@ -47,13 +47,18 @@ type CharacterMenu struct {
 	sum        *GE.ImageObj
 
 	profselect    []*GE.Button
-	profpicture   *GE.Group
+	profpicture   []*GE.ImageObj
 	proficiencies []int8
 	profcount     int
 }
 
 func (menu *CharacterMenu) Init() {
 	arrow, _ = GE.LoadEbitenImg(F_CHARACTERMENU + "/arrow.png")
+
+	number = make([]*ebiten.Image, 16)
+	for i := -2; i <= 13; i++ {
+		number[i+2] = GE.MakePopUp(strconv.Itoa(i), 50, GE.StandardFont, color.Black, color.Transparent)
+	}
 
 	menu.initRace()
 	menu.initClass()
@@ -91,8 +96,8 @@ func (menu *CharacterMenu) initRace() {
 			}
 
 			for _, prof := range Races[menu.currRace].Profencies {
-				menu.profselect[prof].Data = true
-				menu.profselect[prof].DrawDark = true
+				menu.changeProfencies(prof, 5)
+				menu.profselect[prof].Active = false
 			}
 		}
 	})
@@ -223,6 +228,9 @@ var abtoprof []int = []int{ABIL_STRENGTH, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABI
 func (menu *CharacterMenu) initStats() {
 	abiliscore := make([]GE.UpdateAble, len(stats)*3)
 	nums := make([]*GE.ImageObj, len(stats))
+
+	fmt.Println(YRES * 0.03)
+
 	for i, stat := range stats {
 		abiliscore[i*3] = GE.GetTextImage(stat, XRES*0.05, YRES*(0.17+float64(i)*0.07), YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
 
@@ -252,31 +260,31 @@ func (menu *CharacterMenu) initStats() {
 		})
 		abiliscore[i*3+2] = rbutton
 
-		numimg := GE.GetTextImage("0", 0, YRES*(0.17+float64(i)*0.07), YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-		numimg.SetMiddleX(XRES * 0.325)
+		numimg := &GE.ImageObj{Y: YRES * (0.17 + float64(i)*0.07), H: YRES * 0.05, X: XRES * 0.325}
 		nums[i] = numimg
 	}
 
 	profscore := make([]GE.UpdateAble, len(proficiencies))
 	menu.profselect = make([]*GE.Button, len(proficiencies))
-	menu.profpicture = GE.GetGroup()
-	menu.profpicture.Member = make([]GE.UpdateAble, len(proficiencies))
+	menu.profpicture = make([]*GE.ImageObj, len(proficiencies))
+	menu.proficiencies = make([]int8, len(proficiencies))
 
 	clear, _ := GE.LoadEbitenImg(F_CHARACTERMENU + "/CheckboxClear.png")
 	checked, _ := GE.LoadEbitenImg(F_CHARACTERMENU + "/CheckboxChecked.png")
-
 	for i, prof := range proficiencies {
 		profscore[i] = GE.GetTextImage(prof, XRES*0.6, YRES*(0.05+float64(i)*0.05), YRES*0.03, GE.StandardFont, color.Black, color.Transparent)
 
 		profselect := GE.GetButton(&GE.ImageObj{clear, nil, XRES * 0.03, XRES * 0.03, XRES * 0.77, YRES * (0.04 + float64(i)*0.05), 0}, checked)
-		profselect.Data = false
+		profselect.Data = i
 		profselect.RegisterOnLeftEvent(func(btn *GE.Button) {
-			if btn.LPressed && !btn.Data.(bool) {
+			if btn.LPressed {
 				if btn.DrawDark {
 					menu.profcount--
+					menu.changeProfencies(btn.Data.(int), -5)
 				} else {
 					if menu.profcount < Races[menu.currRace].Extraprof {
 						menu.profcount++
+						menu.changeProfencies(btn.Data.(int), 5)
 					} else {
 						return
 					}
@@ -286,10 +294,8 @@ func (menu *CharacterMenu) initStats() {
 		})
 		menu.profselect[i] = profselect
 
-		menu.profpicture.Member[i] = GE.GetTextImage("0", XRES*0.83, YRES*(0.05+float64(i)*0.05), YRES*0.03, GE.StandardFont, color.Black, color.Transparent)
+		menu.profpicture[i] = &GE.ImageObj{Y: YRES * (0.05 + float64(i)*0.05), H: YRES * 0.03, X: XRES * 0.82}
 	}
-
-	menu.profpicture.Init(nil, nil)
 
 	sumlabel := GE.GetTextImage("10 / 10", 0, YRES*0.47, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
 	sumlabel.X = XRES*0.4 - sumlabel.W
@@ -298,16 +304,7 @@ func (menu *CharacterMenu) initStats() {
 	savebutton := GE.GetTextButton("Save", "", GE.StandardFont, XRES*0.1, YRES*0.83, YRES*0.12, color.Black, &color.RGBA{255, 0, 0, 255})
 	savebutton.RegisterOnLeftEvent(func(btn *GE.Button) {
 		if !btn.LPressed {
-			profs := make([]int8, len(proficiencies))
-
-			for i, bol := range menu.profselect {
-				profs[i] += menu.attributes[abtoprof[i]]
-				if bol.DrawDark {
-					profs[i] += 5
-				}
-			}
-
-			SaveChar(menu.name.GetText(), int8(menu.currRace), int8(menu.currClass), menu.attributes, profs)
+			SaveChar(menu.name.GetText(), int8(menu.currRace), int8(menu.currClass), menu.attributes, menu.proficiencies)
 			menu.GetBack()
 		}
 	})
@@ -339,16 +336,23 @@ var pointmap []int = []int{1, 1, 2, 2, 3, 3, 4, 4}
 
 func (menu *CharacterMenu) changeAttribute(index int, deltavalue int8) {
 	menu.attributes[index] += deltavalue
-
-	oldimg := menu.attpicture[index]
-	menu.attpicture[index] = GE.GetTextImage(strconv.Itoa(int(menu.attributes[index])), 0, oldimg.Y, oldimg.H, GE.StandardFont, color.Black, color.Transparent)
-	menu.attpicture[index].SetMiddleX(XRES * 0.325)
+	//menu.attpicture[index].Img = number[menu.attributes[index]+2]
+	curnumber, oldimg := number[menu.attributes[index]+2], menu.attpicture[index]
+	w, h := curnumber.Size()
+	numimg := &GE.ImageObj{curnumber, nil, float64(w) * ((oldimg.H) / float64(h)), oldimg.H, 0, 0, 0}
+	numimg.SetMiddle(oldimg.GetMiddle())
+	menu.attpicture[index] = numimg
 
 	score := 10
-
 	for i := range menu.attributes {
 		for l := Races[menu.currRace].Attributes[i]; l < menu.attributes[i]; l++ {
 			score -= pointmap[l]
+		}
+	}
+
+	for i, value := range abtoprof {
+		if value == index {
+			menu.changeProfencies(i, deltavalue)
 		}
 	}
 
@@ -358,16 +362,26 @@ func (menu *CharacterMenu) changeAttribute(index int, deltavalue int8) {
 
 func (menu *CharacterMenu) changeProfencies(index int, deltavalue int8) {
 	menu.proficiencies[index] += deltavalue
+
+	curnumber, oldimg := number[menu.proficiencies[index]+2], menu.profpicture[index]
+	w, h := curnumber.Size()
+	numimg := &GE.ImageObj{curnumber, nil, float64(w) * ((oldimg.H) / float64(h)), oldimg.H, 0, 0, 0}
+	numimg.SetMiddle(oldimg.GetMiddle())
+	menu.profpicture[index] = numimg
 }
 
 func (menu *CharacterMenu) resetStats() {
 	for i := range menu.attpicture {
+		menu.attributes[i] = 0
 		menu.changeAttribute(i, 0)
 	}
 
-	for _, but := range menu.profselect {
+	for i, but := range menu.profselect {
+		menu.proficiencies[i] = 0
+		menu.changeProfencies(i, 0)
+
 		but.DrawDark = false
-		but.Data = false
+		but.Active = true
 	}
 }
 
@@ -399,15 +413,15 @@ func (menu *CharacterMenu) Stop(nextState int) {
 }
 
 func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
-	/*down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
+	down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
 	if (changed && !down) || menu.close {
 		menu.GetBack()
 		return nil
-	}*/
+	}
 
 	screen.Fill(color.RGBA{168, 255, 68, 255})
 
-	curframe := *menu.frame
+	curframe := menu.parent.frame
 
 	switch menu.state {
 	case 0:
@@ -442,7 +456,10 @@ func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
 			img.Draw(screen)
 		}
 
-		menu.profpicture.Draw(screen)
+		for _, img := range menu.profpicture {
+			img.Update(curframe)
+			img.Draw(screen)
+		}
 	}
 
 	return nil
