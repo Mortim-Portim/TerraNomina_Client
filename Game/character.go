@@ -13,7 +13,7 @@ var Classes []*Class = []*Class{
 
 type Class struct {
 	Name     string
-	Subclass []string
+	Subclass []string //will change later, placeholder
 }
 
 const ABIL_STRENGTH = 0

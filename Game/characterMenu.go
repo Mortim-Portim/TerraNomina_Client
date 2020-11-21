@@ -63,6 +63,8 @@ func (menu *CharacterMenu) Init() {
 	menu.initRace()
 	menu.initClass()
 	menu.initStats()
+
+	Soundtrack.Play(Races[menu.currRace].Name)
 }
 
 func (menu *CharacterMenu) initRace() {
@@ -151,6 +153,8 @@ func (menu *CharacterMenu) changeRace(delta int) {
 	if menu.currRace >= len(menu.races) {
 		menu.currRace = 0
 	}
+
+	Soundtrack.Play(Races[menu.currRace].Name)
 }
 
 func (menu *CharacterMenu) initClass() {
@@ -228,8 +232,6 @@ var abtoprof []int = []int{ABIL_STRENGTH, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABI
 func (menu *CharacterMenu) initStats() {
 	abiliscore := make([]GE.UpdateAble, len(stats)*3)
 	nums := make([]*GE.ImageObj, len(stats))
-
-	fmt.Println(YRES * 0.03)
 
 	for i, stat := range stats {
 		abiliscore[i*3] = GE.GetTextImage(stat, XRES*0.05, YRES*(0.17+float64(i)*0.07), YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
@@ -448,9 +450,6 @@ func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
 			img.Draw(screen)
 		}
 
-		menu.sum.Draw(screen)
-		menu.name.Draw(screen)
-
 		for _, img := range menu.profselect {
 			img.Update(curframe)
 			img.Draw(screen)
@@ -460,6 +459,9 @@ func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
 			img.Update(curframe)
 			img.Draw(screen)
 		}
+
+		menu.sum.Draw(screen)
+		menu.name.Draw(screen)
 	}
 
 	return nil
