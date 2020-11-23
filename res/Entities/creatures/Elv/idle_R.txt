@@ -1,2 +1,2 @@
 spriteWidth:    16
-updatePeriod:   15
+updatePeriod:   6
