@@ -93,7 +93,7 @@ func (g *TerraNomina) Init() {
 		return
 	}()
 
-	st, err := GE.LoadSoundTrack(F_SOUNDTRACK)
+	st, err := GE.LoadSoundTrack(F_SOUNDTRACK, 1)
 	CheckErr(err)
 	Soundtrack = st
 
