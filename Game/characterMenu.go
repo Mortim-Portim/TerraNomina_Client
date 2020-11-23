@@ -334,7 +334,7 @@ func (menu *CharacterMenu) initStats() {
 	menu.attributes = make([]int8, 4)
 }
 
-var pointmap []int = []int{1, 1, 2, 2, 3, 3, 4, 4}
+var pointmap []int = []int{0, 1, 1, 2, 2, 3, 3, 4, 4}
 
 func (menu *CharacterMenu) changeAttribute(index int, deltavalue int8) {
 	menu.attributes[index] += deltavalue
@@ -348,7 +348,7 @@ func (menu *CharacterMenu) changeAttribute(index int, deltavalue int8) {
 	score := 10
 	for i := range menu.attributes {
 		for l := Races[menu.currRace].Attributes[i]; l < menu.attributes[i]; l++ {
-			score -= pointmap[l]
+			score -= pointmap[l+1]
 		}
 	}
 
@@ -468,5 +468,6 @@ func (menu *CharacterMenu) Update(screen *ebiten.Image) error {
 }
 
 func (menu *CharacterMenu) GetBack() {
+	Soundtrack.Play("main")
 	menu.parent.ChangeState(TITLESCREEN_STATE)
 }
