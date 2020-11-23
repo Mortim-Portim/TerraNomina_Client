@@ -96,7 +96,6 @@ func (g *TerraNomina) Init() {
 	st, err := GE.LoadSoundTrack(F_SOUNDTRACK)
 	CheckErr(err)
 	Soundtrack = st
-	st.Play(SOUNDTRACK_MAIN)
 
 	Keyli = &GE.KeyLi{}
 	Keyli.Reset()

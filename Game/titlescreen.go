@@ -58,6 +58,7 @@ func (t *TitleScreen) Init() {
 func (t *TitleScreen) Start(oldState int) {
 	fmt.Print("--------> TitleScreen\n")
 	t.Buttons.Start(nil, nil)
+	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (t *TitleScreen) Stop(newState int) {
 	fmt.Print("TitleScreen -------->")

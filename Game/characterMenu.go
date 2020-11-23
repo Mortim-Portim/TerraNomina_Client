@@ -63,8 +63,6 @@ func (menu *CharacterMenu) Init() {
 	menu.initRace()
 	menu.initClass()
 	menu.initStats()
-
-	Soundtrack.Play(Races[menu.currRace].Name)
 }
 
 func (menu *CharacterMenu) initRace() {
@@ -389,6 +387,7 @@ func (menu *CharacterMenu) resetStats() {
 
 func (menu *CharacterMenu) Start(lastState int) {
 	fmt.Print("--------> CharacterMenu   \n")
+	Soundtrack.Play(Races[menu.currRace].Name)
 
 	for i, race := range Races {
 		menu.rbackground[i], _ = GE.LoadImgObj(F_CHARACTERMENU+"/background"+race.Name+".png", XRES, YRES, 0, 0, 0)

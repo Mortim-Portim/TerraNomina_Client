@@ -10,7 +10,7 @@ const (
 	STANDARD_SCREEN_HEIGHT = 1080
 
 	FPS            = 30
-	RES            = "./.res"
+	RES            = "./res"
 	F_KEYLI_MAPPER = RES + "/keyli.txt"
 	F_ICONS        = RES + "/Icons"
 	F_MAPS         = RES + "/Maps"
