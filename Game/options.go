@@ -36,6 +36,8 @@ func (t *OptionsMenu) Init() {
 func (t *OptionsMenu) Start(oldState int) {
 	fmt.Print("--------> OptionsMenu\n")
 	t.oldState = oldState
+	
+	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (t *OptionsMenu) Stop(newState int) {
 	fmt.Print("OptionsMenu -------->")

@@ -63,8 +63,6 @@ func (menu *CharacterMenu) Init() {
 	menu.initRace()
 	menu.initClass()
 	menu.initStats()
-
-	Soundtrack.Play(Races[menu.currRace].Name)
 }
 
 func (menu *CharacterMenu) initRace() {
@@ -126,8 +124,8 @@ func getRace(race *Race) (group *GE.Group) {
 	title := GE.GetTextImage(race.Name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.12)
 	stats := GE.GetTextImage(fmt.Sprintf("STR:%v | DEX:%v | INT:%v | CHA:%v", race.Attributes[0], race.Attributes[1], race.Attributes[2], race.Attributes[3]), XRES*0.5, YRES*0.32, YRES*0.06, GE.StandardFont, color.Black, color.Transparent)
-	anim, _ := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_CREATURE+"/"+race.Name+"/idle_R.txt", F_CREATURE+"/"+race.Name+"/idle_R.png")
-
+	anim, err := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_CREATURE+"/"+race.Name+"/idle_R.txt", F_CREATURE+"/"+race.Name+"/idle_R.png")
+	GE.ShitImDying(err)
 	anim.ScaleToOriginalSize()
 	anim.ScaleDim(YRES*0.48, 1)
 	anim.SetMiddle(XRES*0.15, YRES*0.53)
@@ -389,6 +387,7 @@ func (menu *CharacterMenu) resetStats() {
 
 func (menu *CharacterMenu) Start(lastState int) {
 	fmt.Print("--------> CharacterMenu   \n")
+	Soundtrack.Play(Races[menu.currRace].Name)
 
 	for i, race := range Races {
 		menu.rbackground[i], _ = GE.LoadImgObj(F_CHARACTERMENU+"/background"+race.Name+".png", XRES, YRES, 0, 0, 0)

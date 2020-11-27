@@ -43,6 +43,8 @@ func (i *InGame) Start(oldState int) {
 	h := PLAYER_MODELL_HEIGHT * w
 	i.playerAnim.SetParams(XRES/2-w/2, YRES/2-h*0.75, w, h)
 	i.wrld.SetLightLevel(30)
+	
+	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (i *InGame) Stop(newState int) {
 	fmt.Print("InGame      -------->")

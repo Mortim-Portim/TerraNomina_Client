@@ -74,7 +74,7 @@ func (g *TerraNomina) Init() {
 	go func() {
 		for i := 0; i <= 30; i++ {
 			g.loadingState = uint8(i)
-			time.Sleep(time.Millisecond * 1)
+			time.Sleep(time.Millisecond * 40)
 		}
 		<-done
 		g.frame = 0
@@ -93,10 +93,9 @@ func (g *TerraNomina) Init() {
 		return
 	}()
 
-	st, err := GE.LoadSoundTrack(F_SOUNDTRACK)
+	st, err := GE.LoadSoundTrack(F_SOUNDTRACK, 1)
 	CheckErr(err)
 	Soundtrack = st
-	st.Play(SOUNDTRACK_MAIN)
 
 	Keyli = &GE.KeyLi{}
 	Keyli.Reset()

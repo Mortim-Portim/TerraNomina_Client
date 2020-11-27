@@ -59,6 +59,7 @@ func (t *PlayMenu) Start(oldState int) {
 	t.oldState = oldState
 	t.playBtn.Start(nil, nil)
 	t.tabs.Start(nil, nil)
+	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (t *PlayMenu) Stop(newState int) {
 	fmt.Print("PlayMenu    -------->")
