@@ -60,6 +60,7 @@ const (
 	CONNECTING_STATE     = 4
 	INGAME_STATE         = 5
 	CHARACTER_STATE      = 6
+	TEST_STATE           = 7
 
 	SOUNDTRACK_MAIN         = "main"
 	SOUNDTRACK_ORK          = "ork"

@@ -9,6 +9,13 @@ import (
 var Classes []*Class = []*Class{
 	{"Fighter", []string{"Berserker", "Defender"}},
 	{"Knight", []string{"Heavy Armor", "Combat Rager", "Guard", "Paladin"}},
+	{"Wizard", []string{"Test"}},
+	{"Bard", []string{"Test"}},
+	{"Cleric", []string{"Test"}},
+	{"Druid", []string{"Test"}},
+	{"Ranger", []string{"Test"}},
+	{"Rogue", []string{"Test"}},
+	{"Sorcerer", []string{"Test"}},
 }
 
 type Class struct {

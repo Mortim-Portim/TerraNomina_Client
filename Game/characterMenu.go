@@ -20,6 +20,7 @@ func GetCharacterMenu(parent *TerraNomina) (cm *CharacterMenu) {
 
 //todo: review code
 //todo: music
+//todo: split into multiple state
 
 type CharacterMenu struct {
 	parent *TerraNomina
@@ -389,12 +390,16 @@ func (menu *CharacterMenu) Start(lastState int) {
 	fmt.Print("--------> CharacterMenu   \n")
 	Soundtrack.Play(Races[menu.currRace].Name)
 
+	var err error
 	for i, race := range Races {
-		menu.rbackground[i], _ = GE.LoadImgObj(F_CHARACTERMENU+"/background"+race.Name+".png", XRES, YRES, 0, 0, 0)
+		menu.rbackground[i], err = GE.LoadImgObj(F_CHARACTERMENU+"/race/background"+race.Name+".png", XRES, YRES, 0, 0, 0)
+		CheckErr(err)
 	}
 
 	for i, class := range Classes {
-		menu.cbackground[i], _ = GE.LoadImgObj(F_CHARACTERMENU+"/background"+class.Name+".png", XRES, YRES, 0, 0, 0)
+		menu.cbackground[i], err = GE.LoadImgObj(F_CHARACTERMENU+"/class/background"+class.Name+".png", XRES, YRES, 0, 0, 0)
+		fmt.Println(class.Name)
+		CheckErr(err)
 	}
 
 	menu.state = 0

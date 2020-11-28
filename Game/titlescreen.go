@@ -38,7 +38,7 @@ func (t *TitleScreen) Init() {
 	Options_B := GE.GetImageButton(Options_i, XRES-w*1.5, YRES/3+h*2, w, h)
 	Play_B.RegisterOnLeftEvent(func(b *GE.Button) {
 		if !b.LPressed {
-			t.parent.ChangeState(PLAY_MENU_STATE)
+			t.parent.ChangeState(TEST_STATE)
 		}
 	})
 	Character_B.RegisterOnLeftEvent(func(b *GE.Button) {
