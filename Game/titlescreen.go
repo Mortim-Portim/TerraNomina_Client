@@ -43,7 +43,7 @@ func (t *TitleScreen) Init() {
 	})
 	Character_B.RegisterOnLeftEvent(func(b *GE.Button) {
 		if !b.LPressed {
-			t.parent.ChangeState(CHARACTER_MENU_STATE)
+			t.parent.ChangeState(SELRACE_STATE)
 		}
 	})
 	Options_B.RegisterOnLeftEvent(func(b *GE.Button) {

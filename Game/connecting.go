@@ -63,8 +63,8 @@ func (t *Connecting) Start(oldState int) {
 		Client.Send(data)
 		Client.WaitForConfirmation()
 
-		data = append([]byte{CHAR_SEND}, LoadChar("char")...)
-		Client.Send(data)
+		//data = append([]byte{CHAR_SEND}, LoadChar("char")...)
+		//Client.Send(data)
 	}()
 }
 func (t *Connecting) Stop(newState int) {
