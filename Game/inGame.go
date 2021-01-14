@@ -63,12 +63,11 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	
 	if moving && !ActivePlayer.IsMoving() {
 		ActivePlayer.Move()
-		ActivePlayer.UpdateAll(nil)
 	}
+	ActivePlayer.UpdateAll(nil)
 	i.sm.Draw(screen)
 	
 	msg := fmt.Sprintf(`TPS: %0.2f`, ebiten.CurrentTPS())
 	ebitenutil.DebugPrint(screen, msg)
-
 	return nil
 }

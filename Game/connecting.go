@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"time"
 
-	//"github.com/mortim-portim/GameConn/GC"
+	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
+	cmp "github.com/mortim-portim/GraphEng/Compression"
 
 	"github.com/hajimehoshi/ebiten"
 )
@@ -26,7 +27,7 @@ type Connecting struct {
 	oldState    int
 
 	ipAddr  string
-	mapData []byte
+	SVACIDs int
 }
 
 func (t *Connecting) Init() {
@@ -54,18 +55,21 @@ func (t *Connecting) Start(oldState int) {
 	t.ipAddr = USER_INPUT_IP_ADDR
 	t.loadingAnim.Start(nil, nil)
 
+	t.SVACIDs = 0
 	go func() {
-//		//fmt.Printf("Connecting to '%s'\n", t.ipAddr)
-//		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) bool {
-//			//fmt.Printf("server send: msg: %v, err: %v\n", msg, err)
-//			if msg[0] == MAP_REQUEST {
-//				t.mapData = msg[1:]
-//			}
-//			return true
-//		}
 		err := Client.MakeConn(t.ipAddr)
 		CheckErr(err)
 		time.Sleep(time.Second)
+		
+		fmt.Printf("Connecting to '%s'\n", t.ipAddr)
+		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) bool {
+			if msg[0] == GC.BINARYMSG && len(msg) == 10 {
+				if string(msg[1:8]) == TNE.NumberOfSVACIDs_Msg {
+					t.SVACIDs = int(cmp.BytesToInt16(msg[8:10]))
+				}
+			}
+			return true
+		}
 	}()
 }
 func (t *Connecting) Stop(newState int) {
@@ -73,7 +77,10 @@ func (t *Connecting) Stop(newState int) {
 	t.loadingAnim.Stop(nil, nil)
 }
 func (t *Connecting) Update(screen *ebiten.Image) error {
-	if SmallWorld.HasWorldStruct() {
+	if t.SVACIDs != 0 && len(ClientManager.SyncvarsByACID) == t.SVACIDs {
+		
+		
+		
 		t.parent.ChangeState(INGAME_STATE)
 	}
 
