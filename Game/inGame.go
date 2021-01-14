@@ -29,23 +29,11 @@ func (i *InGame) Init() {
 	Keyli.MappIDToKey(right_key_id, ebiten.KeyRight)
 	Keyli.MappIDToKey(up_key_id, ebiten.KeyUp)
 	Keyli.MappIDToKey(down_key_id, ebiten.KeyDown)
-	
-//	w := 16.0
-//	h := PLAYER_MODELL_HEIGHT * w
-//	//TODO hight
-//	anim, err := GE.GetDayNightAnimFromParams(XRES/2-w/2, YRES/2-h*0.75, w, h, F_DAYNIGHT+"/jump.txt", F_DAYNIGHT+"/jump.png")
-//	CheckErr(err)
-//	i.playerAnim = anim
 }
 func (i *InGame) Start(oldState int) {
 	fmt.Print("--------> InGame     \n")
 	i.sm = SmallWorld
 	i.ef = i.sm.Ef
-	
-//	w := i.wrld.GetTileS()
-//	h := PLAYER_MODELL_HEIGHT * w
-//	i.playerAnim.SetParams(XRES/2-w/2, YRES/2-h*0.75, w, h)
-//	i.wrld.SetLightLevel(30)
 	
 	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
@@ -79,22 +67,6 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	}
 	i.sm.Draw(screen)
 	
-//		x, y := i.wrld.Middle()
-//		if !i.wrld.Collides(x+hori, y+vert) {
-//			i.wrld.Move(hori, vert, true, false)
-//		}
-	
-	
-	
-//	i.wrld.UpdateLightLevel(1)
-//
-//	i.playerAnim.Update(i.parent.frame)
-//	i.playerAnim.LightLevel = int16(i.wrld.GetLightLevel())
-//
-//	i.wrld.Draw(screen)
-
-	
-
 	msg := fmt.Sprintf(`TPS: %0.2f`, ebiten.CurrentTPS())
 	ebitenutil.DebugPrint(screen, msg)
 

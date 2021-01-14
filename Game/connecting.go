@@ -66,15 +66,6 @@ func (t *Connecting) Start(oldState int) {
 		err := Client.MakeConn(t.ipAddr)
 		CheckErr(err)
 		time.Sleep(time.Second)
-		
-		
-		
-//		data := []byte{MAP_REQUEST}
-//		Client.Send(data)
-//		Client.WaitForConfirmation()
-//
-//		data = append([]byte{CHAR_SEND}, LoadChar("char")...)
-//		Client.Send(data)
 	}()
 }
 func (t *Connecting) Stop(newState int) {
