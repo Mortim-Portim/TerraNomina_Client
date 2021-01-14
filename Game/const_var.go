@@ -3,6 +3,7 @@ package Game
 import (
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
+	"github.com/mortim-portim/TN_Engine/TNE"
 )
 
 const (
@@ -28,11 +29,8 @@ const (
 	F_CHARACTERMENU = F_GUI + "/CharacterMenu"
 	F_BUTTONS       = F_GUI + "/Buttons"
 	F_CONNECTING    = F_GUI + "/Connecting"
-	F_ANIMS         = F_IMAGES + "/Anims"
-	F_DAYNIGHT      = F_ANIMS + "/DayNight"
 
 	F_ENTITY   = RES + "/Entities"
-	F_CREATURE = F_ENTITY + "/creatures"
 
 	/**
 	RES = 									"./.res"
@@ -90,7 +88,8 @@ var (
 	Client        *GC.Client
 	ClientManager *GC.ClientManager
 
-	WorldStructure *GE.WorldStructure
+	SmallWorld *TNE.SmallWorld
+	ActivePlayer *TNE.Player
 )
 
 //Should be saved to a file

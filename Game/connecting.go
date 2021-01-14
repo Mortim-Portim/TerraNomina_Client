@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/mortim-portim/GameConn/GC"
+	//"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
+	"github.com/mortim-portim/TN_Engine/TNE"
 
 	"github.com/hajimehoshi/ebiten"
 )
@@ -40,6 +41,12 @@ func (t *Connecting) Init() {
 
 	t.background, err = GE.LoadImgObj(F_CONNECTING+"/back.png", XRES, YRES, 0, 0, 0)
 	CheckErr(err)
+	
+	sm,err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY)
+	CheckErr(err)
+	err = sm.ActivePlayer.SetPlayer(ActivePlayer)
+	CheckErr(err)
+	SmallWorld = sm
 }
 func (t *Connecting) Start(oldState int) {
 	fmt.Print("--------> Connecting \n")
@@ -48,23 +55,26 @@ func (t *Connecting) Start(oldState int) {
 	t.loadingAnim.Start(nil, nil)
 
 	go func() {
-		//fmt.Printf("Connecting to '%s'\n", t.ipAddr)
-		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) bool {
-			//fmt.Printf("server send: msg: %v, err: %v\n", msg, err)
-			if msg[0] == MAP_REQUEST {
-				t.mapData = msg[1:]
-			}
-			return true
-		}
+//		//fmt.Printf("Connecting to '%s'\n", t.ipAddr)
+//		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) bool {
+//			//fmt.Printf("server send: msg: %v, err: %v\n", msg, err)
+//			if msg[0] == MAP_REQUEST {
+//				t.mapData = msg[1:]
+//			}
+//			return true
+//		}
 		err := Client.MakeConn(t.ipAddr)
 		CheckErr(err)
 		time.Sleep(time.Second)
-		data := []byte{MAP_REQUEST}
-		Client.Send(data)
-		Client.WaitForConfirmation()
-
-		data = append([]byte{CHAR_SEND}, LoadChar("char")...)
-		Client.Send(data)
+		
+		
+		
+//		data := []byte{MAP_REQUEST}
+//		Client.Send(data)
+//		Client.WaitForConfirmation()
+//
+//		data = append([]byte{CHAR_SEND}, LoadChar("char")...)
+//		Client.Send(data)
 	}()
 }
 func (t *Connecting) Stop(newState int) {
@@ -72,21 +82,12 @@ func (t *Connecting) Stop(newState int) {
 	t.loadingAnim.Stop(nil, nil)
 }
 func (t *Connecting) Update(screen *ebiten.Image) error {
-	if len(t.mapData) > 0 {
-		go t.LoadWorld(t.mapData)
-		t.mapData = nil
+	if SmallWorld.HasWorldStruct() {
+		t.parent.ChangeState(INGAME_STATE)
 	}
 
 	t.loadingAnim.Update(t.parent.frame)
 	t.background.DrawImageObj(screen)
 	t.loadingAnim.DrawImageObj(screen)
 	return nil
-}
-
-func (t *Connecting) LoadWorld(data []byte) {
-	wrld, err := GE.GetWorldStructureFromBytes(0, 0, XRES, YRES, data, F_TILES, F_STRUCTURES)
-	CheckErr(err)
-	WorldStructure = wrld
-
-	t.parent.ChangeState(INGAME_STATE)
 }
