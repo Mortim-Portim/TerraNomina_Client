@@ -22,7 +22,7 @@ type SelectRaceMenu struct {
 }
 
 var charinmaking *Character
-var arrow *ebiten.Image
+//var arrow *ebiten.Image
 
 func SetupCharacterMenu() {
 	var err error
@@ -75,11 +75,11 @@ func (menu *SelectRaceMenu) Init() {
 	}
 }
 
-func getRace(race *Race) (group *GE.Group) {
+func (race *Race) getRace(group *GE.Group) {
 	title := GE.GetTextImage(race.Name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.12)
 	stats := GE.GetTextImage(fmt.Sprintf("STR:%v | DEX:%v | INT:%v | CHA:%v", race.Attributes[0], race.Attributes[1], race.Attributes[2], race.Attributes[3]), XRES*0.5, YRES*0.32, YRES*0.06, GE.StandardFont, color.Black, color.Transparent)
-	anim, err := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_CREATURE+"/"+race.Name+"/idle_R.txt", F_CREATURE+"/"+race.Name+"/idle_R.png")
+	anim, err := GE.GetDayNightAnimFromParams(0, 0, 0, 0, F_ENTITY+"/"+race.Name+"/idle_R.txt", F_ENTITY+"/"+race.Name+"/idle_R.png")
 	GE.ShitImDying(err)
 	anim.ScaleToOriginalSize()
 	anim.ScaleDim(YRES*0.48, 1)

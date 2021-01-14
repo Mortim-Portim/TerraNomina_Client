@@ -12,7 +12,7 @@ func GetSelectStatsMenu(parent *TerraNomina) *SelectStatsMenu {
 	return &SelectStatsMenu{parent: parent}
 }
 
-var number []*ebiten.Image
+//var number []*ebiten.Image
 
 type SelectStatsMenu struct {
 	parent *TerraNomina
@@ -30,9 +30,9 @@ type SelectStatsMenu struct {
 	profcount     int
 }
 
-var stats []string = []string{"Strength", "Dexterity", "Intelligence", "Charisma"}
-var proficiencies []string = []string{"Strength (STR)", "Dexterity (DEX)", "Intelligence (INT)", "Charisma (CHA)", "Endurance (STR)", "Persuasion (CHA)", "Deception (CHA)", "Performance (CHA)", "Insight (INT)", "Thievery (DEX)", "Stealth (DEX)", "Acrobatics (DEX)", "Nature (INT)", "Arcana (INT)", "Perception (INT)", "Craftsmanship (INT)", "Dungeoneering"}
-var abtoprof []int = []int{ABIL_STRENGTH, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_CHARISMA, ABIL_STRENGTH, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_INTELLIGENCE, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE}
+//var stats []string = []string{"Strength", "Dexterity", "Intelligence", "Charisma"}
+//var proficiencies []string = []string{"Strength (STR)", "Dexterity (DEX)", "Intelligence (INT)", "Charisma (CHA)", "Endurance (STR)", "Persuasion (CHA)", "Deception (CHA)", "Performance (CHA)", "Insight (INT)", "Thievery (DEX)", "Stealth (DEX)", "Acrobatics (DEX)", "Nature (INT)", "Arcana (INT)", "Perception (INT)", "Craftsmanship (INT)", "Dungeoneering"}
+//var abtoprof []int = []int{ABIL_STRENGTH, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_CHARISMA, ABIL_STRENGTH, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_INTELLIGENCE, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE}
 
 func (menu *SelectStatsMenu) Init() {
 	number = make([]*ebiten.Image, 16)
@@ -148,7 +148,7 @@ func (menu *SelectStatsMenu) Init() {
 	menu.attributes = make([]int8, 4)
 }
 
-var pointmap []int = []int{0, 1, 1, 2, 2, 3, 3, 4, 4}
+//var pointmap []int = []int{0, 1, 1, 2, 2, 3, 3, 4, 4}
 
 func (menu *SelectStatsMenu) changeAttribute(index int, deltavalue int8) {
 	menu.attributes[index] += deltavalue

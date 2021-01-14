@@ -304,7 +304,7 @@ func (menu *CharacterMenu) initStats() {
 	savebutton := GE.GetTextButton("Save", "", GE.StandardFont, XRES*0.1, YRES*0.83, YRES*0.12, color.Black, &color.RGBA{255, 0, 0, 255})
 	savebutton.RegisterOnLeftEvent(func(btn *GE.Button) {
 		if !btn.LPressed {
-			SaveChar(menu.name.GetText(), int8(menu.currRace), int8(menu.currClass), menu.attributes, menu.proficiencies)
+			//SaveChar(menu.name.GetText(), int8(menu.currRace), int8(menu.currClass), menu.attributes, menu.proficiencies)
 			menu.GetBack()
 		}
 	})

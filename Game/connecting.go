@@ -78,9 +78,7 @@ func (t *Connecting) Stop(newState int) {
 }
 func (t *Connecting) Update(screen *ebiten.Image) error {
 	if t.SVACIDs != 0 && len(ClientManager.SyncvarsByACID) == t.SVACIDs {
-		
-		
-		
+		SmallWorld.GetRegistered(ClientManager)
 		t.parent.ChangeState(INGAME_STATE)
 	}
 

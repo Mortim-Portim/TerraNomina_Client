@@ -63,7 +63,7 @@ func (menu *SelectClassMenu) Init() {
 	}
 }
 
-func getClass(class *Class) (group *GE.Group) {
+func (class *Class) getClass(group *GE.Group) {
 	title := GE.GetTextImage(class.Name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.12)
 
