@@ -27,7 +27,7 @@ func (menu *TestMenu) Init() {
 	buttons := make([]GE.UpdateAble, 0)
 	for y := -1.0; y < 1; y++ {
 		for x := -5.0; x < 5; x++ {
-			img, err := GE.LoadEbitenImg(F_IMAGES + "/Skills/void.png")
+			img, err := GE.LoadEbitenImg(F_IMAGES + "/Skills/Void.png")
 			CheckErr(err)
 
 			button := GE.GetImageButton(img, xmid+(x*(width+3)), ymid+(y*(width+3)), width, width)

@@ -32,23 +32,6 @@ const (
 
 	F_ENTITY   = RES + "/Entities"
 
-	/**
-	RES = 									"./.res"
-	AUDIO_FILES = 								"/Audio"
-	ICON_FILES = 								"/Icons"
-	IMAGE_FILES = 								"/Images"
-	TITELSCREEN_FILES = 	IMAGE_FILES+"/GUI/Titlescreen"
-	PLAYMENU_FILES = 		IMAGE_FILES+"/GUI/PlayMenu"
-	BUTTON_FILES =			IMAGE_FILES+"/GUI/Buttons"
-	CONNECTING_FILES =		IMAGE_FILES+"/GUI/Connecting"
-	ANIMATION_FILES = 		IMAGE_FILES+"/Anims"
-	SOUNDTRACK_FILES = 		AUDIO_FILES+"/Soundtrack"
-	KEYLI_MAPPER_FILE =							"/keyli.txt"
-
-	STRUCTURE_FILES = 							"/Maps/structures"
-	TILE_FILES = 								"/Maps/tiles"
-	**/
-
 	ICON_FORMAT = "png"
 
 	TITLESCREEN_STATE = 0
@@ -92,7 +75,7 @@ var (
 	ClientManager *GC.ClientManager
 
 	SmallWorld *TNE.SmallWorld
-	ActivePlayer *TNE.Player
+	OwnPlayer *TNE.Player
 )
 
 //Should be saved to a file

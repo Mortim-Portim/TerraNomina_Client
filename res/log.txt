@@ -1038,3 +1038,71 @@ github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run.func1(
 	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:602 +0x79
 created by github.com/hajimehoshi/ebiten/internal/uidriver/glfw.(*UserInterface).Run
 	C:/Users/gosei/go-workspace/src/github.com/hajimehoshi/ebiten/internal/uidriver/glfw/ui.go:594 +0x13c
+ShitImDying: open ./res/Images/Skills/void.png: no such file or directory
+Stacktrace: goroutine 34 [running]:
+runtime/debug.Stack(0x41af10, 0xc000795d40, 0x30)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+github.com/mortim-portim/GraphEng/GE.ShitImDying.func1(0x8b6440, 0xc000795d40)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:352 +0x26
+panic(0x7ddf40, 0xc000795d40)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+github.com/mortim-portim/GraphEng/GE.ShitImDying(0x8b6440, 0xc000795d40)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:357 +0x77
+github.com/mortim-portim/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/start.go:54
+github.com/mortim-portim/TerraNomina_Client/Game.(*TestMenu).Init(0xc000012500)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/testMenu.go:31 +0x150
+github.com/mortim-portim/TerraNomina_Client/Game.(*TerraNomina).Init(0xc000075800)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/game.go:111 +0x450
+created by github.com/mortim-portim/TerraNomina_Client/Game.(*TerraNomina).Update
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/game.go:38 +0x275
+ShitImDying: Entity: <nil> is nil
+Stacktrace: goroutine 51 [running]:
+runtime/debug.Stack(0x0, 0xc000116270, 0x837520)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+github.com/mortim-portim/GraphEng/GE.ShitImDying.func1(0x8b5f20, 0xc000c7cbd0)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:352 +0x26
+panic(0x7cc980, 0xc000c7cbd0)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+github.com/mortim-portim/GraphEng/GE.ShitImDying(0x8b5f20, 0xc000c7cbd0)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:357 +0x77
+github.com/mortim-portim/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/start.go:54
+github.com/mortim-portim/TerraNomina_Client/Game.(*Connecting).Init(0xc000a80340)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/connecting.go:50 +0x2fe
+github.com/mortim-portim/TerraNomina_Client/Game.(*TerraNomina).Init(0xc000a8a210)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/game.go:111 +0x450
+created by github.com/mortim-portim/TerraNomina_Client/Game.(*TerraNomina).Update
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/game.go:38 +0x275
+ShitImDying: websocket: bad handshake
+Stacktrace: goroutine 35 [running]:
+runtime/debug.Stack(0xc013c6fda0, 0x0, 0x0)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+github.com/mortim-portim/GraphEng/GE.ShitImDying.func1(0x8b5fc0, 0xc000012e50)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:352 +0x26
+panic(0x7cca20, 0xc000012e50)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+github.com/mortim-portim/GraphEng/GE.ShitImDying(0x8b5fc0, 0xc000012e50)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:357 +0x77
+github.com/mortim-portim/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/start.go:54
+github.com/mortim-portim/TerraNomina_Client/Game.(*Connecting).Start.func1(0xc000a20340)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/connecting.go:66 +0x65
+created by github.com/mortim-portim/TerraNomina_Client/Game.(*Connecting).Start
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/connecting.go:64 +0xc5
+ShitImDying: websocket: bad handshake
+Stacktrace: goroutine 53 [running]:
+runtime/debug.Stack(0xc0001768e0, 0x0, 0x0)
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
+github.com/mortim-portim/GraphEng/GE.ShitImDying.func1(0x8b5fc0, 0xc000112e30)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:352 +0x26
+panic(0x7cca20, 0xc000112e30)
+	/usr/local/go/src/runtime/panic.go:969 +0x175
+github.com/mortim-portim/GraphEng/GE.ShitImDying(0x8b5fc0, 0xc000112e30)
+	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:357 +0x77
+github.com/mortim-portim/TerraNomina_Client/Game.CheckErr(...)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/start.go:54
+github.com/mortim-portim/TerraNomina_Client/Game.(*Connecting).Start.func1(0xc000156740)
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/connecting.go:66 +0x65
+created by github.com/mortim-portim/TerraNomina_Client/Game.(*Connecting).Start
+	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/connecting.go:64 +0xc5

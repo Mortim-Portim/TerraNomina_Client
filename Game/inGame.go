@@ -52,19 +52,19 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	}
 	
 	if i.left {
-		ActivePlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_LEFT)
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_LEFT)
 	}else if i.right {
-		ActivePlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_RIGHT)
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_RIGHT)
 	}else if i.up {
-		ActivePlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_UP)
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_UP)
 	}else if i.down {
-		ActivePlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_DOWN)
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_DOWN)
 	}
 	
-	if moving && !ActivePlayer.IsMoving() {
-		ActivePlayer.Move()
+	if moving && !OwnPlayer.IsMoving() {
+		OwnPlayer.Move()
 	}
-	ActivePlayer.UpdateAll(nil)
+	OwnPlayer.UpdateAll(nil)
 	i.sm.Draw(screen)
 	
 	msg := fmt.Sprintf(`TPS: %0.2f`, ebiten.CurrentTPS())
