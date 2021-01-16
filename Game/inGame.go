@@ -64,7 +64,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	
 	SmallWorld.ActivePlayer.UpdateVarsFromPlayer()
 	//st := time.Now()
-	SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
+	go SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
 	Client.WaitForConfirmation()
 	//fmt.Printf("Updating Vars took: %v\n", time.Now().Sub(st))
 	if moving {
