@@ -67,8 +67,7 @@ var (
 	Soundtrack *GE.SoundTrack
 
 	Keyli      *GE.KeyLi
-	ESC_KEY_ID int
-
+	
 	USER_INPUT_IP_ADDR string
 
 	Client        *GC.Client
@@ -82,7 +81,14 @@ var (
 var (
 	MOVEMENT_SPEED                                    = 0.5
 	MOVEMENT_UPDATE_PERIOD                            = int(1.0 / MOVEMENT_SPEED)
-	left_key_id, right_key_id, up_key_id, down_key_id int
+)
+
+var (
+	ESC_KEY_ID int
+	left_key_id int
+	right_key_id int
+	up_key_id int
+	down_key_id int
 )
 
 func (g *TerraNomina) Layout(outsideWidth, outsideHeight int) (int, int) {

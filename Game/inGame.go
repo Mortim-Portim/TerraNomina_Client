@@ -2,7 +2,7 @@ package Game
 
 import (
 	"fmt"
-
+	//"time"
 	//"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
 
@@ -16,8 +16,6 @@ func GetInGame(g *TerraNomina) *InGame {
 
 type InGame struct {
 	parent *TerraNomina
-
-	left, right, up, down bool
 	
 	sm *TNE.SmallWorld
 	ef *TNE.EntityFactory
@@ -25,15 +23,13 @@ type InGame struct {
 
 func (i *InGame) Init() {
 	fmt.Println("Initializing InGame")
-	Keyli.MappIDToKey(left_key_id, ebiten.KeyLeft)
-	Keyli.MappIDToKey(right_key_id, ebiten.KeyRight)
-	Keyli.MappIDToKey(up_key_id, ebiten.KeyUp)
-	Keyli.MappIDToKey(down_key_id, ebiten.KeyDown)
 }
 func (i *InGame) Start(oldState int) {
 	fmt.Print("--------> InGame     \n")
 	i.sm = SmallWorld
 	i.ef = i.sm.Ef
+	
+	//fmt.Println(i.sm.Print())
 	
 	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
@@ -41,30 +37,40 @@ func (i *InGame) Stop(newState int) {
 	fmt.Print("InGame      -------->")
 }
 func (i *InGame) Update(screen *ebiten.Image) error {
-	i.left, _ = Keyli.GetMappedKeyState(left_key_id)
-	i.right, _ = Keyli.GetMappedKeyState(right_key_id)
-	i.up, _ = Keyli.GetMappedKeyState(up_key_id)
-	i.down, _ = Keyli.GetMappedKeyState(down_key_id)
+	left, lC := Keyli.GetMappedKeyState(left_key_id)
+	right, rC := Keyli.GetMappedKeyState(right_key_id)
+	up, uC := Keyli.GetMappedKeyState(up_key_id)
+	down, dC := Keyli.GetMappedKeyState(down_key_id)
 	
 	moving := false
-	if i.left || i.right || i.up || i.down {
+	if left || right || up || down {
 		moving = true
 	}
-	
-	if i.left {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_LEFT)
-	}else if i.right {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_RIGHT)
-	}else if i.up {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_UP)
-	}else if i.down {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_CHANGE_ORIENTATION_DOWN)
+	if left && (lC || (rC && !right) || (uC && !up) || (dC && !down)) {
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_LEFT)
+	}else if right && (rC || (lC && !left) || (uC && !up) || (dC && !down)) {
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_RIGHT)
+	}else if up && (uC || (rC && !right) || (lC && !left) || (dC && !down)) {
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_UP)
+	}else if down && (dC || (rC && !right) || (uC && !up) || (lC && !left)) {
+		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_DOWN)
 	}
 	
 	if moving && !OwnPlayer.IsMoving() {
 		OwnPlayer.Move()
 	}
+	OwnPlayer.KeepMoving(moving)
 	OwnPlayer.UpdateAll(nil)
+	
+	SmallWorld.ActivePlayer.UpdateVarsFromPlayer()
+	//st := time.Now()
+	SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
+	Client.WaitForConfirmation()
+	//fmt.Printf("Updating Vars took: %v\n", time.Now().Sub(st))
+	if moving {
+		x,y := OwnPlayer.IntPos()
+		fmt.Println("OwnPl: ", x, ":", y)
+	}
 	i.sm.Draw(screen)
 	
 	msg := fmt.Sprintf(`TPS: %0.2f`, ebiten.CurrentTPS())

@@ -34,6 +34,4 @@ func InitParams(path string) {
 	name, err3 := GE.LoadEbitenImg(F_TITLESCREEN + "/name.png")
 	CheckErr(err3)
 	TITLE_Name = GE.GetAnimationFromParams(0, 0, XRES, XRES*0.19, nameParams, name)
-
-	left_key_id, right_key_id, up_key_id, down_key_id = 0, 1, 2, 3
 }

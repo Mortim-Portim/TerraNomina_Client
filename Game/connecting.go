@@ -47,12 +47,9 @@ func (t *Connecting) Init() {
 	CheckErr(err)
 	sm.RegisterOnEntityChangeListeners()
 	
-	ple, err := sm.Ef.Get(0)
+	ple, err := sm.Ef.GetByName("Dwarf")
 	CheckErr(err)
-	OwnPlayer = &TNE.Player{Race:TNE.Race{Entity:*ple}}
-	
-	err = sm.ActivePlayer.SetPlayer(OwnPlayer)
-	CheckErr(err)
+	OwnPlayer = &TNE.Player{Race:&TNE.Race{Entity:ple}}
 	SmallWorld = sm
 }
 func (t *Connecting) Start(oldState int) {
@@ -89,6 +86,9 @@ func (t *Connecting) Update(screen *ebiten.Image) error {
 		t.SVACIDs = 0
 	}
 	if SmallWorld.HasWorldStruct() {
+		SmallWorld.ReassignAllEntities()
+		err := SmallWorld.ActivePlayer.SetPlayer(OwnPlayer)
+		CheckErr(err)
 		t.parent.ChangeState(INGAME_STATE)
 	}
 

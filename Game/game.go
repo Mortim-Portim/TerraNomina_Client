@@ -99,9 +99,14 @@ func (g *TerraNomina) Init() {
 
 	Keyli = &GE.KeyLi{}
 	Keyli.Reset()
+	
+	left_key_id = Keyli.MappKey(ebiten.KeyA)
+	right_key_id = Keyli.MappKey(ebiten.KeyD)
+	up_key_id = Keyli.MappKey(ebiten.KeyW)
+	down_key_id = Keyli.MappKey(ebiten.KeyS)
+	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
+	
 	Keyli.LoadConfig(F_KEYLI_MAPPER)
-	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
-	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
 	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})
 
 	Client = GC.GetNewClient()

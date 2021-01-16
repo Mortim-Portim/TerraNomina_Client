@@ -41,7 +41,7 @@ func Start() {
 	tn.States[SELRACE_STATE] = GetSelectRaceMenu(tn)
 	tn.States[SELCLASS_STATE] = GetSelectClassMenu(tn)
 	tn.States[SELSTATS_STATE] = GetSelectStatsMenu(tn)
-	tn.States[TEST_STATE] = getTestMenu(tn)
+	//tn.States[TEST_STATE] = getTestMenu(tn)
 
 	SetupCharacterMenu()
 	StartGame(tn)
