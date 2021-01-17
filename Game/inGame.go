@@ -63,13 +63,16 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	OwnPlayer.UpdateAll(nil)
 	
 	SmallWorld.ActivePlayer.UpdateVarsFromPlayer()
-	//st := time.Now()
 	go SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
 	Client.WaitForConfirmation()
-	//fmt.Printf("Updating Vars took: %v\n", time.Now().Sub(st))
-	if moving {
-		x,y := OwnPlayer.IntPos()
-		fmt.Println("OwnPl: ", x, ":", y)
+	
+	x,y := OwnPlayer.IntPos()
+	fmt.Printf("%p: %v, %v\n", OwnPlayer, x, y)
+	for _,pl := range(i.sm.Plys) {
+		if pl.HasPlayer() {
+			xp,yp := pl.Se.Entity.IntPos()
+			fmt.Printf("%p: %v, %v\n", pl.Se.Entity, xp, yp)
+		}
 	}
 	i.sm.Draw(screen)
 	

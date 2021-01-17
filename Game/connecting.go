@@ -54,6 +54,7 @@ func (t *Connecting) Init() {
 }
 func (t *Connecting) Start(oldState int) {
 	fmt.Print("--------> Connecting \n")
+	GC.PRINT_LOG = false
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
 	t.loadingAnim.Start(nil, nil)
@@ -86,9 +87,9 @@ func (t *Connecting) Update(screen *ebiten.Image) error {
 		t.SVACIDs = 0
 	}
 	if SmallWorld.HasWorldStruct() {
+		fmt.Println("WorldStructure received, setting player and reassigning all entities")
+		SmallWorld.ActivePlayer.SetPlayer(OwnPlayer)
 		SmallWorld.ReassignAllEntities()
-		err := SmallWorld.ActivePlayer.SetPlayer(OwnPlayer)
-		CheckErr(err)
 		t.parent.ChangeState(INGAME_STATE)
 	}
 
