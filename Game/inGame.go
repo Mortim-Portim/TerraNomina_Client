@@ -17,6 +17,8 @@ func GetInGame(g *TerraNomina) *InGame {
 type InGame struct {
 	parent *TerraNomina
 	
+	sending bool
+	
 	sm *TNE.SmallWorld
 	ef *TNE.EntityFactory
 }
@@ -43,28 +45,30 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	down, dC := Keyli.GetMappedKeyState(down_key_id)
 	
 	moving := false
-	if left || right || up || down {
-		moving = true
-	}
-	if left && (lC || (rC && !right) || (uC && !up) || (dC && !down)) {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_LEFT)
-	}else if right && (rC || (lC && !left) || (uC && !up) || (dC && !down)) {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_RIGHT)
-	}else if up && (uC || (rC && !right) || (lC && !left) || (dC && !down)) {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_UP)
-	}else if down && (dC || (rC && !right) || (uC && !up) || (lC && !left)) {
-		OwnPlayer.ChangeOrientation(TNE.ENTITY_ORIENTATION_DOWN)
+	if left || right || up || down {moving = true}
+	dir := TNE.GetNewDirection()
+	if lC || rC || uC || dC {
+		dir.L = left; dir.R = right; dir.U = up; dir.D = down
+		dir.FromKeys()
+		OwnPlayer.ChangeOrientation(dir)
 	}
 	
 	if moving && !OwnPlayer.IsMoving() {
 		OwnPlayer.Move()
 	}
 	OwnPlayer.KeepMoving(moving)
-	OwnPlayer.UpdateAll(nil)
 	
-	SmallWorld.ActivePlayer.UpdateVarsFromPlayer()
-	go SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
-	Client.WaitForConfirmation()
+	SmallWorld.UpdateAll()
+	
+	if !i.sending {
+		i.sending = true
+		go func(){
+			SmallWorld.ActivePlayer.UpdateVarsFromPlayer()
+			SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
+			Client.WaitForConfirmation()
+			i.sending = false
+		}()
+	}
 	
 	x,y := OwnPlayer.IntPos()
 	fmt.Printf("%p: %v, %v\n", OwnPlayer, x, y)
