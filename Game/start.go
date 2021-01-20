@@ -3,10 +3,14 @@ package Game
 import (
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
-
+	"fmt"
+	"flag"
 	"github.com/hajimehoshi/ebiten"
 	//fonts "marvin/TerraNomina_Client/.res/Fonts"
 )
+
+var WRITELOGFILE = flag.String("log", "log.txt", "name of the logfile")
+var AUTOMOVE = flag.Bool("mv", false, "presses D and A")
 
 func StartGame(g ebiten.Game) {
 	icons, err := GE.InitIcons(F_ICONS, ICON_SIZES, ICON_FORMAT)
@@ -22,15 +26,16 @@ func StartGame(g ebiten.Game) {
 		CheckErr(err)
 	}
 	g.(*TerraNomina).Close()
-	GE.CloseLogFile()
 }
 
 func Start() {
+	flag.Parse()
+	GE.SetLogFile(RES + "/" + *WRITELOGFILE)
 	GE.Init("")
-	GE.SetLogFile(RES + "/log.txt")
 	GC.InitSyncVarStandardTypes()
-
-	InitParams(RES + "/params.txt")
+	InitParams(F_Params)
+	
+	GE.MOVE_A_D = *AUTOMOVE
 
 	tn := &TerraNomina{first: true, States: make(map[int]GameState)}
 	tn.States[TITLESCREEN_STATE] = GetTitleScreen(tn)
@@ -45,6 +50,22 @@ func Start() {
 
 	SetupCharacterMenu()
 	StartGame(tn)
+}
+
+func Println(ps ...interface{}) {
+	out := fmt.Sprintln(ps...)
+	GE.LogToFile(out)
+	fmt.Print(out)
+}
+func Print(ps ...interface{}) {
+	out := fmt.Sprint(ps...)
+	GE.LogToFile(out)
+	fmt.Print(out)
+}
+func Printf(s string, ps ...interface{}) {
+	out := fmt.Sprintf(s, ps...)
+	GE.LogToFile(out)
+	fmt.Print(out)
 }
 
 func CheckErr(err error) {

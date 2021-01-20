@@ -1,11 +1,8 @@
 package Game
 
 import (
-	"fmt"
-	//"time"
-	//"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
-
+	"fmt"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
 )
@@ -24,10 +21,10 @@ type InGame struct {
 }
 
 func (i *InGame) Init() {
-	fmt.Println("Initializing InGame")
+	Println("Initializing InGame")
 }
 func (i *InGame) Start(oldState int) {
-	fmt.Print("--------> InGame     \n")
+	Print("--------> InGame     \n")
 	i.sm = SmallWorld
 	i.ef = i.sm.Ef
 	
@@ -36,7 +33,7 @@ func (i *InGame) Start(oldState int) {
 	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (i *InGame) Stop(newState int) {
-	fmt.Print("InGame      -------->")
+	Print("InGame      -------->")
 }
 func (i *InGame) Update(screen *ebiten.Image) error {
 	left, lC := Keyli.GetMappedKeyState(left_key_id)
@@ -58,29 +55,31 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	}
 	OwnPlayer.KeepMoving(moving)
 	
-	SmallWorld.UpdateAll()
+	i.sm.UpdateAll()
 	
 	if !i.sending {
 		i.sending = true
 		go func(){
-			SmallWorld.ActivePlayer.UpdateVarsFromPlayer()
-			SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
+			i.sm.ActivePlayer.UpdateVarsFromPlayer()
+			i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
 			Client.WaitForConfirmation()
 			i.sending = false
 		}()
 	}
 	
-	x,y := OwnPlayer.IntPos()
-	fmt.Printf("%p: %v, %v\n", OwnPlayer, x, y)
-	for _,pl := range(i.sm.Plys) {
-		if pl.HasPlayer() {
-			xp,yp := pl.Se.Entity.IntPos()
-			fmt.Printf("%p: %v, %v\n", pl.Se.Entity, xp, yp)
-		}
-	}
+//	x,y := OwnPlayer.IntPos()
+//	Printf("%v; %v; ", x, y)
+//	for _,pl := range(i.sm.Plys) {
+//		if pl.HasPlayer() {
+//			xp,yp := pl.Se.Entity.IntPos()
+//			Printf("%v; %v; ", xp, yp)
+//		}
+//	}
+//	Println()
+	//Println(i.sm.Struct.ObjMat.Print())
 	i.sm.Draw(screen)
 	
-	msg := fmt.Sprintf(`TPS: %0.2f`, ebiten.CurrentTPS())
+	msg := fmt.Sprintf("TPS: %0.1f, Ping: %v", ebiten.CurrentTPS(), Client.Ping)
 	ebitenutil.DebugPrint(screen, msg)
 	return nil
 }

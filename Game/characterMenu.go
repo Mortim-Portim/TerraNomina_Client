@@ -1,10 +1,9 @@
 package Game
 
 import (
-	"fmt"
 	"image/color"
 	"strconv"
-
+	"fmt"
 	"github.com/mortim-portim/GraphEng/GE"
 
 	"github.com/hajimehoshi/ebiten"
@@ -386,7 +385,7 @@ func (menu *CharacterMenu) resetStats() {
 }
 
 func (menu *CharacterMenu) Start(lastState int) {
-	fmt.Print("--------> CharacterMenu   \n")
+	Print("--------> CharacterMenu   \n")
 	Soundtrack.Play(Races[menu.currRace].Name)
 
 	for i, race := range Races {
@@ -402,7 +401,7 @@ func (menu *CharacterMenu) Start(lastState int) {
 }
 
 func (menu *CharacterMenu) Stop(nextState int) {
-	fmt.Print("CharacterMenu ------>")
+	Print("CharacterMenu ------>")
 
 	for i := range menu.rbackground {
 		menu.rbackground[i] = nil

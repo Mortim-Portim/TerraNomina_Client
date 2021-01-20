@@ -4,6 +4,8 @@ import (
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
+	"runtime"
+	"sync"
 )
 
 const (
@@ -12,6 +14,7 @@ const (
 
 	FPS            = 30
 	RES            = "./res"
+	F_Params	   = RES + "/params.txt"
 	F_KEYLI_MAPPER = RES + "/keyli.txt"
 	F_ICONS        = RES + "/Icons"
 	F_MAPS         = RES + "/Maps"
@@ -75,6 +78,12 @@ var (
 
 	SmallWorld *TNE.SmallWorld
 	OwnPlayer *TNE.Player
+	
+	RecorderLock sync.Mutex
+	Recorder *GE.Recorder
+	RecordAll bool
+	RecordingLength, RecordingScale float64
+	RecordingFile string
 )
 
 //Should be saved to a file
@@ -89,8 +98,16 @@ var (
 	right_key_id int
 	up_key_id int
 	down_key_id int
+	record_key_id int
 )
 
 func (g *TerraNomina) Layout(outsideWidth, outsideHeight int) (int, int) {
 	return int(XRES), int(YRES)
+}
+func ResetRecorder() {
+	RecorderLock.Lock()
+	Recorder.Delete()
+	Recorder = GE.GetNewRecorder(int(FPS*RecordingLength), int(XRES*RecordingScale), int(YRES*RecordingScale), FPS)
+	RecorderLock.Unlock()
+	runtime.GC()
 }

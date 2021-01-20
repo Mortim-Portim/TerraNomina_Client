@@ -1,8 +1,6 @@
 package Game
 
 import (
-	"fmt"
-
 	"github.com/mortim-portim/GraphEng/GE"
 
 	"github.com/hajimehoshi/ebiten"
@@ -23,7 +21,7 @@ type TitleScreen struct {
 }
 
 func (t *TitleScreen) Init() {
-	fmt.Println("Initializing TitleScreen")
+	Println("Initializing TitleScreen")
 	Play_i, err := GE.LoadEbitenImg(F_BUTTONS + "/play.png")
 	CheckErr(err)
 	Character_i, err := GE.LoadEbitenImg(F_BUTTONS + "/character.png")
@@ -56,12 +54,12 @@ func (t *TitleScreen) Init() {
 	t.Buttons.Init(nil, nil)
 }
 func (t *TitleScreen) Start(oldState int) {
-	fmt.Print("--------> TitleScreen\n")
+	Print("--------> TitleScreen\n")
 	t.Buttons.Start(nil, nil)
 	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (t *TitleScreen) Stop(newState int) {
-	fmt.Print("TitleScreen -------->")
+	Print("TitleScreen -------->")
 	t.Buttons.Stop(nil, nil)
 }
 func (t *TitleScreen) Update(screen *ebiten.Image) error {

@@ -1,7 +1,7 @@
 package Game
 
 import (
-	"fmt"
+	//"fmt"
 	"time"
 
 	"github.com/mortim-portim/GameConn/GC"
@@ -11,10 +11,6 @@ import (
 
 	"github.com/hajimehoshi/ebiten"
 )
-
-//Connects
-//Sends: MAP_REQUEST
-//Receives: [ MAP_REQUEST | (n)map bytes ]
 
 func GetConnecting(g *TerraNomina) *Connecting {
 	return &Connecting{parent: g}
@@ -31,7 +27,7 @@ type Connecting struct {
 }
 
 func (t *Connecting) Init() {
-	fmt.Println("Initializing Connecting")
+	Println("Initializing Connecting")
 	lps := &GE.Params{}
 	err := lps.LoadFromFile(F_CONNECTING + "/loading.txt")
 	CheckErr(err)
@@ -53,19 +49,19 @@ func (t *Connecting) Init() {
 	SmallWorld = sm
 }
 func (t *Connecting) Start(oldState int) {
-	fmt.Print("--------> Connecting \n")
+	Print("--------> Connecting \n")
 	GC.PRINT_LOG = false
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
 	t.loadingAnim.Start(nil, nil)
 
 	go func() {
-		fmt.Printf("Connecting to '%s'\n", t.ipAddr)
+		Printf("Connecting to '%s'\n", t.ipAddr)
 		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) bool {
 			if msg[0] == GC.BINARYMSG && len(msg) == 10 {
 				if string(msg[1:8]) == TNE.NumberOfSVACIDs_Msg {
 					t.SVACIDs = int(cmp.BytesToInt16(msg[8:10]))
-					fmt.Printf("Waiting for %v SyncVars to be registered\n", t.SVACIDs)
+					Printf("Waiting for %v SyncVars to be registered\n", t.SVACIDs)
 				}
 			}
 			return true
@@ -77,17 +73,17 @@ func (t *Connecting) Start(oldState int) {
 	}()
 }
 func (t *Connecting) Stop(newState int) {
-	fmt.Print("Connecting  -------->")
+	Print("Connecting  -------->")
 	t.loadingAnim.Stop(nil, nil)
 }
 func (t *Connecting) Update(screen *ebiten.Image) error {
 	if t.SVACIDs != 0 && len(ClientManager.SyncvarsByACID) == t.SVACIDs {
 		SmallWorld.GetRegistered(ClientManager)
-		fmt.Printf("%v SyncVars registered\n", t.SVACIDs)
+		Printf("%v SyncVars registered\n", t.SVACIDs)
 		t.SVACIDs = 0
 	}
 	if SmallWorld.HasWorldStruct() {
-		fmt.Println("WorldStructure received, setting player and reassigning all entities")
+		Println("WorldStructure received, setting player and reassigning all entities")
 		SmallWorld.ActivePlayer.SetPlayer(OwnPlayer)
 		SmallWorld.ReassignAllEntities()
 		t.parent.ChangeState(INGAME_STATE)

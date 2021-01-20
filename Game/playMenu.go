@@ -1,7 +1,6 @@
 package Game
 
 import (
-	"fmt"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten"
@@ -23,7 +22,7 @@ type PlayMenu struct {
 }
 
 func (t *PlayMenu) Init() {
-	fmt.Println("Initializing PlayMenu")
+	Println("Initializing PlayMenu")
 	characterTab, err := GE.LoadEbitenImg(F_PLAYMENU + "/character.png")
 	CheckErr(err)
 	serverTab, err := GE.LoadEbitenImg(F_PLAYMENU + "/server.png")
@@ -55,14 +54,14 @@ func (t *PlayMenu) Init() {
 	t.tabs.Init(nil, nil)
 }
 func (t *PlayMenu) Start(oldState int) {
-	fmt.Print("--------> PlayMenu   \n")
+	Print("--------> PlayMenu   \n")
 	t.oldState = oldState
 	t.playBtn.Start(nil, nil)
 	t.tabs.Start(nil, nil)
 	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (t *PlayMenu) Stop(newState int) {
-	fmt.Print("PlayMenu    -------->")
+	Print("PlayMenu    -------->")
 	t.playBtn.Stop(nil, nil)
 	t.tabs.Stop(nil, nil)
 }

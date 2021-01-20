@@ -42,7 +42,19 @@ func (g *TerraNomina) Update(screen *ebiten.Image) error {
 	}
 	state, ok := g.States[g.currentState]
 	if ok {
-		return state.Update(screen)
+		err := state.Update(screen)
+		if RecordAll {
+			RecorderLock.Lock()
+			Recorder.NextFrame(screen)
+			RecorderLock.Unlock()
+			down,chng := Keyli.GetMappedKeyState(record_key_id)
+			if down && chng && !Recorder.IsSaving() {
+				RecorderLock.Lock()
+				Recorder.Save(fmt.Sprintf("%s_%s", RecordingFile, GE.GetTime()))
+				RecorderLock.Unlock()
+			}
+		}
+		return err
 	}
 	return errors.New(fmt.Sprintf("Cannot update state %v, does not exist", g.currentState))
 }
@@ -53,8 +65,11 @@ func (g *TerraNomina) Close() {
 	}
 	Keyli.SaveConfig(F_KEYLI_MAPPER)
 	Soundtrack.FadeOut()
+	PARAMETER.SaveToFile(F_Params)
+	
 	time.Sleep(time.Duration(float64(time.Second) * (GE.STANDARD_FADE_TIME + 0.5)))
 	fmt.Println()
+	GE.CloseLogFile()
 }
 
 func (g *TerraNomina) Initializing(screen *ebiten.Image) error {
@@ -100,17 +115,24 @@ func (g *TerraNomina) Init() {
 	Keyli = &GE.KeyLi{}
 	Keyli.Reset()
 	
-	left_key_id = Keyli.MappKey(ebiten.KeyA)
-	right_key_id = Keyli.MappKey(ebiten.KeyD)
-	up_key_id = Keyli.MappKey(ebiten.KeyW)
-	down_key_id = Keyli.MappKey(ebiten.KeyS)
-	ESC_KEY_ID = Keyli.MappKey(ebiten.KeyEscape)
+	left_key_id = 		Keyli.MappKey(ebiten.KeyA)
+	right_key_id = 		Keyli.MappKey(ebiten.KeyD)
+	up_key_id = 		Keyli.MappKey(ebiten.KeyW)
+	down_key_id = 		Keyli.MappKey(ebiten.KeyS)
+	ESC_KEY_ID = 		Keyli.MappKey(ebiten.KeyEscape)
+	record_key_id = 	Keyli.MappKey(ebiten.KeyR)
 	
 	Keyli.LoadConfig(F_KEYLI_MAPPER)
 	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})
 
 	Client = GC.GetNewClient()
 	ClientManager = GC.GetClientManager(Client)
+	
+	RecordAll = true
+	RecordingLength = 5
+	RecordingScale = 0.1
+	RecordingFile = "./screencapture"
+	ResetRecorder()
 
 	for _, state := range g.States {
 		state.Init()
