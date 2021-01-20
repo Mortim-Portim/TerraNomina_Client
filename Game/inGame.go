@@ -40,6 +40,10 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	right, rC := Keyli.GetMappedKeyState(right_key_id)
 	up, uC := Keyli.GetMappedKeyState(up_key_id)
 	down, dC := Keyli.GetMappedKeyState(down_key_id)
+	down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
+	if changed && !down {
+		t.OpenOptions()
+	}
 	
 	moving := false
 	if left || right || up || down {moving = true}
@@ -82,4 +86,8 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	msg := fmt.Sprintf("TPS: %0.1f, Ping: %v", ebiten.CurrentTPS(), Client.Ping)
 	ebitenutil.DebugPrint(screen, msg)
 	return nil
+}
+
+func (i *InGame) OpenOptions() {
+	
 }

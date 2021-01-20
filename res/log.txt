@@ -16330,4 +16330,51 @@ Initializing PlayMenu
 Initializing Connecting
 Initializing InGame
 --------> TitleScreen
-TitleScreen -------->
+TitleScreen -------->Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+--------> TitleScreen
+TitleScreen -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '79.194.13.219:8080'
+Waiting for 236 SyncVars to be registered
+236 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 236 SyncVars to be registered
+236 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 236 SyncVars to be registered
+236 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->
