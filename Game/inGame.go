@@ -71,16 +71,15 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 		}()
 	}
 	
-//	x,y := OwnPlayer.IntPos()
-//	Printf("%v; %v; ", x, y)
-//	for _,pl := range(i.sm.Plys) {
-//		if pl.HasPlayer() {
-//			xp,yp := pl.Se.Entity.IntPos()
-//			Printf("%v; %v; ", xp, yp)
-//		}
-//	}
-//	Println()
-	//Println(i.sm.Struct.ObjMat.Print())
+	x,y := OwnPlayer.IntPos()
+	Printf("%v; %v; ", x, y)
+	for _,pl := range(i.sm.Plys) {
+		if pl.HasPlayer() {
+			xp,yp := pl.Se.Entity.IntPos()
+			Printf("%v; %v; ", xp, yp)
+		}
+	}
+	Println()
 	i.sm.Draw(screen)
 	
 	msg := fmt.Sprintf("TPS: %0.1f, Ping: %v", ebiten.CurrentTPS(), Client.Ping)
