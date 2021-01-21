@@ -1,9 +1,6 @@
 package Game
 
 import (
-	//"fmt"
-	"time"
-
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
@@ -39,6 +36,19 @@ func (t *Connecting) Init() {
 	t.background, err = GE.LoadImgObj(F_CONNECTING+"/back.png", XRES, YRES, 0, 0, 0)
 	CheckErr(err)
 	
+	ClientManager.OnCloseConnection = func(){
+		close(ServerClosing)
+	}
+}
+func (t *Connecting) Start(oldState int) {
+	Print("--------> Connecting \n")
+	t.loadingAnim.Start(nil, nil)
+	
+	ServerClosing = make(chan bool)
+	GC.PRINT_LOG = false
+	t.oldState = oldState
+	t.ipAddr = USER_INPUT_IP_ADDR
+	
 	sm,err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY)
 	CheckErr(err)
 	sm.RegisterOnEntityChangeListeners()
@@ -47,13 +57,6 @@ func (t *Connecting) Init() {
 	CheckErr(err)
 	OwnPlayer = &TNE.Player{Race:&TNE.Race{Entity:ple}}
 	SmallWorld = sm
-}
-func (t *Connecting) Start(oldState int) {
-	Print("--------> Connecting \n")
-	GC.PRINT_LOG = false
-	t.oldState = oldState
-	t.ipAddr = USER_INPUT_IP_ADDR
-	t.loadingAnim.Start(nil, nil)
 
 	go func() {
 		Printf("Connecting to '%s'\n", t.ipAddr)
@@ -69,7 +72,6 @@ func (t *Connecting) Start(oldState int) {
 		
 		err := Client.MakeConn(t.ipAddr)
 		CheckErr(err)
-		time.Sleep(time.Second)
 	}()
 }
 func (t *Connecting) Stop(newState int) {

@@ -83,6 +83,10 @@ var (
 	RecordAll bool
 	RecordingLength, RecordingScale float64
 	RecordingFile string
+	
+	ServerClosing chan bool
+	
+	Toaster *GE.Toaster
 )
 
 //Should be saved to a file

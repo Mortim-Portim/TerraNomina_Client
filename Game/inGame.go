@@ -14,6 +14,8 @@ func GetInGame(g *TerraNomina) *InGame {
 type InGame struct {
 	parent *TerraNomina
 	
+	oldState int
+	
 	sending bool
 	
 	sm *TNE.SmallWorld
@@ -25,10 +27,14 @@ func (i *InGame) Init() {
 }
 func (i *InGame) Start(oldState int) {
 	Print("--------> InGame     \n")
+	i.oldState = oldState
 	i.sm = SmallWorld
 	i.ef = i.sm.Ef
 	
-	//fmt.Println(i.sm.Print())
+	go func() {
+		<-ServerClosing
+		i.Close()
+	}()
 	
 	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
@@ -80,7 +86,6 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 //		}
 //	}
 //	Println()
-
 	i.sm.Draw(screen)
 	
 	msg := fmt.Sprintf("TPS: %0.1f, Ping: %v", ebiten.CurrentTPS(), Client.Ping)
@@ -88,6 +93,9 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	return nil
 }
 
+func (i *InGame) Close() {
+	i.parent.ChangeState(TITLESCREEN_STATE)
+}
 func (i *InGame) OpenOptions() {
 	
 }

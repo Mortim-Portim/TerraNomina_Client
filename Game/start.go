@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"flag"
 	"github.com/hajimehoshi/ebiten"
+	"image/color"
 	//fonts "marvin/TerraNomina_Client/.res/Fonts"
 )
 
@@ -47,7 +48,9 @@ func Start() {
 	tn.States[SELCLASS_STATE] = GetSelectClassMenu(tn)
 	tn.States[SELSTATS_STATE] = GetSelectStatsMenu(tn)
 	//tn.States[TEST_STATE] = getTestMenu(tn)
-
+	
+	Toaster = GE.GetNewToaster(XRES,YRES, 0.5, 0.04, GE.StandardFont, color.RGBA{255,255,255,255}, color.RGBA{0,0,0,255})
+	
 	SetupCharacterMenu()
 	StartGame(tn)
 }

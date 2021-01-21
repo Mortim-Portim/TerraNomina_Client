@@ -64,6 +64,7 @@ func (t *TitleScreen) Stop(newState int) {
 }
 func (t *TitleScreen) Update(screen *ebiten.Image) error {
 	TITLE_BackImg.Update(t.parent.frame)
+	TITLE_Name.Update(t.parent.frame)
 	TITLE_BackImg.DrawImageObj(screen)
 	TITLE_Name.DrawImageObj(screen)
 

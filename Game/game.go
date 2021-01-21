@@ -10,7 +10,6 @@ import (
 
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
-
 	"github.com/hajimehoshi/ebiten"
 )
 
@@ -18,20 +17,26 @@ type TerraNomina struct {
 	States map[int]GameState
 	first  bool
 
+	doneSavingSC chan bool
+	currentSaveFileSC string
+	
 	frame, currentState            int
-	lastLoadingState, loadingState uint8
+	loadingState uint8
 	initializing                   bool
 	interrupt                      chan os.Signal
 }
 
 func (g *TerraNomina) Update(screen *ebiten.Image) error {
-	defer func() { g.frame++ }()
+	defer func() {
+		g.frame++ 
+		Toaster.Update(g.frame)
+		Toaster.Draw(screen)
+	}()
 	if Keyli != nil {
 		Keyli.UpdateMapped()
 	}
 	if g.first {
 		g.loadingState = 0
-		g.lastLoadingState = 0
 		g.frame = 0
 		g.first = false
 		g.initializing = true
@@ -49,8 +54,10 @@ func (g *TerraNomina) Update(screen *ebiten.Image) error {
 			RecorderLock.Unlock()
 			down,chng := Keyli.GetMappedKeyState(record_key_id)
 			if down && chng && !Recorder.IsSaving() {
+				g.currentSaveFileSC = fmt.Sprintf("%s_%s", RecordingFile, GE.GetTime())
+				go g.OnDoneSaving()
 				RecorderLock.Lock()
-				Recorder.Save(fmt.Sprintf("%s_%s", RecordingFile, GE.GetTime()))
+				Recorder.Save(g.currentSaveFileSC, g.doneSavingSC)
 				RecorderLock.Unlock()
 			}
 		}
@@ -75,11 +82,10 @@ func (g *TerraNomina) Close() {
 func (g *TerraNomina) Initializing(screen *ebiten.Image) error {
 	TITLE_BackImg.Update(g.frame)
 	TITLE_BackImg.DrawImageObj(screen)
-	if g.lastLoadingState != g.loadingState {
-		TITLE_LoadingBar.Update(int(g.loadingState))
-		TITLE_Name.Update(int(g.loadingState))
-		g.lastLoadingState = g.loadingState
-	}
+	
+	TITLE_LoadingBar.SetTo(int(g.loadingState))
+	TITLE_Name.SetTo(int(g.loadingState))
+	
 	TITLE_LoadingBar.DrawImageObj(screen)
 	TITLE_Name.DrawImageObj(screen)
 	return nil
@@ -87,10 +93,12 @@ func (g *TerraNomina) Initializing(screen *ebiten.Image) error {
 func (g *TerraNomina) Init() {
 	done := make(chan struct{})
 	go func() {
-		for i := 0; i <= 30; i++ {
+		for i := 0; i < 10; i++ {
 			g.loadingState = uint8(i)
-			time.Sleep(time.Millisecond * 40)
+			time.Sleep(time.Millisecond * 200)
 		}
+	}()
+	go func() {
 		<-done
 		g.frame = 0
 		newState := g.currentState
@@ -107,11 +115,15 @@ func (g *TerraNomina) Init() {
 		log.Fatal("User Termination")
 		return
 	}()
-
+	
+	g.doneSavingSC = make(chan bool)
+	
+	Toaster.New("Loading soundtrack", FPS*2)
 	st, err := GE.LoadSoundTrack(F_SOUNDTRACK, 1)
 	CheckErr(err)
 	Soundtrack = st
-
+	
+	Toaster.New("Loading keyboard layout", FPS*2)
 	Keyli = &GE.KeyLi{}
 	Keyli.Reset()
 	
@@ -124,21 +136,29 @@ func (g *TerraNomina) Init() {
 	
 	Keyli.LoadConfig(F_KEYLI_MAPPER)
 	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})
-
+	
+	Toaster.New("Creating client", FPS*2)
 	Client = GC.GetNewClient()
 	ClientManager = GC.GetClientManager(Client)
 	
+	Toaster.New("Creating recorder", FPS*2)
 	RecordAll = true
 	RecordingLength = 5
 	RecordingScale = 0.1
 	RecordingFile = "./screencapture"
 	ResetRecorder()
 
+	Toaster.New("Initializing gamestates", FPS*2)
 	for _, state := range g.States {
 		state.Init()
 	}
-
+	
+	Toaster.New("Finished", FPS*1)
 	close(done)
+}
+func (g *TerraNomina) OnDoneSaving() {
+	<-g.doneSavingSC
+	Toaster.New(fmt.Sprintf("Saved to %s", g.currentSaveFileSC), FPS*3)
 }
 func (g *TerraNomina) ChangeState(newState int) error {
 	if _, ok := g.States[newState]; ok {
@@ -151,7 +171,6 @@ func (g *TerraNomina) ChangeState(newState int) error {
 	}
 	return errors.New(fmt.Sprintf("Cannot change to state %v, does not exist", g.currentState))
 }
-
 func (g *TerraNomina) GetCurrentFrame() int {
 	return g.frame
 }
