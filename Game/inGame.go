@@ -40,8 +40,8 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	right, rC := Keyli.GetMappedKeyState(right_key_id)
 	up, uC := Keyli.GetMappedKeyState(up_key_id)
 	down, dC := Keyli.GetMappedKeyState(down_key_id)
-	down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
-	if changed && !down {
+	esc, esc_changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
+	if esc_changed && !esc {
 		i.OpenOptions()
 	}
 	
@@ -71,15 +71,16 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 		}()
 	}
 	
-	x,y := OwnPlayer.IntPos()
-	Printf("%v; %v; ", x, y)
-	for _,pl := range(i.sm.Plys) {
-		if pl.HasPlayer() {
-			xp,yp := pl.Se.Entity.IntPos()
-			Printf("%v; %v; ", xp, yp)
-		}
-	}
-	Println()
+//	x,y := OwnPlayer.IntPos()
+//	Printf("%v; %v; ", x, y)
+//	for _,ent := range(i.sm.Ents) {
+//		if ent.HasEntity() {
+//			xp,yp := ent.Entity.IntPos()
+//			Printf("%v; %v; ", xp, yp)
+//		}
+//	}
+//	Println()
+
 	i.sm.Draw(screen)
 	
 	msg := fmt.Sprintf("TPS: %0.1f, Ping: %v", ebiten.CurrentTPS(), Client.Ping)
