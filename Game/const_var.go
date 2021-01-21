@@ -48,10 +48,9 @@ const (
 	SELSTATS_STATE     = 8
 	TEST_STATE         = 9
 
-	SOUNDTRACK_MAIN         = "main"
-	SOUNDTRACK_ORK          = "ork"
-	SOUNDTRACK_BATTLE_INTRO = "battle_intro"
-	SOUNDTRACK_BATTLE_CYCLE = "battle_cycle"
+	SOUNDTRACK_MAIN         = "Main"
+	SOUNDTRACK_ORK          = "Ork"
+	SOUNDTRACK_BATTLE 		= "Battle"
 
 	MAP_REQUEST = GC.MESSAGE_TYPES + 0
 	CHAR_SEND   = GC.MESSAGE_TYPES + 1

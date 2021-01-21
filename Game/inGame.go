@@ -42,7 +42,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	down, dC := Keyli.GetMappedKeyState(down_key_id)
 	down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
 	if changed && !down {
-		t.OpenOptions()
+		i.OpenOptions()
 	}
 	
 	moving := false
