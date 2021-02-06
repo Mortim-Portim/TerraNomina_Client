@@ -49,7 +49,7 @@ func (t *Connecting) Start(oldState int) {
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
 	
-	sm,err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY)
+	sm,err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY, nil)
 	CheckErr(err)
 	sm.RegisterOnEntityChangeListeners()
 	

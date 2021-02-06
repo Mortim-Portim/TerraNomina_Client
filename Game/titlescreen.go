@@ -31,9 +31,9 @@ func (t *TitleScreen) Init() {
 
 	w := TITLESCREEN_BUTTON_WIDTH * XRES
 	h := w * TITLESCREEN_BUTTON_HEIGHT_REL
-	Play_B := GE.GetImageButton(Play_i, XRES-w*1.5, YRES/3, w, h)
-	Character_B := GE.GetImageButton(Character_i, XRES-w*1.5, YRES/3+h, w, h)
-	Options_B := GE.GetImageButton(Options_i, XRES-w*1.5, YRES/3+h*2, w, h)
+	Play_B := GE.GetImageButton(Play_i, XRES-w*1.5, TITLE_Name.H, w, h)
+	Character_B := GE.GetImageButton(Character_i, XRES-w*1.5, TITLE_Name.H+h, w, h)
+	Options_B := GE.GetImageButton(Options_i, XRES-w*1.5, TITLE_Name.H+h*2, w, h)
 	Play_B.RegisterOnLeftEvent(func(b *GE.Button) {
 		if !b.LPressed {
 			t.parent.ChangeState(PLAY_MENU_STATE)

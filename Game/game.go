@@ -122,6 +122,9 @@ func (g *TerraNomina) Init() {
 	st, err := GE.LoadSoundTrack(F_SOUNDTRACK, 1)
 	CheckErr(err)
 	Soundtrack = st
+	Soundtrack.OnFinished = func() {
+		Soundtrack.NextTrack = Soundtrack.GetRandomTrack(time.Now().UnixNano())
+	}
 	
 	Toaster.New("Loading keyboard layout", FPS*2)
 	Keyli = &GE.KeyLi{}

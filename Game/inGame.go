@@ -65,27 +65,27 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	}
 	OwnPlayer.KeepMoving(moving)
 	
-	i.sm.UpdateAll()
+	i.sm.UpdateAll(false)
 	
 	if !i.sending {
 		i.sending = true
 		go func(){
-			i.sm.ActivePlayer.UpdateVarsFromPlayer()
+			i.sm.ActivePlayer.UpdateChanFromPlayer()
 			i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
 			Client.WaitForConfirmation()
 			i.sending = false
 		}()
 	}
 	
-//	x,y := OwnPlayer.IntPos()
-//	Printf("%v; %v; ", x, y)
-//	for _,ent := range(i.sm.Ents) {
-//		if ent.HasEntity() {
-//			xp,yp := ent.Entity.IntPos()
-//			Printf("%v; %v; ", xp, yp)
-//		}
-//	}
-//	Println()
+	x,y := OwnPlayer.IntPos()
+	Printf("%v; %v; ", x, y)
+	for _,ent := range(i.sm.Ents) {
+		if ent.HasEntity() {
+			xp,yp := ent.Entity.IntPos()
+			Printf("%v; %v; ", xp, yp)
+		}
+	}
+	Println()
 	i.sm.Draw(screen)
 	
 	msg := fmt.Sprintf("TPS: %0.1f, Ping: %v", ebiten.CurrentTPS(), Client.Ping)
