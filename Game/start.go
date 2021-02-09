@@ -14,6 +14,7 @@ var WRITELOGFILE = flag.String("log", "log.txt", "name of the logfile")
 var AUTOMOVE = flag.Bool("mv", false, "presses D and A")
 
 func StartGame(g ebiten.Game) {
+	defer onUnexpectedError(g)
 	icons, err := GE.InitIcons(F_ICONS, ICON_SIZES, ICON_FORMAT)
 	CheckErr(err)
 	ebiten.SetWindowIcon(icons)
@@ -27,6 +28,13 @@ func StartGame(g ebiten.Game) {
 		CheckErr(err)
 	}
 	g.(*TerraNomina).Close()
+}
+
+func onUnexpectedError(g ebiten.Game) {
+	if r := recover(); r!= nil {
+		g.(*TerraNomina).Close()
+		panic(fmt.Sprintf("unexpected Error: %v", r))
+	}
 }
 
 func Start() {
