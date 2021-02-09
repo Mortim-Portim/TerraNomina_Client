@@ -19,7 +19,7 @@ func StartGame(g ebiten.Game) {
 	CheckErr(err)
 	ebiten.SetWindowIcon(icons)
 	ebiten.SetWindowTitle("Terra Nomina")
-	//ebiten.SetFullscreen(true)
+	ebiten.SetFullscreen(true)
 	ebiten.SetVsyncEnabled(true)
 	ebiten.SetMaxTPS(FPS)
 	ebiten.SetRunnableOnUnfocused(true)

@@ -3,6 +3,7 @@ package Game
 import (
 	"github.com/mortim-portim/TN_Engine/TNE"
 	"fmt"
+	"time"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
 )
@@ -20,6 +21,10 @@ type InGame struct {
 	
 	sm *TNE.SmallWorld
 	ef *TNE.EntityFactory
+	
+	lastUpdate time.Time
+	meanDelay int
+	isDelayed bool
 }
 
 func (i *InGame) Init() {
@@ -35,7 +40,8 @@ func (i *InGame) Start(oldState int) {
 		<-ServerClosing
 		i.Close()
 	}()
-	
+	i.lastUpdate = time.Now()
+	i.meanDelay = 33288
 	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (i *InGame) Stop(newState int) {
@@ -77,18 +83,27 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 		}()
 	}
 	
-	x,y := OwnPlayer.IntPos()
-	Printf("%v; %v; ", x, y)
-	for _,ent := range(i.sm.Ents) {
-		if ent.HasEntity() {
-			xp,yp := ent.Entity.IntPos()
-			Printf("%v; %v; ", xp, yp)
-		}
-	}
-	Println()
+//	x,y := OwnPlayer.IntPos()
+//	Printf("%v; %v; ", x, y)
+//	for _,ent := range(i.sm.Ents) {
+//		if ent.HasEntity() {
+//			xp,yp := ent.Entity.IntPos()
+//			Printf("%v; %v; ", xp, yp)
+//		}
+//	}
+//	Println()
 	i.sm.Draw(screen)
 	
-	msg := fmt.Sprintf("TPS: %0.1f, Ping: %v", ebiten.CurrentTPS(), Client.Ping)
+	delay := time.Now().Sub(i.lastUpdate).Microseconds()
+	i.lastUpdate = time.Now()
+	i.isDelayed = float64(delay)/float64(i.meanDelay) > 1.2
+	i.meanDelay = int(float64(i.meanDelay)*(9.0/10.0)+float64(delay)*(1.0/10.0))
+	
+	msg := fmt.Sprintf("Frame: %v, TPS: %0.1f, Ping: %v", i.parent.frame, ebiten.CurrentTPS(), Client.Ping)
+	if i.isDelayed {
+		msg += fmt.Sprintf(", meanDelay: %v", i.meanDelay)
+		Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)
+	}
 	ebitenutil.DebugPrint(screen, msg)
 	return nil
 }
