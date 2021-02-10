@@ -37,4 +37,258 @@ Waiting for 114 SyncVars to be registered
 114 SyncVars registered
 WorldStructure received, setting player and reassigning all entities
 Connecting  -------->--------> InGame     
-InGame      -------->
+InGame      -------->Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '79.194.13.219:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '79.194.13.219:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+--------> TitleScreen
+TitleScreen -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+--------> TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->--------> TitleScreen
+InGame      -------->InGame      -------->--------> TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+--------> TitleScreen
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->--------> TitleScreen
+--------> TitleScreen
+TitleScreen -------->TitleScreen -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+--------> TitleScreen
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->--------> TitleScreen
+--------> TitleScreen
+TitleScreen -------->TitleScreen -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Connecting  -------->PlayMenu    -------->Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+--------> TitleScreen
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> TitleScreen
+TitleScreen -------->
