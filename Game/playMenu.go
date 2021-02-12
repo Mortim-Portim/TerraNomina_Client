@@ -23,17 +23,19 @@ type PlayMenu struct {
 
 func (t *PlayMenu) Init() {
 	Println("Initializing PlayMenu")
-	characterTab, err := GE.LoadEbitenImg(F_PLAYMENU + "/character.png")
+	characterTabU, err := GE.LoadEbitenImg(F_PLAYMENU + "/character_u.png")
 	CheckErr(err)
-	serverTab, err := GE.LoadEbitenImg(F_PLAYMENU + "/server.png")
+	serverTabU, err := GE.LoadEbitenImg(F_PLAYMENU + "/server_u.png")
 	CheckErr(err)
-	playBtnImg, err := GE.LoadEbitenImg(F_PLAYMENU + "/play.png")
+	characterTabD, err := GE.LoadEbitenImg(F_PLAYMENU + "/character_d.png")
 	CheckErr(err)
-	w, h := playBtnImg.Size()
-	rel := float64(h) / float64(w)
-	W := XRES * PLAY_MENU_PLAY_BUTTON_WIDTH
-	H := W * rel
-	t.playBtn = GE.GetImageButton(playBtnImg, XRES-W-H*0.5, YRES-H*1.5, W, H)
+	serverTabD, err := GE.LoadEbitenImg(F_PLAYMENU + "/server_d.png")
+	CheckErr(err)
+	
+	t.playBtn, err = GE.LoadButton(F_PLAYMENU + "/play_u.png", F_PLAYMENU + "/play_d.png", 0,0, 0, 0, true)
+	CheckErr(err)
+	t.playBtn.Img.ScaleToOriginalSize(); t.playBtn.Img.ScaleToX(XRES * PLAY_MENU_PLAY_BUTTON_WIDTH)
+	t.playBtn.Img.SetBottomRight(XRES-t.playBtn.Img.H, YRES-t.playBtn.Img.H)
 
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
 	TabViewUpdateAble[0] = GE.GetGroup()
@@ -47,7 +49,7 @@ func (t *PlayMenu) Init() {
 		}
 	})
 
-	params := &GE.TabViewParams{Imgs: []*ebiten.Image{characterTab, serverTab}, Scrs: TabViewUpdateAble, Y: 0, W: XRES, H: YRES}
+	params := &GE.TabViewParams{Imgs: []*ebiten.Image{characterTabU, serverTabU}, Dark: []*ebiten.Image{characterTabD, serverTabD}, Scrs: TabViewUpdateAble, Y: 0, W: XRES, H: YRES}
 	t.tabs = GE.GetTabView(params)
 
 	t.playBtn.Init(nil, nil)

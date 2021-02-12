@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	TITLESCREEN_BUTTON_WIDTH      = 1.0 / 8.0
-	TITLESCREEN_BUTTON_HEIGHT_REL = 3.0 / 10.0
+	TITLESCREEN_BUTTON_HEIGHT_REL = 0.08
+	TITLESCREEN_BUTTON_XCOORD_REL = 0.9
 )
 
 func GetTitleScreen(g *TerraNomina) *TitleScreen {
@@ -22,18 +22,19 @@ type TitleScreen struct {
 
 func (t *TitleScreen) Init() {
 	Println("Initializing TitleScreen")
-	Play_i, err := GE.LoadEbitenImg(F_BUTTONS + "/play.png")
+	H := TITLESCREEN_BUTTON_HEIGHT_REL * YRES
+	X := TITLESCREEN_BUTTON_XCOORD_REL*XRES
+	
+	Play_B, err := GE.LoadButton(F_BUTTONS + "/play_u.png", F_BUTTONS + "/play_d.png", 0, TITLE_Name.H, H, H, true)
 	CheckErr(err)
-	Character_i, err := GE.LoadEbitenImg(F_BUTTONS + "/character.png")
+	Play_B.Img.ScaleToOriginalSize();Play_B.Img.ScaleToY(H);Play_B.Img.SetMiddleX(X)
+	Character_B, err := GE.LoadButton(F_BUTTONS + "/character_u.png", F_BUTTONS + "/character_d.png", 0, TITLE_Name.H+H, H, H, true)
 	CheckErr(err)
-	Options_i, err := GE.LoadEbitenImg(F_BUTTONS + "/options.png")
+	Character_B.Img.ScaleToOriginalSize();Character_B.Img.ScaleToY(H);Character_B.Img.SetMiddleX(X)
+	Options_B, err := GE.LoadButton(F_BUTTONS + "/options_u.png", F_BUTTONS + "/options_d.png", 0, TITLE_Name.H+H*2, H, H, true)
 	CheckErr(err)
-
-	w := TITLESCREEN_BUTTON_WIDTH * XRES
-	h := w * TITLESCREEN_BUTTON_HEIGHT_REL
-	Play_B := GE.GetImageButton(Play_i, XRES-w*1.5, TITLE_Name.H, w, h)
-	Character_B := GE.GetImageButton(Character_i, XRES-w*1.5, TITLE_Name.H+h, w, h)
-	Options_B := GE.GetImageButton(Options_i, XRES-w*1.5, TITLE_Name.H+h*2, w, h)
+	Options_B.Img.ScaleToOriginalSize();Options_B.Img.ScaleToY(H);Options_B.Img.SetMiddleX(X)
+	
 	Play_B.RegisterOnLeftEvent(func(b *GE.Button) {
 		if !b.LPressed {
 			t.parent.ChangeState(PLAY_MENU_STATE)
