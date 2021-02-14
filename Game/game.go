@@ -95,7 +95,7 @@ func (g *TerraNomina) Init() {
 	go func() {
 		for i := 0; i < 10; i++ {
 			g.loadingState = uint8(i)
-			time.Sleep(time.Millisecond * 200)
+			time.Sleep(time.Millisecond * 300)
 		}
 	}()
 	go func() {

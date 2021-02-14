@@ -23,16 +23,16 @@ type PlayMenu struct {
 
 func (t *PlayMenu) Init() {
 	Println("Initializing PlayMenu")
-	characterTabU, err := GE.LoadEbitenImg(F_PLAYMENU + "/character_u.png")
+	characterTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/character_u.png")
 	CheckErr(err)
-	serverTabU, err := GE.LoadEbitenImg(F_PLAYMENU + "/server_u.png")
+	serverTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/server_u.png")
 	CheckErr(err)
-	characterTabD, err := GE.LoadEbitenImg(F_PLAYMENU + "/character_d.png")
+	characterTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/character_d.png")
 	CheckErr(err)
-	serverTabD, err := GE.LoadEbitenImg(F_PLAYMENU + "/server_d.png")
+	serverTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/server_d.png")
 	CheckErr(err)
 	
-	t.playBtn, err = GE.LoadButton(F_PLAYMENU + "/play_u.png", F_PLAYMENU + "/play_d.png", 0,0, 0, 0, true)
+	t.playBtn, err = GE.LoadButton(F_BUTTONS + "/play_u.png", F_BUTTONS + "/play_d.png", 0,0, 0, 0, true)
 	CheckErr(err)
 	t.playBtn.Img.ScaleToOriginalSize(); t.playBtn.Img.ScaleToX(XRES * PLAY_MENU_PLAY_BUTTON_WIDTH)
 	t.playBtn.Img.SetBottomRight(XRES-t.playBtn.Img.H, YRES-t.playBtn.Img.H)

@@ -28,10 +28,10 @@ const (
 	F_IMAGES        = RES + "/Images"
 	F_GUI           = F_IMAGES + "/GUI"
 	F_TITLESCREEN   = F_GUI + "/Titlescreen"
-	F_PLAYMENU      = F_GUI + "/PlayMenu"
 	F_CHARACTERMENU = F_GUI + "/CharacterMenu"
 	F_BUTTONS       = F_GUI + "/Buttons"
 	F_CONNECTING    = F_GUI + "/Connecting"
+	F_UI_ELEMENTS 	= F_GUI + "/Elements"
 
 	F_ENTITY   = RES + "/Entities"
 

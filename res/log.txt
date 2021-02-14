@@ -1,425 +1,19 @@
-Initializing OptionsMenu
-Initializing PlayMenu
 Initializing Connecting
 Initializing InGame
 Initializing TitleScreen
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing TitleScreen
 Initializing OptionsMenu
 Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
 --------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
 TitleScreen -------->--------> OptionsMenu
 OptionsMenu -------->--------> TitleScreen
 TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '79.194.13.219:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '79.194.13.219:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
---------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
+PlayMenu    -------->--------> TitleScreen
 TitleScreen -------->Initializing Connecting
 Initializing InGame
 Initializing TitleScreen
 Initializing OptionsMenu
 Initializing PlayMenu
 --------> TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->InGame      -------->--------> TitleScreen
-InGame      -------->InGame      -------->--------> TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
---------> TitleScreen
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->InGame      -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->InGame      -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->InGame      -------->--------> TitleScreen
---------> TitleScreen
-TitleScreen -------->TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->InGame      -------->Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
---------> TitleScreen
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->InGame      -------->--------> TitleScreen
---------> TitleScreen
-TitleScreen -------->TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Connecting  -------->PlayMenu    -------->Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
---------> TitleScreen
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-PlayMenu    -------->--------> Connecting 
-Connecting to '192.168.71.176:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->InGame      -------->Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '79.194.13.219:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '79.194.13.219:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> Connecting 
-Connecting to '79.194.13.219:8080'
-Waiting for 114 SyncVars to be registered
-114 SyncVars registered
-WorldStructure received, setting player and reassigning all entities
-Connecting  -------->--------> InGame     
-InGame      -------->Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing InGame
-Initializing TitleScreen
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
---------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
 TitleScreen -------->--------> PlayMenu   
 PlayMenu    -------->--------> TitleScreen
 TitleScreen -------->Initializing InGame
@@ -428,127 +22,48 @@ Initializing OptionsMenu
 Initializing PlayMenu
 Initializing Connecting
 --------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> TitleScreen
-TitleScreen -------->Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
+TitleScreen -------->TitleScreen -------->Initializing Connecting
 Initializing InGame
 Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
 --------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> TitleScreen
+TitleScreen -------->Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+--------> TitleScreen
+TitleScreen -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
 TitleScreen -------->--------> PlayMenu   
 PlayMenu    -------->--------> Connecting 
-Connecting to ''
-ShitImDying: websocket: bad handshake
-Stacktrace: goroutine 38 [running]:
-runtime/debug.Stack(0x7f666c834d30, 0x0, 0x42267b)
-	/usr/local/go/src/runtime/debug/stack.go:24 +0x9f
-github.com/mortim-portim/GraphEng/GE.ShitImDying.func1(0x8d0b00, 0xc000112e30)
-	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:358 +0x26
-panic(0x7e1740, 0xc000112e30)
-	/usr/local/go/src/runtime/panic.go:969 +0x175
-github.com/mortim-portim/GraphEng/GE.ShitImDying(0x8d0b00, 0xc000112e30)
-	/home/marvin/go/src/github.com/mortim-portim/GraphEng/GE/generall.go:363 +0x77
-github.com/mortim-portim/TerraNomina_Client/Game.CheckErr(...)
-	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/start.go:86
-github.com/mortim-portim/TerraNomina_Client/Game.(*Connecting).Start.func1(0xc0001567c0)
-	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/connecting.go:74 +0x116
-created by github.com/mortim-portim/TerraNomina_Client/Game.(*Connecting).Start
-	/home/marvin/go/src/github.com/mortim-portim/TerraNomina_Client/Game/connecting.go:61 +0x26e
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->--------> TitleScreen
-TitleScreen -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
-Initializing Connecting
-Initializing InGame
---------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->--------> TitleScreen
-TitleScreen -------->--------> TitleScreen
-TitleScreen -------->--------> PlayMenu   
-PlayMenu    -------->--------> TitleScreen
-TitleScreen -------->Initializing Connecting
-Initializing InGame
-Initializing TitleScreen
-Initializing OptionsMenu
-Initializing PlayMenu
---------> TitleScreen
-TitleScreen -------->
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->InGame      -------->

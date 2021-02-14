@@ -19,23 +19,34 @@ type OptionsMenu struct {
 
 func (t *OptionsMenu) Init() {
 	Println("Initializing OptionsMenu")
-
+	generalTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/general_u.png")
+	CheckErr(err)
+	recordingTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/recording_u.png")
+	CheckErr(err)
+	generalTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/general_d.png")
+	CheckErr(err)
+	recordingTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/recording_d.png")
+	CheckErr(err)
+	
 	volumetext := GE.GetTextImage("Volume", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-	volumeScrollbar := GE.GetStandardScrollbar(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, 0, 100, 100, GE.StandardFont)
+	volumeScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 0, 100, 100, GE.StandardFont)
+	CheckErr(err)
 	volumeScrollbar.RegisterOnChange(func(scrollbar *GE.ScrollBar) {
 		pc := scrollbar.Current()
 		Soundtrack.SetVolume(float64(pc)/100)
 	})
 	
 	recordingTimeTxt := GE.GetTextImage("Time", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-	recordingTimeScrollbar := GE.GetStandardScrollbar(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, 0, 30, int(RecordingLength), GE.StandardFont)
+	recordingTimeScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 1, 30, int(RecordingLength), GE.StandardFont)
+	CheckErr(err)
 	recordingTimeScrollbar.RegisterOnChange(func(scrollbar *GE.ScrollBar) {
 		pc := scrollbar.Current()
 		RecordingLength = float64(pc)
 		ResetRecorder()
 	})
 	recordingScaleTxt := GE.GetTextImage("Scale", XRES*0.07, YRES*0.3, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-	recordingScaleScrollbar := GE.GetStandardScrollbar(XRES*0.2, YRES*0.3, XRES*0.6, YRES*0.05, 0, 10, int(RecordingScale*10), GE.StandardFont)
+	recordingScaleScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.3, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 0, 10, int(RecordingScale*10), GE.StandardFont)
+	CheckErr(err)
 	recordingScaleScrollbar.RegisterOnChange(func(scrollbar *GE.ScrollBar) {
 		pc := scrollbar.Current()
 		RecordingScale = float64(pc)/10
@@ -51,7 +62,8 @@ func (t *OptionsMenu) Init() {
 		Y:0,
 		W:XRES,
 		H:YRES,
-		Nms:[]string{"General", "Recording"},
+		Imgs:[]*ebiten.Image{generalTabU, recordingTabU},
+		Dark:[]*ebiten.Image{generalTabD, recordingTabD},
 		Scrs: TabViewUpdateAble,
 	}
 	t.tabs = GE.GetTabView(tabPs)
