@@ -12,6 +12,7 @@ import (
 
 var WRITELOGFILE = flag.String("log", "log.txt", "name of the logfile")
 var AUTOMOVE = flag.Bool("mv", false, "presses D and A")
+var WINDOWED = flag.Bool("win", false, "starts Terra Nomina in window mode")
 
 func StartGame(g ebiten.Game) {
 	defer onUnexpectedError(g)
@@ -19,7 +20,11 @@ func StartGame(g ebiten.Game) {
 	CheckErr(err)
 	ebiten.SetWindowIcon(icons)
 	ebiten.SetWindowTitle("Terra Nomina")
-	ebiten.SetFullscreen(true)
+	if !*WINDOWED {
+		ebiten.SetFullscreen(true)
+	}else{
+		ebiten.SetWindowSize(640, 360)
+	}
 	ebiten.SetVsyncEnabled(true)
 	ebiten.SetMaxTPS(FPS)
 	ebiten.SetRunnableOnUnfocused(true)
