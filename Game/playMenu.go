@@ -40,6 +40,10 @@ func (t *PlayMenu) Init() {
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
 	TabViewUpdateAble[0] = GE.GetGroup()
 	ipAddr := GE.GetEditText("ip:port", 10, 100, 100, 20, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
+	ipAddr.RegisterOnChange(func(et *GE.EditText) {
+		StandardIP_TEXT = et.GetText()
+	})
+	ipAddr.SetText(StandardIP_TEXT)
 	TabViewUpdateAble[1] = ipAddr
 
 	t.playBtn.RegisterOnLeftEvent(func(b *GE.Button) {
@@ -60,7 +64,6 @@ func (t *PlayMenu) Start(oldState int) {
 	t.oldState = oldState
 	t.playBtn.Start(nil, nil)
 	t.tabs.Start(nil, nil)
-	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (t *PlayMenu) Stop(newState int) {
 	Print("PlayMenu    -------->")

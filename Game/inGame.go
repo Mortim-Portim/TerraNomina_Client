@@ -42,7 +42,6 @@ func (i *InGame) Start(oldState int) {
 	}()
 	i.lastUpdate = time.Now()
 	i.meanDelay = 33288
-	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (i *InGame) Stop(newState int) {
 	Print("InGame      -------->")

@@ -60,6 +60,7 @@ const (
 
 var (
 	PARAMETER  *GE.Params
+	StandardIP_TEXT string
 	XRES, YRES float64
 
 	ICON_SIZES = []int{16, 32, 48, 64, 128, 256}
@@ -67,6 +68,7 @@ var (
 	TITLE_BackImg, TITLE_LoadingBar, TITLE_Name *GE.Animation
 
 	Soundtrack *GE.SoundTrack
+	StandardVolume float64
 
 	Keyli      *GE.KeyLi
 	

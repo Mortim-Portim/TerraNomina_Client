@@ -72,6 +72,7 @@ func (g *TerraNomina) Close() {
 	}
 	Keyli.SaveConfig(F_KEYLI_MAPPER)
 	Soundtrack.FadeOut()
+	VarsToParams()
 	PARAMETER.SaveToFile(F_Params)
 	
 	time.Sleep(time.Duration(float64(time.Second) * (GE.STANDARD_FADE_TIME + 0.5)))
@@ -84,7 +85,6 @@ func (g *TerraNomina) Initializing(screen *ebiten.Image) error {
 	TITLE_BackImg.DrawImageObj(screen)
 	
 	TITLE_LoadingBar.SetTo(int(g.loadingState))
-	TITLE_Name.SetTo(int(g.loadingState))
 	
 	TITLE_LoadingBar.DrawImageObj(screen)
 	TITLE_Name.DrawImageObj(screen)
@@ -95,7 +95,7 @@ func (g *TerraNomina) Init() {
 	go func() {
 		for i := 0; i < 10; i++ {
 			g.loadingState = uint8(i)
-			time.Sleep(time.Millisecond * 300)
+			time.Sleep(time.Millisecond * 500)
 		}
 	}()
 	go func() {
@@ -125,6 +125,8 @@ func (g *TerraNomina) Init() {
 	Soundtrack.OnFinished = func() {
 		Soundtrack.NextTrack = Soundtrack.GetRandomTrack(time.Now().UnixNano())
 	}
+	Soundtrack.Play(SOUNDTRACK_MAIN)
+	Soundtrack.SetVolume(StandardVolume)
 	
 	Toaster.New("Loading keyboard layout", FPS*2)
 	Keyli = &GE.KeyLi{}
@@ -146,8 +148,6 @@ func (g *TerraNomina) Init() {
 	
 	Toaster.New("Creating recorder", FPS*2)
 	RecordAll = true
-	RecordingLength = 5
-	RecordingScale = 0.1
 	RecordingFile = "./screencapture"
 	ResetRecorder()
 

@@ -1,0 +1,4 @@
+ip_addr:
+volume:0.10000000
+rec_time:1.00000000
+rec_scale:0.0000000

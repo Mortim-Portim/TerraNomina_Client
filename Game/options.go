@@ -29,11 +29,12 @@ func (t *OptionsMenu) Init() {
 	CheckErr(err)
 	
 	volumetext := GE.GetTextImage("Volume", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-	volumeScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 0, 100, 100, GE.StandardFont)
+	volumeScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 0, 100, int(StandardVolume*100), GE.StandardFont)
 	CheckErr(err)
 	volumeScrollbar.RegisterOnChange(func(scrollbar *GE.ScrollBar) {
 		pc := scrollbar.Current()
-		Soundtrack.SetVolume(float64(pc)/100)
+		StandardVolume = float64(pc)/100
+		Soundtrack.SetVolume(StandardVolume)
 	})
 	
 	recordingTimeTxt := GE.GetTextImage("Time", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
@@ -72,8 +73,6 @@ func (t *OptionsMenu) Init() {
 func (t *OptionsMenu) Start(oldState int) {
 	Print("--------> OptionsMenu\n")
 	t.oldState = oldState
-	
-	Soundtrack.Play(SOUNDTRACK_MAIN)
 }
 func (t *OptionsMenu) Stop(newState int) {
 	Print("OptionsMenu -------->")

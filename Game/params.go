@@ -5,13 +5,37 @@ import (
 
 	"github.com/hajimehoshi/ebiten"
 )
-
+const(
+	VOLUME_PARAM = "volume"
+	RECORDING_TIME_PARAM = "rec_time"
+	RECORDING_SCALE_PARAM = "rec_scale"
+	IP_ADDR_PARAM = "ip_addr"
+)
+/**
+volume:0.5
+rec_time:5
+rec_scale:0.1
+ip_addr:ip:port
+**/
+func VarsToParams() {
+	PARAMETER.Set(VOLUME_PARAM, StandardVolume)
+	PARAMETER.Set(RECORDING_TIME_PARAM, RecordingLength)
+	PARAMETER.Set(RECORDING_SCALE_PARAM, RecordingScale)
+	PARAMETER.SetS(IP_ADDR_PARAM, StandardIP_TEXT)
+}
+func ParamsToVars() {
+	StandardVolume = PARAMETER.Get(VOLUME_PARAM)
+	RecordingLength = PARAMETER.Get(RECORDING_TIME_PARAM)
+	RecordingScale = PARAMETER.Get(RECORDING_SCALE_PARAM)
+	StandardIP_TEXT = PARAMETER.GetS(IP_ADDR_PARAM)
+}
 func InitParams(path string) {
 	GE.InitParams(nil)
 
 	PARAMETER = &GE.Params{}
 	err := PARAMETER.LoadFromFile(path)
 	CheckErr(err)
+	ParamsToVars()
 
 	xres, yres := ebiten.ScreenSizeInFullscreen()
 	XRES = float64(xres)
