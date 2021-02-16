@@ -2,10 +2,12 @@ package Game
 
 import (
 	"image/color"
+	"os"
 	"strconv"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
+	"github.com/mortim-portim/TN_Engine/TNE"
 )
 
 func GetSelectStatsMenu(parent *TerraNomina) *SelectStatsMenu {
@@ -94,7 +96,7 @@ func (menu *SelectStatsMenu) Init() {
 					menu.profcount--
 					menu.changeProfencies(btn.Data.(int), -5)
 				} else {
-					if menu.profcount < charinmaking.race.Extraprof {
+					if menu.profcount < charinmaking.Race.Extraprof {
 						menu.profcount++
 						menu.changeProfencies(btn.Data.(int), 5)
 					} else {
@@ -116,10 +118,10 @@ func (menu *SelectStatsMenu) Init() {
 	savebutton := GE.GetTextButton("Save", "", GE.StandardFont, XRES*0.1, YRES*0.83, YRES*0.12, color.Black, &color.RGBA{255, 0, 0, 255})
 	savebutton.RegisterOnLeftEvent(func(btn *GE.Button) {
 		if !btn.LPressed {
-			charinmaking.attributes = menu.attributes
-			charinmaking.proficiencies = menu.proficiencies
-			charinmaking.name = menu.name.GetText()
-			charinmaking.SaveChar()
+			charinmaking.Attributes = menu.attributes
+			charinmaking.Proficiencies = menu.proficiencies
+			charinmaking.Name = menu.name.GetText()
+			SaveChar(charinmaking)
 
 			menu.parent.ChangeState(TITLESCREEN_STATE)
 		}
@@ -148,6 +150,13 @@ func (menu *SelectStatsMenu) Init() {
 	menu.attributes = make([]int8, 4)
 }
 
+func SaveChar(char *TNE.Character) {
+	file, _ := os.Create(F_CHARACTER + "/" + char.Name + ".char")
+	defer file.Close()
+	file.Truncate(0)
+	file.Write(char.ToByte())
+}
+
 func (menu *SelectStatsMenu) changeAttribute(index int, deltavalue int8) {
 	menu.attributes[index] += deltavalue
 	menu.attpicture[index].Img = number[menu.attributes[index]+2]
@@ -159,7 +168,7 @@ func (menu *SelectStatsMenu) changeAttribute(index int, deltavalue int8) {
 
 	score := 10
 	for i := range menu.attributes {
-		for l := charinmaking.race.Attributes[i]; l < menu.attributes[i]; l++ {
+		for l := charinmaking.Race.Attributes[i]; l < menu.attributes[i]; l++ {
 			score -= pointmap[l+1]
 		}
 	}
@@ -202,11 +211,11 @@ func (menu *SelectStatsMenu) resetStats() {
 func (menu *SelectStatsMenu) Start(laststate int) {
 	menu.resetStats()
 
-	for i, stat := range charinmaking.race.Attributes {
+	for i, stat := range charinmaking.Race.Attributes {
 		menu.changeAttribute(i, stat)
 	}
 
-	for _, prof := range charinmaking.race.Profencies {
+	for _, prof := range charinmaking.Race.Profencies {
 		menu.changeProfencies(prof, 5)
 		menu.profselect[prof].Active = false
 	}
