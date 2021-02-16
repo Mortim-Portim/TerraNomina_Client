@@ -5,6 +5,7 @@ import (
 )
 const(
 	VOLUME_PARAM = "volume"
+	IS_RECORDING_PARAM = "is_recording"
 	RECORDING_TIME_PARAM = "rec_time"
 	RECORDING_SCALE_PARAM = "rec_scale"
 	IP_ADDR_PARAM = "ip_addr"
@@ -20,12 +21,14 @@ func VarsToParams() {
 	PARAMETER.Set(RECORDING_TIME_PARAM, RecordingLength)
 	PARAMETER.Set(RECORDING_SCALE_PARAM, RecordingScale)
 	PARAMETER.SetS(IP_ADDR_PARAM, StandardIP_TEXT)
+	PARAMETER.SetBool(IS_RECORDING_PARAM, RecordAll)
 }
 func ParamsToVars() {
 	StandardVolume = PARAMETER.Get(VOLUME_PARAM)
 	RecordingLength = PARAMETER.Get(RECORDING_TIME_PARAM)
 	RecordingScale = PARAMETER.Get(RECORDING_SCALE_PARAM)
 	StandardIP_TEXT = PARAMETER.GetS(IP_ADDR_PARAM)
+	RecordAll = PARAMETER.GetBool(IS_RECORDING_PARAM, true)
 }
 func InitParams(path string, x, y int) {
 	GE.InitParams(nil)

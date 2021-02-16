@@ -1,7 +1,6 @@
 package Game
 
 import (
-	"fmt"
 	"image/color"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
@@ -44,11 +43,10 @@ func (t *OptionsMenu) Init() {
 	
 	recordText := GE.GetTextImage("Recording", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
 	recordButton,err := GetButton("checkbox", XRES*0.2, YRES*0.15, 0, 0 , false);CheckErr(err)
-	recordButton.Img.ScaleToOriginalSize();recordButton.Img.ScaleToY(TITLESCREEN_BUTTON_HEIGHT_REL*YRES);recordButton.DrawDark = true
+	recordButton.Img.ScaleToOriginalSize();recordButton.Img.ScaleToY(TITLESCREEN_BUTTON_HEIGHT_REL*YRES);recordButton.DrawDark = RecordAll
 	recordButton.Img.SetMiddleY(YRES*0.175)
 	recordButton.RegisterOnEvent(func(b *GE.Button){
 		if !b.LPressed && !b.RPressed {
-			fmt.Println("Pressed")
 			b.DrawDark = !b.DrawDark
 			RecordAll = b.DrawDark
 		}

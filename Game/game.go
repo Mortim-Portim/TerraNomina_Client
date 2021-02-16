@@ -153,7 +153,6 @@ func (g *TerraNomina) Init() {
 	ClientManager = GC.GetClientManager(Client)
 	
 	Toaster.New("Creating recorder", FPS*2)
-	RecordAll = true
 	RecordingFile = "./screencapture"
 	ResetRecorder()
 
