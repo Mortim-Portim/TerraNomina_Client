@@ -393,4 +393,63 @@ Initializing OptionsMenu
 Initializing PlayMenu
 --------> TitleScreen
 TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->
