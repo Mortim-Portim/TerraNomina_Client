@@ -1,10 +1,12 @@
 package Game
 
 import (
+	"fmt"
 	"image/color"
 	"strconv"
-	"fmt"
+
 	"github.com/mortim-portim/GraphEng/GE"
+	"github.com/mortim-portim/TN_Engine/TNE"
 
 	"github.com/hajimehoshi/ebiten"
 )
@@ -90,11 +92,11 @@ func (menu *CharacterMenu) initRace() {
 
 			menu.resetStats()
 
-			for i, num := range Races[menu.currRace].Attributes {
+			for i, num := range TNE.Races[menu.currRace].Attributes {
 				menu.changeAttribute(i, num)
 			}
 
-			for _, prof := range Races[menu.currRace].Profencies {
+			for _, prof := range TNE.Races[menu.currRace].Profencies {
 				menu.changeProfencies(prof, 5)
 				menu.profselect[prof].Active = false
 			}
@@ -111,15 +113,15 @@ func (menu *CharacterMenu) initRace() {
 	menu.racething = GE.GetGroup(leftbutton, rightbutton, nextbutton, backbutton)
 	menu.racething.Init(nil, nil)
 
-	menu.races = make([]*GE.Group, len(Races))
-	menu.rbackground = make([]*GE.ImageObj, len(Races))
+	menu.races = make([]*GE.Group, len(TNE.Races))
+	menu.rbackground = make([]*GE.ImageObj, len(TNE.Races))
 
-	for i, race := range Races {
+	for i, race := range TNE.Races {
 		menu.races[i] = getRace(race)
 	}
 }
 
-func getRace(race *Race) (group *GE.Group) {
+func getRace(race *TNE.Race) (group *GE.Group) {
 	title := GE.GetTextImage(race.Name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.12)
 	stats := GE.GetTextImage(fmt.Sprintf("STR:%v | DEX:%v | INT:%v | CHA:%v", race.Attributes[0], race.Attributes[1], race.Attributes[2], race.Attributes[3]), XRES*0.5, YRES*0.32, YRES*0.06, GE.StandardFont, color.Black, color.Transparent)
@@ -151,7 +153,7 @@ func (menu *CharacterMenu) changeRace(delta int) {
 		menu.currRace = 0
 	}
 
-	Soundtrack.Play(Races[menu.currRace].Name)
+	Soundtrack.Play(TNE.Races[menu.currRace].Name)
 }
 
 func (menu *CharacterMenu) initClass() {
@@ -188,16 +190,16 @@ func (menu *CharacterMenu) initClass() {
 	menu.classthing = GE.GetGroup(leftbutton, rightbutton, nextbutton, backbutton)
 	menu.classthing.Init(nil, nil)
 
-	menu.classes = make([]*GE.Group, len(Classes))
-	menu.cbackground = make([]*GE.ImageObj, len(Classes))
+	menu.classes = make([]*GE.Group, len(TNE.Classes))
+	menu.cbackground = make([]*GE.ImageObj, len(TNE.Classes))
 
-	for i, class := range Classes {
+	for i, class := range TNE.Classes {
 		group := getClass(class)
 		menu.classes[i] = group
 	}
 }
 
-func getClass(class *Class) (group *GE.Group) {
+func getClass(class *TNE.Class) (group *GE.Group) {
 	title := GE.GetTextImage(class.Name, XRES*0.06, YRES*0.1, YRES*0.09, GE.StandardFont, color.Black, color.Transparent)
 
 	subclass := make([]GE.UpdateAble, len(class.Subclass))
@@ -224,7 +226,7 @@ func (menu *CharacterMenu) changeClass(delta int) {
 
 var stats []string = []string{"Strength", "Dexterity", "Intelligence", "Charisma"}
 var proficiencies []string = []string{"Strength (STR)", "Dexterity (DEX)", "Intelligence (INT)", "Charisma (CHA)", "Endurance (STR)", "Persuasion (CHA)", "Deception (CHA)", "Performance (CHA)", "Insight (INT)", "Thievery (DEX)", "Stealth (DEX)", "Acrobatics (DEX)", "Nature (INT)", "Arcana (INT)", "Perception (INT)", "Craftsmanship (INT)", "Dungeoneering"}
-var abtoprof []int = []int{ABIL_STRENGTH, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_CHARISMA, ABIL_STRENGTH, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_CHARISMA, ABIL_INTELLIGENCE, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_DEXTERITY, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE, ABIL_INTELLIGENCE}
+var abtoprof []int = []int{TNE.ABIL_STRENGTH, TNE.ABIL_DEXTERITY, TNE.ABIL_INTELLIGENCE, TNE.ABIL_CHARISMA, TNE.ABIL_STRENGTH, TNE.ABIL_CHARISMA, TNE.ABIL_CHARISMA, TNE.ABIL_CHARISMA, TNE.ABIL_INTELLIGENCE, TNE.ABIL_DEXTERITY, TNE.ABIL_DEXTERITY, TNE.ABIL_DEXTERITY, TNE.ABIL_INTELLIGENCE, TNE.ABIL_INTELLIGENCE, TNE.ABIL_INTELLIGENCE, TNE.ABIL_INTELLIGENCE, TNE.ABIL_INTELLIGENCE}
 
 func (menu *CharacterMenu) initStats() {
 	abiliscore := make([]GE.UpdateAble, len(stats)*3)
@@ -281,7 +283,7 @@ func (menu *CharacterMenu) initStats() {
 					menu.profcount--
 					menu.changeProfencies(btn.Data.(int), -5)
 				} else {
-					if menu.profcount < Races[menu.currRace].Extraprof {
+					if menu.profcount < TNE.Races[menu.currRace].Extraprof {
 						menu.profcount++
 						menu.changeProfencies(btn.Data.(int), 5)
 					} else {
@@ -344,7 +346,7 @@ func (menu *CharacterMenu) changeAttribute(index int, deltavalue int8) {
 
 	score := 10
 	for i := range menu.attributes {
-		for l := Races[menu.currRace].Attributes[i]; l < menu.attributes[i]; l++ {
+		for l := TNE.Races[menu.currRace].Attributes[i]; l < menu.attributes[i]; l++ {
 			score -= pointmap[l+1]
 		}
 	}
@@ -386,13 +388,13 @@ func (menu *CharacterMenu) resetStats() {
 
 func (menu *CharacterMenu) Start(lastState int) {
 	Print("--------> CharacterMenu   \n")
-	Soundtrack.Play(Races[menu.currRace].Name)
+	Soundtrack.Play(TNE.Races[menu.currRace].Name)
 
-	for i, race := range Races {
+	for i, race := range TNE.Races {
 		menu.rbackground[i], _ = GE.LoadImgObj(F_CHARACTERMENU+"/background"+race.Name+".png", XRES, YRES, 0, 0, 0)
 	}
 
-	for i, class := range Classes {
+	for i, class := range TNE.Classes {
 		menu.cbackground[i], _ = GE.LoadImgObj(F_CHARACTERMENU+"/background"+class.Name+".png", XRES, YRES, 0, 0, 0)
 	}
 

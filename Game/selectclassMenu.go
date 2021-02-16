@@ -5,6 +5,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
+	"github.com/mortim-portim/TN_Engine/TNE"
 )
 
 type SelectClassMenu struct {
@@ -39,7 +40,7 @@ func (menu *SelectClassMenu) Init() {
 	nextbutton := GE.GetTextButton("Next", "", GE.StandardFont, XRES*0.09, YRES*0.83, YRES*0.12, color.Black, &color.RGBA{255, 0, 0, 255})
 	nextbutton.RegisterOnLeftEvent(func(btn *GE.Button) {
 		if !btn.LPressed {
-			charinmaking.class = Classes[menu.currClass]
+			charinmaking.Class = TNE.Classes[menu.currClass]
 			menu.parent.ChangeState(SELSTATS_STATE)
 		}
 	})
@@ -54,15 +55,16 @@ func (menu *SelectClassMenu) Init() {
 	menu.classthing = GE.GetGroup(leftbutton, rightbutton, nextbutton, backbutton)
 	menu.classthing.Init(nil, nil)
 
-	menu.classes = make([]*GE.Group, len(Classes))
-	menu.cbackground = make([]*GE.ImageObj, len(Classes))
+	menu.classes = make([]*GE.Group, len(TNE.Classes))
+	menu.cbackground = make([]*GE.ImageObj, len(TNE.Classes))
 
-	for i, class := range Classes {
+	for i, class := range TNE.Classes {
 		group := getClass(class)
 		menu.classes[i] = group
 	}
 }
 
+/*
 func (class *Class) getClass(group *GE.Group) {
 	title := GE.GetTextImage(class.Name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.12)
@@ -75,7 +77,7 @@ func (class *Class) getClass(group *GE.Group) {
 	group = GE.GetGroup(append(subclass, title)...)
 	group.Init(nil, nil)
 	return
-}
+}*/
 
 func (menu *SelectClassMenu) changeClass(delta int) {
 	menu.currClass += delta
@@ -91,7 +93,7 @@ func (menu *SelectClassMenu) changeClass(delta int) {
 
 func (menu *SelectClassMenu) Start(laststate int) {
 	var err error
-	for i, class := range Classes {
+	for i, class := range TNE.Classes {
 		menu.cbackground[i], err = GE.LoadImgObj(F_CHARACTERMENU+"/class/background"+class.Name+".png", XRES, YRES, 0, 0, 0)
 		CheckErr(err)
 	}

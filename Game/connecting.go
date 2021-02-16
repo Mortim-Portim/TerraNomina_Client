@@ -2,9 +2,9 @@ package Game
 
 import (
 	"github.com/mortim-portim/GameConn/GC"
+	cmp "github.com/mortim-portim/GraphEng/Compression"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
-	cmp "github.com/mortim-portim/GraphEng/Compression"
 
 	"github.com/hajimehoshi/ebiten"
 )
@@ -36,24 +36,24 @@ func (t *Connecting) Init() {
 	backImg, backImgE, err := GetImages(F_CONNECTING + "/back.png")
 	CheckErr(err)
 	t.background = GE.NewImageObj(backImg, backImgE, XRES, YRES, 0, 0, 0)
-	
-	ClientManager.OnCloseConnection = func(){
+
+	ClientManager.OnCloseConnection = func() {
 		close(ServerClosing)
 	}
 }
 func (t *Connecting) Start(oldState int) {
 	Print("--------> Connecting \n")
 	t.loadingAnim.Start(nil, nil)
-	
+
 	ServerClosing = make(chan bool)
 	GC.PRINT_LOG = false
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
-	
-	sm,err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY, nil)
+
+	sm, err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY, nil)
 	CheckErr(err)
 	sm.RegisterOnEntityChangeListeners()
-	
+
 	ple, err := sm.Ef.GetByName("Goblin")
 	CheckErr(err)
 	OwnPlayer = &TNE.Player{Entity:ple}
@@ -70,7 +70,7 @@ func (t *Connecting) Start(oldState int) {
 			}
 			return true
 		}
-		
+
 		err := Client.MakeConn(t.ipAddr)
 		CheckErr(err)
 	}()

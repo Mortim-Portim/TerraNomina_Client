@@ -1,11 +1,11 @@
 package Game
 
 import (
-	"fmt"
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
+	"github.com/mortim-portim/TN_Engine/TNE"
 )
 
 func GetSelectRaceMenu(parent *TerraNomina) *SelectRaceMenu {
@@ -21,7 +21,8 @@ type SelectRaceMenu struct {
 	currRace    int
 }
 
-var charinmaking *Character
+var charinmaking *TNE.Character
+
 //var arrow *ebiten.Image
 
 func SetupCharacterMenu() {
@@ -52,7 +53,7 @@ func (menu *SelectRaceMenu) Init() {
 	nextbutton := GE.GetTextButton("Next", "", GE.StandardFont, XRES*0.1, YRES*0.83, YRES*0.12, color.Black, color.Transparent)
 	nextbutton.RegisterOnLeftEvent(func(btn *GE.Button) {
 		if !btn.LPressed {
-			charinmaking.race = Races[menu.currRace]
+			charinmaking.Race = TNE.Races[menu.currRace]
 			menu.parent.ChangeState(SELCLASS_STATE)
 		}
 	})
@@ -67,14 +68,15 @@ func (menu *SelectRaceMenu) Init() {
 	menu.racething = GE.GetGroup(leftbutton, rightbutton, nextbutton, backbutton)
 	menu.racething.Init(nil, nil)
 
-	menu.races = make([]*GE.Group, len(Races))
-	menu.rbackground = make([]*GE.ImageObj, len(Races))
+	menu.races = make([]*GE.Group, len(TNE.Races))
+	menu.rbackground = make([]*GE.ImageObj, len(TNE.Races))
 
-	for i, race := range Races {
+	for i, race := range TNE.Races {
 		menu.races[i] = getRace(race)
 	}
 }
 
+/*
 func (race *Race) getRace(group *GE.Group) {
 	title := GE.GetTextImage(race.Name, 0, 0, YRES*0.15, GE.StandardFont, color.Black, color.Transparent)
 	title.SetMiddle(XRES*0.25, YRES*0.12)
@@ -94,7 +96,7 @@ func (race *Race) getRace(group *GE.Group) {
 	group.Init(nil, nil)
 	return
 }
-
+*/
 //Change which race is displayed
 func (menu *SelectRaceMenu) changeRace(delta int) {
 	menu.currRace += delta
@@ -107,17 +109,17 @@ func (menu *SelectRaceMenu) changeRace(delta int) {
 		menu.currRace = 0
 	}
 
-	Soundtrack.Play(Races[menu.currRace].Name)
+	Soundtrack.Play(TNE.Races[menu.currRace].Name)
 }
 
 func (menu *SelectRaceMenu) Start(laststate int) {
 	var err error
-	for i, race := range Races {
+	for i, race := range TNE.Races {
 		menu.rbackground[i], err = GE.LoadImgObj(F_CHARACTERMENU+"/race/background"+race.Name+".png", XRES, YRES, 0, 0, 0)
 		CheckErr(err)
 	}
 
-	charinmaking = &Character{}
+	charinmaking = &TNE.Character{}
 }
 
 func (menu *SelectRaceMenu) Stop(nextstate int) {
