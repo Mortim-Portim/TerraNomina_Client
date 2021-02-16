@@ -39,7 +39,7 @@ func (t *PlayMenu) Init() {
 
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
 	TabViewUpdateAble[0] = GE.GetGroup()
-	ipAddr := GE.GetEditText("ip:port", XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, 20, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
+	ipAddr := GE.GetEditText("ip:port", XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, 25, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
 	ipAddr.RegisterOnChange(func(et *GE.EditText) {
 		StandardIP_TEXT = et.GetText()
 	})

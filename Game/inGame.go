@@ -101,7 +101,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	msg := fmt.Sprintf("Frame: %v, TPS: %0.1f, Ping: %v", i.parent.frame, ebiten.CurrentTPS(), Client.Ping)
 	if i.isDelayed {
 		msg += fmt.Sprintf(", meanDelay: %v", i.meanDelay)
-		Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)
+		//Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)
 	}
 	ebitenutil.DebugPrint(screen, msg)
 	return nil

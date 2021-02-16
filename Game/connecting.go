@@ -35,7 +35,7 @@ func (t *Connecting) Init() {
 
 	backImg, backImgE, err := GetImages(F_CONNECTING + "/back.png")
 	CheckErr(err)
-	t.background = GE.NewImageObj(backImg, backImgE, XRES, YRES, 0, 0, 0)
+	t.background = GE.NewImageObj(backImg, backImgE, 0, 0, XRES, YRES, 0)
 
 	ClientManager.OnCloseConnection = func() {
 		close(ServerClosing)

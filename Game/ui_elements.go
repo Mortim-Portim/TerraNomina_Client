@@ -8,7 +8,6 @@ import (
 	"fmt"
 )
 
-//TODO call inits!!!!!!!!!!!!!!!!!
 var ERROR_UNKNOWN_IMAGE = "Unknown Image %s"
 var ALL_IMAGES map[string]*image.Image
 var ALL_EBITEN_IMAGES map[string]*ebiten.Image
