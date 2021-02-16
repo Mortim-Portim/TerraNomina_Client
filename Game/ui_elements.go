@@ -75,9 +75,9 @@ func GetButtonImg(name string, up bool) (*ebiten.Image, error) {
 	return btn.DownImg(), nil
 }
 func GetButton(name string, X,Y,W,H float64, changeToDarkOnLeft bool) (*GE.Button, error) {
-	btn, ok := ALL_BUTTONS[name]
+	obtn, ok := ALL_BUTTONS[name]
 	if !ok {return nil, fmt.Errorf(ERROR_UNKNOWN_BUTTON, name)}
-	btn = btn.Copy()
+	btn := obtn.Copy()
 	btn.Img.X = X
 	btn.Img.Y = Y
 	btn.Img.W = W
