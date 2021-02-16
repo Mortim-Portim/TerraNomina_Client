@@ -78,6 +78,7 @@ func (g *TerraNomina) Close() {
 	time.Sleep(time.Duration(float64(time.Second) * (GE.STANDARD_FADE_TIME + 0.5)))
 	fmt.Println()
 	GE.CloseLogFile()
+	GE.StopProfiling(cpuprofile, memprofile)
 }
 
 func (g *TerraNomina) Initializing(screen *ebiten.Image) error {
@@ -125,8 +126,13 @@ func (g *TerraNomina) Init() {
 	Soundtrack.OnFinished = func() {
 		Soundtrack.NextTrack = Soundtrack.GetRandomTrack(time.Now().UnixNano())
 	}
-	Soundtrack.Play(SOUNDTRACK_MAIN)
-	Soundtrack.SetVolume(StandardVolume)
+	go func() {
+		Soundtrack.SetVolume(0)
+		Soundtrack.Play(SOUNDTRACK_MAIN)
+		time.Sleep(time.Duration(float64(time.Second)*(GE.STANDARD_FADE_TIME+0.1)))
+		Soundtrack.GetCurrent().Rewind()
+		Soundtrack.SetVolume(StandardVolume)
+	}()
 	
 	Toaster.New("Loading keyboard layout", FPS*2)
 	Keyli = &GE.KeyLi{}
@@ -157,6 +163,7 @@ func (g *TerraNomina) Init() {
 	}
 	
 	Toaster.New("Finished", FPS*1)
+	
 	close(done)
 }
 func (g *TerraNomina) OnDoneSaving() {

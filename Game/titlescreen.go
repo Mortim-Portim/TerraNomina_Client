@@ -25,13 +25,13 @@ func (t *TitleScreen) Init() {
 	H := TITLESCREEN_BUTTON_HEIGHT_REL * YRES
 	X := TITLESCREEN_BUTTON_XCOORD_REL*XRES
 	
-	Play_B, err := GE.LoadButton(F_BUTTONS + "/play_u.png", F_BUTTONS + "/play_d.png", 0, TITLE_Name.H, H, H, true)
+	Play_B, err := GetButton("play", 0, TITLE_Name.H, H, H, true)
 	CheckErr(err)
 	Play_B.Img.ScaleToOriginalSize();Play_B.Img.ScaleToY(H);Play_B.Img.SetMiddleX(X)
-	Character_B, err := GE.LoadButton(F_BUTTONS + "/character_u.png", F_BUTTONS + "/character_d.png", 0, TITLE_Name.H+H, H, H, true)
+	Character_B, err := GetButton("character", 0, TITLE_Name.H+H, H, H, true)
 	CheckErr(err)
 	Character_B.Img.ScaleToOriginalSize();Character_B.Img.ScaleToY(H);Character_B.Img.SetMiddleX(X)
-	Options_B, err := GE.LoadButton(F_BUTTONS + "/options_u.png", F_BUTTONS + "/options_d.png", 0, TITLE_Name.H+H*2, H, H, true)
+	Options_B, err := GetButton("options", 0, TITLE_Name.H+H*2, H, H, true)
 	CheckErr(err)
 	Options_B.Img.ScaleToOriginalSize();Options_B.Img.ScaleToY(H);Options_B.Img.SetMiddleX(X)
 	

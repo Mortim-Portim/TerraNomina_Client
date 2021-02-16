@@ -19,35 +19,40 @@ type OptionsMenu struct {
 
 func (t *OptionsMenu) Init() {
 	Println("Initializing OptionsMenu")
-	generalTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/general_u.png")
+	generalTabU, err := GetButtonImg("general", true)
 	CheckErr(err)
-	recordingTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/recording_u.png")
+	recordingTabU, err := GetButtonImg("recording", true)
 	CheckErr(err)
-	generalTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/general_d.png")
+	generalTabD, err := GetButtonImg("general", false)
 	CheckErr(err)
-	recordingTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/recording_d.png")
+	recordingTabD, err := GetButtonImg("recording", false)
+	CheckErr(err)
+	
+	scrollbarImg, err := GetEbitenImage(F_UI_ELEMENTS+"/scrollbar.png")
+	CheckErr(err)
+	scrollbarButtonImg, err := GetEbitenImage(F_UI_ELEMENTS+"/scrollbar_button.png")
 	CheckErr(err)
 	
 	volumetext := GE.GetTextImage("Volume", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-	volumeScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 0, 100, int(StandardVolume*100), GE.StandardFont)
-	CheckErr(err)
+	volumeScrollbar := GE.GetImageScrollbar(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, scrollbarImg, scrollbarButtonImg, 0, 100, int(StandardVolume*100), GE.StandardFont)
 	volumeScrollbar.RegisterOnChange(func(scrollbar *GE.ScrollBar) {
 		pc := scrollbar.Current()
 		StandardVolume = float64(pc)/100
 		Soundtrack.SetVolume(StandardVolume)
 	})
 	
-	recordingTimeTxt := GE.GetTextImage("Time", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-	recordingTimeScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.15, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 1, 30, int(RecordingLength), GE.StandardFont)
-	CheckErr(err)
+	recordText := GE.GetTextImage("Recording", XRES*0.07, YRES*0.15, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
+	recordButton,err := GetButton("checkbox", XRES*0.2, YRES*0.15, 0, 0 , true);CheckErr(err)
+	recordButton.Img.ScaleToOriginalSize();recordButton.Img.ScaleToY(TITLESCREEN_BUTTON_HEIGHT_REL*YRES);
+	recordingTimeTxt := GE.GetTextImage("Time", XRES*0.07, YRES*0.3, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
+	recordingTimeScrollbar := GE.GetImageScrollbar(XRES*0.2, YRES*0.3, XRES*0.6, YRES*0.05, scrollbarImg, scrollbarButtonImg, 1, 30, int(RecordingLength), GE.StandardFont)
 	recordingTimeScrollbar.RegisterOnChange(func(scrollbar *GE.ScrollBar) {
 		pc := scrollbar.Current()
 		RecordingLength = float64(pc)
 		ResetRecorder()
 	})
-	recordingScaleTxt := GE.GetTextImage("Scale", XRES*0.07, YRES*0.3, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
-	recordingScaleScrollbar, err := GE.GetImageScrollbarFromPath(XRES*0.2, YRES*0.3, XRES*0.6, YRES*0.05, F_UI_ELEMENTS+"/scrollbar.png", F_UI_ELEMENTS+"/scrollbar_button.png", 0, 10, int(RecordingScale*10), GE.StandardFont)
-	CheckErr(err)
+	recordingScaleTxt := GE.GetTextImage("Scale", XRES*0.07, YRES*0.45, YRES*0.05, GE.StandardFont, color.Black, color.Transparent)
+	recordingScaleScrollbar := GE.GetImageScrollbar(XRES*0.2, YRES*0.45, XRES*0.6, YRES*0.05, scrollbarImg, scrollbarButtonImg, 0, 10, int(RecordingScale*10), GE.StandardFont)
 	recordingScaleScrollbar.RegisterOnChange(func(scrollbar *GE.ScrollBar) {
 		pc := scrollbar.Current()
 		RecordingScale = float64(pc)/10
@@ -56,7 +61,7 @@ func (t *OptionsMenu) Init() {
 	
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
 	TabViewUpdateAble[0] = GE.GetGroup(volumetext, volumeScrollbar)
-	TabViewUpdateAble[1] = GE.GetGroup(recordingTimeTxt, recordingTimeScrollbar, recordingScaleTxt, recordingScaleScrollbar)
+	TabViewUpdateAble[1] = GE.GetGroup(recordText, recordButton, recordingTimeTxt, recordingTimeScrollbar, recordingScaleTxt, recordingScaleScrollbar)
 
 	tabPs := &GE.TabViewParams{
 		X:0,
@@ -66,6 +71,7 @@ func (t *OptionsMenu) Init() {
 		Imgs:[]*ebiten.Image{generalTabU, recordingTabU},
 		Dark:[]*ebiten.Image{generalTabD, recordingTabD},
 		Scrs: TabViewUpdateAble,
+		TabH: TITLESCREEN_BUTTON_HEIGHT_REL*YRES,
 	}
 	t.tabs = GE.GetTabView(tabPs)
 	t.tabs.Init(nil, nil)

@@ -1,4 +1,4 @@
-ip_addr:
-volume:0.10000000
-rec_time:1.00000000
-rec_scale:0.0000000
+rec_scale:0.50000000
+ip_addr:192.168.71.176:8080
+volume:0.13000000
+rec_time:5.0000000
