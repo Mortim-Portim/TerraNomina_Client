@@ -56,7 +56,7 @@ func (t *Connecting) Start(oldState int) {
 	
 	ple, err := sm.Ef.GetByName("Goblin")
 	CheckErr(err)
-	OwnPlayer = &TNE.Player{Race:&TNE.Race{Entity:ple}}
+	OwnPlayer = &TNE.Player{Entity:ple}
 	SmallWorld = sm
 
 	go func() {
