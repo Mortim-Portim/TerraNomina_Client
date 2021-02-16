@@ -148,8 +148,6 @@ func (menu *SelectStatsMenu) Init() {
 	menu.attributes = make([]int8, 4)
 }
 
-//var pointmap []int = []int{0, 1, 1, 2, 2, 3, 3, 4, 4}
-
 func (menu *SelectStatsMenu) changeAttribute(index int, deltavalue int8) {
 	menu.attributes[index] += deltavalue
 	menu.attpicture[index].Img = number[menu.attributes[index]+2]

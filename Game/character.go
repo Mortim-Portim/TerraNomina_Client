@@ -1,7 +1,6 @@
 package Game
 
 import (
-	"fmt"
 	"os"
 )
 
@@ -73,13 +72,14 @@ type Character struct {
 	proficiencies []int8
 }
 
-func (char Character) SaveChar() {
+func (char *Character) SaveChar() {
 	file, _ := os.Create(F_CHARACTER + "/" + char.name + ".char")
-
 	defer file.Close()
-
 	file.Truncate(0)
+	file.Write(char.ToByte())
+}
 
+func (char *Character) ToByte() []byte {
 	byteattrib := make([]byte, len(char.attributes))
 	for i, attrib := range char.attributes {
 		byteattrib[i] = byte(attrib)
@@ -94,15 +94,7 @@ func (char Character) SaveChar() {
 	bytearray = append(bytearray, byte(char.race.id), byte(char.class.id))
 	bytearray = append(bytearray, byteattrib...)
 	bytearray = append(bytearray, byteprof...)
-
-	chara := LoadChar(bytearray)
-
-	fmt.Println(chara.race)
-	fmt.Println(chara.class)
-	fmt.Println(chara.attributes)
-	fmt.Println(chara.proficiencies)
-
-	file.Write(bytearray)
+	return bytearray
 }
 
 func LoadChar(bytes []byte) Character {
