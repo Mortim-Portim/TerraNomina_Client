@@ -494,4 +494,83 @@ Initializing InGame
 Initializing TitleScreen
 --------> TitleScreen
 TitleScreen -------->--------> OptionsMenu
-OptionsMenu -------->
+OptionsMenu -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->--------> Connecting 
+Connecting to '192.168.71.176:8080'
+Waiting for 114 SyncVars to be registered
+114 SyncVars registered
+WorldStructure received, setting player and reassigning all entities
+Connecting  -------->--------> InGame     
+InGame      -------->Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+Initializing OptionsMenu
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+Initializing TitleScreen
+--------> TitleScreen
+TitleScreen -------->--------> OptionsMenu
+OptionsMenu -------->--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->Initializing TitleScreen
+Initializing OptionsMenu
+Initializing PlayMenu
+Initializing Connecting
+Initializing InGame
+--------> TitleScreen
+TitleScreen -------->--------> PlayMenu   
+PlayMenu    -------->

@@ -43,7 +43,7 @@ func (t *PlayMenu) Init() {
 	ipAddr.RegisterOnChange(func(et *GE.EditText) {
 		StandardIP_TEXT = et.GetText()
 	})
-	fmt.Println("Setting text: ", StandardIP_TEXT)
+	fmt.Printf("Setting text: '%s'\n", StandardIP_TEXT)
 	ipAddr.SetText(StandardIP_TEXT)
 	TabViewUpdateAble[1] = ipAddr
 
