@@ -28,13 +28,14 @@ func (t *Connecting) Init() {
 	lps := &GE.Params{}
 	err := lps.LoadFromFile(F_CONNECTING + "/loading.txt")
 	CheckErr(err)
-	limg, err := GE.LoadEbitenImg(F_CONNECTING + "/loading.png")
+	limg, err := GetEbitenImage(F_CONNECTING + "/loading.png")
 	CheckErr(err)
 	t.loadingAnim = GE.GetAnimationFromParams(0, 0, XRES, YRES, lps, limg)
 	t.loadingAnim.Init(nil, nil)
 
-	t.background, err = GE.LoadImgObj(F_CONNECTING+"/back.png", XRES, YRES, 0, 0, 0)
+	backImg, backImgE, err := GetImages(F_CONNECTING + "/back.png")
 	CheckErr(err)
+	t.background = GE.NewImageObj(backImg, backImgE, XRES, YRES, 0, 0, 0)
 	
 	ClientManager.OnCloseConnection = func(){
 		close(ServerClosing)
@@ -53,7 +54,7 @@ func (t *Connecting) Start(oldState int) {
 	CheckErr(err)
 	sm.RegisterOnEntityChangeListeners()
 	
-	ple, err := sm.Ef.GetByName("Dwarf")
+	ple, err := sm.Ef.GetByName("Goblin")
 	CheckErr(err)
 	OwnPlayer = &TNE.Player{Race:&TNE.Race{Entity:ple}}
 	SmallWorld = sm

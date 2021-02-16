@@ -7,12 +7,14 @@ import (
 	"flag"
 	"github.com/hajimehoshi/ebiten"
 	"image/color"
-	//fonts "marvin/TerraNomina_Client/.res/Fonts"
 )
 
 var WRITELOGFILE = flag.String("log", "log.txt", "name of the logfile")
 var AUTOMOVE = flag.Bool("mv", false, "presses D and A")
 var WINDOWED = flag.Bool("win", false, "starts Terra Nomina in window mode")
+
+var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
+var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
 
 func StartGame(g ebiten.Game) {
 	defer onUnexpectedError(g)
@@ -23,7 +25,7 @@ func StartGame(g ebiten.Game) {
 	if !*WINDOWED {
 		ebiten.SetFullscreen(true)
 	}else{
-		ebiten.SetWindowSize(640, 360)
+		ebiten.SetWindowSize(int(XRES), int(YRES))
 	}
 	ebiten.SetVsyncEnabled(true)
 	ebiten.SetMaxTPS(FPS)
@@ -44,10 +46,14 @@ func onUnexpectedError(g ebiten.Game) {
 
 func Start() {
 	flag.Parse()
+	GE.StartProfiling(cpuprofile)
 	GE.SetLogFile(RES + "/" + *WRITELOGFILE)
 	GE.Init("")
 	GC.InitSyncVarStandardTypes()
-	InitParams(F_Params)
+	
+	x,y := ebiten.ScreenSizeInFullscreen()
+	if *WINDOWED {x = 640;y = 360}
+	InitParams(F_Params,x,y)
 	
 	GE.MOVE_A_D = *AUTOMOVE
 

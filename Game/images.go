@@ -1,9 +1,0 @@
-package Game
-
-import (
-
-)
-
-var(
-	
-)

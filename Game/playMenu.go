@@ -2,7 +2,7 @@ package Game
 
 import (
 	"image/color"
-
+	"fmt"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
 )
@@ -23,26 +23,27 @@ type PlayMenu struct {
 
 func (t *PlayMenu) Init() {
 	Println("Initializing PlayMenu")
-	characterTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/character_u.png")
+	characterTabU, err := GetButtonImg("character", true)
 	CheckErr(err)
-	serverTabU, err := GE.LoadEbitenImg(F_BUTTONS + "/server_u.png")
+	serverTabU, err := GetButtonImg("server", true)
 	CheckErr(err)
-	characterTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/character_d.png")
+	characterTabD, err := GetButtonImg("character", false)
 	CheckErr(err)
-	serverTabD, err := GE.LoadEbitenImg(F_BUTTONS + "/server_d.png")
+	serverTabD, err := GetButtonImg("server", false)
 	CheckErr(err)
 	
-	t.playBtn, err = GE.LoadButton(F_BUTTONS + "/play_u.png", F_BUTTONS + "/play_d.png", 0,0, 0, 0, true)
+	t.playBtn, err = GetButton("play", 0,0, 0, 0, true)
 	CheckErr(err)
 	t.playBtn.Img.ScaleToOriginalSize(); t.playBtn.Img.ScaleToX(XRES * PLAY_MENU_PLAY_BUTTON_WIDTH)
 	t.playBtn.Img.SetBottomRight(XRES-t.playBtn.Img.H, YRES-t.playBtn.Img.H)
 
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
 	TabViewUpdateAble[0] = GE.GetGroup()
-	ipAddr := GE.GetEditText("ip:port", 10, 100, 100, 20, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
+	ipAddr := GE.GetEditText("ip:port", XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, 20, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
 	ipAddr.RegisterOnChange(func(et *GE.EditText) {
 		StandardIP_TEXT = et.GetText()
 	})
+	fmt.Println("Setting text: ", StandardIP_TEXT)
 	ipAddr.SetText(StandardIP_TEXT)
 	TabViewUpdateAble[1] = ipAddr
 
@@ -53,7 +54,7 @@ func (t *PlayMenu) Init() {
 		}
 	})
 
-	params := &GE.TabViewParams{Imgs: []*ebiten.Image{characterTabU, serverTabU}, Dark: []*ebiten.Image{characterTabD, serverTabD}, Scrs: TabViewUpdateAble, Y: 0, W: XRES, H: YRES}
+	params := &GE.TabViewParams{Imgs: []*ebiten.Image{characterTabU, serverTabU}, Dark: []*ebiten.Image{characterTabD, serverTabD}, Scrs: TabViewUpdateAble, Y: 0, W: XRES, H: YRES, TabH: YRES*TITLESCREEN_BUTTON_HEIGHT_REL}
 	t.tabs = GE.GetTabView(params)
 
 	t.playBtn.Init(nil, nil)

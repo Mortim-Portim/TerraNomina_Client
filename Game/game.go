@@ -78,6 +78,7 @@ func (g *TerraNomina) Close() {
 	time.Sleep(time.Duration(float64(time.Second) * (GE.STANDARD_FADE_TIME + 0.5)))
 	fmt.Println()
 	GE.CloseLogFile()
+	GE.StopProfiling(cpuprofile, memprofile)
 }
 
 func (g *TerraNomina) Initializing(screen *ebiten.Image) error {

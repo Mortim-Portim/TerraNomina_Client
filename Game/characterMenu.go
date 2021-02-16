@@ -56,7 +56,7 @@ func (menu *CharacterMenu) Init() {
 
 	number = make([]*ebiten.Image, 16)
 	for i := -2; i <= 13; i++ {
-		number[i+2] = GE.MakePopUp(strconv.Itoa(i), 50, GE.StandardFont, color.Black, color.Transparent)
+		number[i+2] = GE.MakePopUpOld(strconv.Itoa(i), 50, GE.StandardFont, color.Black, color.Transparent)
 	}
 
 	menu.initRace()
