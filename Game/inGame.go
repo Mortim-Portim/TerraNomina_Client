@@ -70,17 +70,9 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	}
 	OwnPlayer.KeepMoving(moving)
 	
+	i.sm.ActivePlayer.UpdateChanFromPlayer()
+	i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
 	i.sm.UpdateAll(false)
-	
-	if !i.sending {
-		i.sending = true
-		go func(){
-			i.sm.ActivePlayer.UpdateChanFromPlayer()
-			i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
-			Client.WaitForConfirmation()
-			i.sending = false
-		}()
-	}
 	
 	x,y := OwnPlayer.IntPos()
 	Printf("%v; %v; ", x, y)

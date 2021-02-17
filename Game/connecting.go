@@ -46,11 +46,11 @@ func (t *Connecting) Start(oldState int) {
 	t.loadingAnim.Start(nil, nil)
 
 	ServerClosing = make(chan bool)
-	GC.PRINT_LOG = false
+	GC.PRINT_LOG_PRIORITY = 3
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
 
-	sm, err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY, nil)
+	sm, err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY)
 	CheckErr(err)
 	sm.RegisterOnEntityChangeListeners()
 
@@ -90,7 +90,6 @@ func (t *Connecting) Update(screen *ebiten.Image) error {
 		SmallWorld.ActivePlayer.SetPlayer(OwnPlayer)
 		SmallWorld.ReassignAllEntities()
 		SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
-		Client.WaitForConfirmation()
 		t.parent.ChangeState(INGAME_STATE)
 	}
 
