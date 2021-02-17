@@ -88,6 +88,7 @@ func (t *Connecting) Update(screen *ebiten.Image) error {
 	if SmallWorld.HasWorldStruct() {
 		Println("WorldStructure received, setting player and reassigning all entities")
 		SmallWorld.ActivePlayer.SetPlayer(OwnPlayer)
+		SmallWorld.ReassignAllEntities()
 		SmallWorld.ActivePlayer.UpdateSyncVars(ClientManager)
 		Client.WaitForConfirmation()
 		t.parent.ChangeState(INGAME_STATE)

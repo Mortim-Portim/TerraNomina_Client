@@ -82,15 +82,15 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 		}()
 	}
 	
-//	x,y := OwnPlayer.IntPos()
-//	Printf("%v; %v; ", x, y)
-//	for _,ent := range(i.sm.Ents) {
-//		if ent.HasEntity() {
-//			xp,yp := ent.Entity.IntPos()
-//			Printf("%v; %v; ", xp, yp)
-//		}
-//	}
-//	Println()
+	x,y := OwnPlayer.IntPos()
+	Printf("%v; %v; ", x, y)
+	for _,pl := range(i.sm.Plys) {
+		if pl.HasPlayer() {
+			xp,yp := pl.IntPos()
+			Printf("%v; %v; ", xp, yp)
+		}
+	}
+	Println()
 	i.sm.Draw(screen)
 	
 	delay := time.Now().Sub(i.lastUpdate).Microseconds()
