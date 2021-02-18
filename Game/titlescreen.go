@@ -2,7 +2,6 @@ package Game
 
 import (
 	"github.com/mortim-portim/GraphEng/GE"
-
 	"github.com/hajimehoshi/ebiten"
 )
 
@@ -16,6 +15,7 @@ func GetTitleScreen(g *TerraNomina) *TitleScreen {
 }
 
 type TitleScreen struct {
+	TimeDrawer *GE.TimeDrawer
 	Buttons *GE.Group
 	parent  *TerraNomina
 }
@@ -50,7 +50,14 @@ func (t *TitleScreen) Init() {
 			t.parent.ChangeState(OPTIONS_MENU_STATE)
 		}
 	})
-
+	
+	back,err := GetEbitenImage(F_UI_ELEMENTS+"/timeDrawerBack.png");CheckErr(err)
+	front,err := GetEbitenImage(F_UI_ELEMENTS+"/timeDrawerFront.png");CheckErr(err)
+	sun,err := GetEbitenImage(F_UI_ELEMENTS+"/timeDrawerSun.png");CheckErr(err)
+	moon,err := GetEbitenImage(F_UI_ELEMENTS+"/timeDrawerMoon.png");CheckErr(err)
+	t.TimeDrawer = GE.GetTimeDrawer(back, front, sun ,moon,0,TITLE_Name.H,XRES*0.2,XRES*0.2*(120.0/220.0))
+	t.TimeDrawer.Percent = 0.0
+	
 	t.Buttons = GE.GetGroup(Play_B, Character_B, Options_B)
 	t.Buttons.Init(nil, nil)
 }
@@ -70,5 +77,12 @@ func (t *TitleScreen) Update(screen *ebiten.Image) error {
 
 	t.Buttons.Update(t.parent.frame)
 	t.Buttons.Draw(screen)
+	
+	t.TimeDrawer.Percent += 0.01
+	if t.TimeDrawer.Percent > 2.0 {
+		t.TimeDrawer.Percent = 0.0
+	}
+	t.TimeDrawer.Update(0)
+	t.TimeDrawer.Draw(screen)
 	return nil
 }

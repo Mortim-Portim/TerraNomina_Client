@@ -1,5 +1,5 @@
-is_recording:false
+rec_time:7.00000000
+is_recording:true
 rec_scale:1.00000000
 ip_addr:192.168.71.176:8080
 volume:0.00000000
-rec_time:7.00000000
