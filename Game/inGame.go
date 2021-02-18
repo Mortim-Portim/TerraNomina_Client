@@ -73,24 +73,20 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	i.sm.ActivePlayer.UpdateChanFromPlayer()
 	i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
 	i.sm.UpdateAll(false)
-	
-	x,y := OwnPlayer.IntPos()
-	Printf("%v; %v; ", x, y)
-	for _,pl := range(i.sm.Plys) {
-		if pl.HasPlayer() {
-			xp,yp := pl.IntPos()
-			Printf("%v; %v; ", xp, yp)
-		}
-	}
-	Println()
 	i.sm.Draw(screen)
+	
+	smMsg, num := i.sm.Print(false)
+	if num > 0 {
+		Println(smMsg)
+	}
+	i.sm.ResetActions()
 	
 	delay := time.Now().Sub(i.lastUpdate).Microseconds()
 	i.lastUpdate = time.Now()
 	i.isDelayed = float64(delay)/float64(i.meanDelay) > 1.2
 	i.meanDelay = int(float64(i.meanDelay)*(9.0/10.0)+float64(delay)*(1.0/10.0))
 	
-	msg := fmt.Sprintf("Frame: %v, TPS: %0.1f, Ping: %v", i.parent.frame, ebiten.CurrentTPS(), Client.Ping)
+	msg := fmt.Sprintf("Time: %v, TPS: %0.1f, Ping: %v", i.sm.Struct.CurrentTime, ebiten.CurrentTPS(), Client.Ping)
 	if i.isDelayed {
 		msg += fmt.Sprintf(", meanDelay: %v", i.meanDelay)
 		//Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)

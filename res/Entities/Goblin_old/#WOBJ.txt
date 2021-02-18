@@ -1,4 +1,0 @@
-squareSize:     16
-hitBoxWidth:    0.2
-hitBoxHeight:   0.2
-layer:          0
