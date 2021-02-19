@@ -1,8 +1,9 @@
 package Game
 
 import (
+	"fmt"
+	"io/ioutil"
 	"image/color"
-	"strings"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
@@ -39,13 +40,7 @@ func (t *PlayMenu) Init() {
 	t.playBtn.Img.SetBottomRight(XRES-t.playBtn.Img.H, YRES-t.playBtn.Img.H)
 
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
-	
-	charFiles, err := GE.OSReadDir(F_CHARACTER);CheckErr(err)
-	for i,file := range charFiles {
-		charFiles[i] = strings.Split(file, ".")[0]
-	}
-	CharacterNameList := GE.GetButtonListFromStrings(charFiles, XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/5, YRES*(1-TITLESCREEN_BUTTON_HEIGHT_REL), XRES/200, color.RGBA{0,0,0,255}, color.RGBA{255,255,255,120})
-	TabViewUpdateAble[0] = GE.GetGroup(CharacterNameList)
+	TabViewUpdateAble[0] = t.GetCharacterNameList()
 	
 	ipAddr := GE.GetEditText("ip:port", XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, 25, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
 	ipAddr.RegisterOnChange(func(et *GE.EditText) {
@@ -67,6 +62,10 @@ func (t *PlayMenu) Init() {
 	t.playBtn.Init(nil, nil)
 	t.tabs.Init(nil, nil)
 }
+func (t *PlayMenu) GetCharacterNameList() *GE.ScrollPanel {
+	charFiles, err := GE.OSReadDir(F_CHARACTER);CheckErr(err)
+	return GE.GetScrollPanelFromStrings(XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/2, YRES*(1-TITLESCREEN_BUTTON_HEIGHT_REL), YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/200, color.RGBA{0,0,0,255}, color.RGBA{255,255,255,255}, charFiles...)
+}
 func (t *PlayMenu) Start(oldState int) {
 	Print("--------> PlayMenu   \n")
 	t.oldState = oldState
@@ -80,6 +79,27 @@ func (t *PlayMenu) Start(oldState int) {
 	CheckErr(err)
 	OwnPlayer = &TNE.Player{Entity:ple}
 	
+	scrollpannel := t.GetCharacterNameList()
+	t.tabs.Screens.Set(scrollpannel, 0)
+	for _,btn := range scrollpannel.Content() {
+		btn.ChangeDrawDarkOnLeft = true
+		btn.RegisterOnEvent(func(b *GE.Button){
+				if !b.LPressed && !b.RPressed {
+					name := b.Data.(string)
+					data, err := ioutil.ReadFile(F_CHARACTER+"/"+name)
+					if err == nil {
+						char, err := TNE.LoadChar(data)
+						if err == nil {
+							ent, err := SmallWorld.Ef.GetFromCharacter(char)
+							if err == nil {
+								OwnPlayer.Entity = ent
+								Toaster.New(fmt.Sprintf("Player %s loaded", OwnPlayer.Char.Name), FPS*1.5)
+							}
+						}
+					}
+				}
+		})
+	}
 	t.playBtn.Start(nil, nil)
 	t.tabs.Start(nil, nil)
 }
