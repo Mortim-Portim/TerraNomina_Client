@@ -215,8 +215,8 @@ func (menu *SelectStatsMenu) Start(laststate int) {
 		menu.changeAttribute(i, stat)
 	}
 
-	for _, prof := range charinmaking.Race.Profencies {
-		menu.changeProfencies(prof, 5)
+	for _, prof := range charinmaking.Race.Proficiencies {
+		menu.changeProfencies(int(prof), 5)
 		menu.profselect[prof].Active = false
 	}
 }

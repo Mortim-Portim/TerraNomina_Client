@@ -49,16 +49,7 @@ func (t *Connecting) Start(oldState int) {
 	GC.PRINT_LOG_PRIORITY = 3
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
-
-	sm, err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY)
-	CheckErr(err)
-	sm.RegisterOnEntityChangeListeners()
-
-	ple, err := sm.Ef.GetByName("Goblin")
-	CheckErr(err)
-	OwnPlayer = &TNE.Player{Entity:ple}
-	SmallWorld = sm
-
+	
 	go func() {
 		Printf("Connecting to '%s'\n", t.ipAddr)
 		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) bool {

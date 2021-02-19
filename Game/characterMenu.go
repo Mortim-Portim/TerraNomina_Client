@@ -96,8 +96,8 @@ func (menu *CharacterMenu) initRace() {
 				menu.changeAttribute(i, num)
 			}
 
-			for _, prof := range TNE.Races[menu.currRace].Profencies {
-				menu.changeProfencies(prof, 5)
+			for _, prof := range TNE.Races[menu.currRace].Proficiencies {
+				menu.changeProfencies(int(prof), 5)
 				menu.profselect[prof].Active = false
 			}
 		}

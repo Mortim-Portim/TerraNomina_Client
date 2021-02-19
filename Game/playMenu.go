@@ -2,9 +2,10 @@ package Game
 
 import (
 	"image/color"
-	"fmt"
+	"strings"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
+	"github.com/mortim-portim/TN_Engine/TNE"
 )
 
 const PLAY_MENU_PLAY_BUTTON_WIDTH = 0.1
@@ -38,12 +39,18 @@ func (t *PlayMenu) Init() {
 	t.playBtn.Img.SetBottomRight(XRES-t.playBtn.Img.H, YRES-t.playBtn.Img.H)
 
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
-	TabViewUpdateAble[0] = GE.GetGroup()
+	
+	charFiles, err := GE.OSReadDir(F_CHARACTER);CheckErr(err)
+	for i,file := range charFiles {
+		charFiles[i] = strings.Split(file, ".")[0]
+	}
+	CharacterNameList := GE.GetButtonListFromStrings(charFiles, XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/5, YRES*(1-TITLESCREEN_BUTTON_HEIGHT_REL), XRES/200, color.RGBA{0,0,0,255}, color.RGBA{255,255,255,120})
+	TabViewUpdateAble[0] = GE.GetGroup(CharacterNameList)
+	
 	ipAddr := GE.GetEditText("ip:port", XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, 25, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
 	ipAddr.RegisterOnChange(func(et *GE.EditText) {
 		StandardIP_TEXT = et.GetText()
 	})
-	fmt.Printf("Setting text: '%s'\n", StandardIP_TEXT)
 	ipAddr.SetText(StandardIP_TEXT)
 	TabViewUpdateAble[1] = ipAddr
 
@@ -63,6 +70,16 @@ func (t *PlayMenu) Init() {
 func (t *PlayMenu) Start(oldState int) {
 	Print("--------> PlayMenu   \n")
 	t.oldState = oldState
+	
+	sm, err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY)
+	CheckErr(err)
+	sm.RegisterOnEntityChangeListeners()
+	SmallWorld = sm	
+	
+	ple, err := sm.Ef.GetByName("Goblin")
+	CheckErr(err)
+	OwnPlayer = &TNE.Player{Entity:ple}
+	
 	t.playBtn.Start(nil, nil)
 	t.tabs.Start(nil, nil)
 }
