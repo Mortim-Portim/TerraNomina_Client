@@ -62,9 +62,9 @@ func (t *PlayMenu) Init() {
 	t.playBtn.Init(nil, nil)
 	t.tabs.Init(nil, nil)
 }
-func (t *PlayMenu) GetCharacterNameList() *GE.ScrollPanel {
+func (t *PlayMenu) GetCharacterNameList() *GE.ButtonList {
 	charFiles, err := GE.OSReadDir(F_CHARACTER);CheckErr(err)
-	return GE.GetScrollPanelFromStrings(XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/2, YRES*(1-TITLESCREEN_BUTTON_HEIGHT_REL), YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/200, color.RGBA{0,0,0,255}, color.RGBA{255,255,255,255}, charFiles...)
+	return GE.GetButtonListFromStrings(XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/2, YRES*(1-TITLESCREEN_BUTTON_HEIGHT_REL), YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL*0.3, color.RGBA{0,0,0,255}, color.RGBA{255,255,255,255}, charFiles...)
 }
 func (t *PlayMenu) Start(oldState int) {
 	Print("--------> PlayMenu   \n")
