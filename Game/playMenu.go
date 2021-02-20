@@ -84,6 +84,7 @@ func (t *PlayMenu) Start(oldState int) {
 	dialogImg, err := GetEbitenImage(F_UI_ELEMENTS + "/dialog_symbol.png")
 	CheckErr(err)
 	OwnPlayer.DialogSymbol = GE.NewImageObj(nil, dialogImg, 0, 0, 0, 0, 0)
+	OwnPlayer.DialogSymbol.ScaleToOriginalSize()
 
 	scrollpannel := t.GetCharacterNameList()
 	t.tabs.Screens.Set(scrollpannel, 0)

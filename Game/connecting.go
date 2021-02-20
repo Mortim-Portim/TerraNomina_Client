@@ -49,7 +49,7 @@ func (t *Connecting) Start(oldState int) {
 	GC.PRINT_LOG_PRIORITY = 3
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
-	
+
 	go func() {
 		Printf("Connecting to '%s'\n", t.ipAddr)
 		ClientManager.InputHandler = func(mt int, msg []byte, err error, c *GC.Client) bool {
@@ -63,6 +63,7 @@ func (t *Connecting) Start(oldState int) {
 		}
 
 		err := Client.MakeConn(t.ipAddr)
+		//HANDLE ERR
 		CheckErr(err)
 	}()
 }
