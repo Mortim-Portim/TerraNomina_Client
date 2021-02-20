@@ -105,16 +105,15 @@ func (menu *SelectClassMenu) Stop(nextstate int) {
 	}
 }
 
-func (menu *SelectClassMenu) Update(screen *ebiten.Image) error {
+func (menu *SelectClassMenu) Update() error {
 	menu.classes[menu.currClass].Update(menu.parent.frame)
 	menu.classthing.Update(menu.parent.frame)
-
+	return nil
+}
+func (menu *SelectClassMenu) Draw(screen *ebiten.Image) {
 	if menu.cbackground[menu.currClass] != nil {
 		menu.cbackground[menu.currClass].Draw(screen)
 	}
-
 	menu.classes[menu.currClass].Draw(screen)
 	menu.classthing.Draw(screen)
-
-	return nil
 }

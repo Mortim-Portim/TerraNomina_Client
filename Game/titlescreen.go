@@ -69,20 +69,22 @@ func (t *TitleScreen) Stop(newState int) {
 	Print("TitleScreen -------->")
 	t.Buttons.Stop(nil, nil)
 }
-func (t *TitleScreen) Update(screen *ebiten.Image) error {
+func (t *TitleScreen) Update() error {
 	TITLE_BackImg.Update(t.parent.frame)
 	TITLE_Name.Update(t.parent.frame)
-	TITLE_BackImg.DrawImageObj(screen)
-	TITLE_Name.DrawImageObj(screen)
-
 	t.Buttons.Update(t.parent.frame)
-	t.Buttons.Draw(screen)
+	
 	
 	t.TimeDrawer.Percent += 0.01
 	if t.TimeDrawer.Percent > 2.0 {
 		t.TimeDrawer.Percent = 0.0
 	}
 	t.TimeDrawer.Update(0)
-	t.TimeDrawer.Draw(screen)
 	return nil
+}
+func (t *TitleScreen) Draw(screen *ebiten.Image) {
+	TITLE_BackImg.DrawImageObj(screen)
+	TITLE_Name.DrawImageObj(screen)
+	t.Buttons.Draw(screen)
+	t.TimeDrawer.Draw(screen)
 }

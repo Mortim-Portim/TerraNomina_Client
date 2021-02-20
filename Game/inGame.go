@@ -46,7 +46,7 @@ func (i *InGame) Start(oldState int) {
 func (i *InGame) Stop(newState int) {
 	Print("InGame      -------->")
 }
-func (i *InGame) Update(screen *ebiten.Image) error {
+func (i *InGame) Update() error {
 	left, lC := Keyli.GetMappedKeyState(left_key_id)
 	right, rC := Keyli.GetMappedKeyState(right_key_id)
 	up, uC := Keyli.GetMappedKeyState(up_key_id)
@@ -73,7 +73,7 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	i.sm.ActivePlayer.UpdateChanFromPlayer()
 	i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
 	i.sm.UpdateAll(false)
-	i.sm.Draw(screen)
+	
 	
 	smMsg, num := i.sm.Print(false)
 	if num > 0 {
@@ -85,16 +85,17 @@ func (i *InGame) Update(screen *ebiten.Image) error {
 	i.lastUpdate = time.Now()
 	i.isDelayed = float64(delay)/float64(i.meanDelay) > 1.2
 	i.meanDelay = int(float64(i.meanDelay)*(9.0/10.0)+float64(delay)*(1.0/10.0))
-	
+	return nil
+}
+func (i *InGame) Draw(screen *ebiten.Image) {
+	i.sm.Draw(screen)
 	msg := fmt.Sprintf("Time: %v, TPS: %0.1f, Ping: %v", i.sm.Struct.CurrentTime, ebiten.CurrentTPS(), Client.Ping)
 	if i.isDelayed {
 		msg += fmt.Sprintf(", meanDelay: %v", i.meanDelay)
 		//Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)
 	}
 	ebitenutil.DebugPrint(screen, msg)
-	return nil
 }
-
 func (i *InGame) Close() {
 	i.parent.ChangeState(TITLESCREEN_STATE)
 }

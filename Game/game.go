@@ -26,11 +26,10 @@ type TerraNomina struct {
 	interrupt                      chan os.Signal
 }
 
-func (g *TerraNomina) Update(screen *ebiten.Image) error {
+func (g *TerraNomina) Update() error {
 	defer func() {
 		g.frame++ 
 		Toaster.Update(g.frame)
-		Toaster.Draw(screen)
 	}()
 	if Keyli != nil {
 		Keyli.UpdateMapped()
@@ -43,11 +42,25 @@ func (g *TerraNomina) Update(screen *ebiten.Image) error {
 		go g.Init()
 	}
 	if g.initializing {
-		return g.Initializing(screen)
+		return nil
 	}
 	state, ok := g.States[g.currentState]
 	if ok {
-		err := state.Update(screen)
+		return state.Update()
+	}
+	return errors.New(fmt.Sprintf("Cannot update state %v, does not exist", g.currentState))
+}
+func (g *TerraNomina) Draw(screen *ebiten.Image) {
+	defer func() {
+		Toaster.Draw(screen)
+	}()
+	if g.initializing {
+		g.Initializing(screen)
+		return
+	}
+	state, ok := g.States[g.currentState]
+	if ok {
+		state.Draw(screen)
 		if RecordAll {
 			RecorderLock.Lock()
 			Recorder.NextFrame(screen)
@@ -61,9 +74,7 @@ func (g *TerraNomina) Update(screen *ebiten.Image) error {
 				RecorderLock.Unlock()
 			}
 		}
-		return err
 	}
-	return errors.New(fmt.Sprintf("Cannot update state %v, does not exist", g.currentState))
 }
 func (g *TerraNomina) Close() {
 	state, ok := g.States[g.currentState]
@@ -188,5 +199,6 @@ type GameState interface {
 	Init()
 	Start(lastState int)
 	Stop(nextState int)
-	Update(screen *ebiten.Image) error
+	Update() error
+	Draw(screen *ebiten.Image)
 }

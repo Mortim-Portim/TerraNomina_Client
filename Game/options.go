@@ -92,18 +92,18 @@ func (t *OptionsMenu) Start(oldState int) {
 func (t *OptionsMenu) Stop(newState int) {
 	Print("OptionsMenu -------->")
 }
-func (t *OptionsMenu) Update(screen *ebiten.Image) error {
+func (t *OptionsMenu) Update() error {
 	down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
 	if changed && !down {
 		t.GetBack()
 	}
-	screen.Fill(color.RGBA{168, 255, 68, 255})
-	
 	t.tabs.Update(t.parent.GetCurrentFrame())
-	t.tabs.Draw(screen)
 	return nil
 }
-
+func (t *OptionsMenu) Draw(screen *ebiten.Image) {
+	screen.Fill(color.RGBA{168, 255, 68, 255})
+	t.tabs.Draw(screen)
+}
 func (t *OptionsMenu) GetBack() {
 	t.parent.ChangeState(t.oldState)
 }

@@ -108,7 +108,7 @@ func (t *PlayMenu) Stop(newState int) {
 	t.playBtn.Stop(nil, nil)
 	t.tabs.Stop(nil, nil)
 }
-func (t *PlayMenu) Update(screen *ebiten.Image) error {
+func (t *PlayMenu) Update() error {
 	down, changed := Keyli.GetMappedKeyState(ESC_KEY_ID)
 	if changed && !down {
 		t.GetBack()
@@ -116,11 +116,11 @@ func (t *PlayMenu) Update(screen *ebiten.Image) error {
 
 	t.playBtn.Update(t.parent.frame)
 	t.tabs.Update(t.parent.frame)
-
+	return nil
+}
+func (t *PlayMenu) Draw(screen *ebiten.Image) {
 	t.playBtn.Draw(screen)
 	t.tabs.Draw(screen)
-
-	return nil
 }
 
 func (t *PlayMenu) GetBack() {

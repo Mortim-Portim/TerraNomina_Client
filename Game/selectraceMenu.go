@@ -128,15 +128,15 @@ func (menu *SelectRaceMenu) Stop(nextstate int) {
 	}
 }
 
-func (menu *SelectRaceMenu) Update(screen *ebiten.Image) error {
+func (menu *SelectRaceMenu) Update() error {
 	menu.races[menu.currRace].Update(menu.parent.frame)
 	menu.racething.Update(menu.parent.frame)
-
+	return nil
+}
+func (menu *SelectRaceMenu) Draw(screen *ebiten.Image) {
 	if menu.rbackground[menu.currRace] != nil {
 		menu.rbackground[menu.currRace].Draw(screen)
 	}
 	menu.races[menu.currRace].Draw(screen)
 	menu.racething.Draw(screen)
-
-	return nil
 }

@@ -222,10 +222,19 @@ func (menu *SelectStatsMenu) Start(laststate int) {
 }
 func (menu *SelectStatsMenu) Stop(nextstate int) {}
 
-func (menu *SelectStatsMenu) Update(screen *ebiten.Image) error {
+func (menu *SelectStatsMenu) Update() error {
 	menu.statsthing.Update(menu.parent.frame)
 	menu.name.Update(menu.parent.frame)
+	for _, img := range menu.profselect {
+		img.Update(menu.parent.frame)
+	}
 
+	for _, img := range menu.profpicture {
+		img.Update(menu.parent.frame)
+	}
+	return nil
+}
+func (menu *SelectStatsMenu) Draw(screen *ebiten.Image) {
 	screen.Fill(color.RGBA{168, 255, 68, 255})
 	menu.statsthing.Draw(screen)
 
@@ -234,17 +243,12 @@ func (menu *SelectStatsMenu) Update(screen *ebiten.Image) error {
 	}
 
 	for _, img := range menu.profselect {
-		img.Update(menu.parent.frame)
 		img.Draw(screen)
 	}
 
 	for _, img := range menu.profpicture {
-		img.Update(menu.parent.frame)
 		img.Draw(screen)
 	}
-
 	menu.sum.Draw(screen)
 	menu.name.Draw(screen)
-
-	return nil
 }

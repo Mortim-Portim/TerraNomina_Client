@@ -70,7 +70,7 @@ func (t *Connecting) Stop(newState int) {
 	Print("Connecting  -------->")
 	t.loadingAnim.Stop(nil, nil)
 }
-func (t *Connecting) Update(screen *ebiten.Image) error {
+func (t *Connecting) Update() error {
 	if t.SVACIDs != 0 && len(ClientManager.SyncvarsByACID) == t.SVACIDs {
 		SmallWorld.GetRegistered(ClientManager)
 		Printf("%v SyncVars registered\n", t.SVACIDs)
@@ -85,7 +85,9 @@ func (t *Connecting) Update(screen *ebiten.Image) error {
 	}
 
 	t.loadingAnim.Update(t.parent.frame)
+	return nil
+}
+func (t *Connecting) Draw(screen *ebiten.Image) {
 	t.background.DrawImageObj(screen)
 	t.loadingAnim.DrawImageObj(screen)
-	return nil
 }

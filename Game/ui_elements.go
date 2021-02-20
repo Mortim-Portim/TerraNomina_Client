@@ -20,10 +20,7 @@ func InitImages() {
 		err, img := GE.LoadImg(f)
 		if err == nil {
 			ALL_IMAGES[f] = img
-			eimg, err := GE.ImgToEbitenImg(img)
-			if err == nil {
-				ALL_EBITEN_IMAGES[f] = eimg
-			}
+			ALL_EBITEN_IMAGES[f] = GE.ImgToEbitenImg(img)
 		}
 	}
 }
