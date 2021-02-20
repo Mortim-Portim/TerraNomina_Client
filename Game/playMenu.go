@@ -2,8 +2,9 @@ package Game
 
 import (
 	"fmt"
-	"io/ioutil"
 	"image/color"
+	"io/ioutil"
+
 	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
@@ -33,15 +34,16 @@ func (t *PlayMenu) Init() {
 	CheckErr(err)
 	serverTabD, err := GetButtonImg("server", false)
 	CheckErr(err)
-	
-	t.playBtn, err = GetButton("play", 0,0, 0, 0, true)
+
+	t.playBtn, err = GetButton("play", 0, 0, 0, 0, true)
 	CheckErr(err)
-	t.playBtn.Img.ScaleToOriginalSize(); t.playBtn.Img.ScaleToX(XRES * PLAY_MENU_PLAY_BUTTON_WIDTH)
+	t.playBtn.Img.ScaleToOriginalSize()
+	t.playBtn.Img.ScaleToX(XRES * PLAY_MENU_PLAY_BUTTON_WIDTH)
 	t.playBtn.Img.SetBottomRight(XRES-t.playBtn.Img.H, YRES-t.playBtn.Img.H)
 
 	TabViewUpdateAble := make([]GE.UpdateAble, 2)
 	TabViewUpdateAble[0] = t.GetCharacterNameList()
-	
+
 	ipAddr := GE.GetEditText("ip:port", XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, 25, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{120, 120, 120, 255})
 	ipAddr.RegisterOnChange(func(et *GE.EditText) {
 		StandardIP_TEXT = et.GetText()
@@ -56,48 +58,52 @@ func (t *PlayMenu) Init() {
 		}
 	})
 
-	params := &GE.TabViewParams{Imgs: []*ebiten.Image{characterTabU, serverTabU}, Dark: []*ebiten.Image{characterTabD, serverTabD}, Scrs: TabViewUpdateAble, Y: 0, W: XRES, H: YRES, TabH: YRES*TITLESCREEN_BUTTON_HEIGHT_REL}
+	params := &GE.TabViewParams{Imgs: []*ebiten.Image{characterTabU, serverTabU}, Dark: []*ebiten.Image{characterTabD, serverTabD}, Scrs: TabViewUpdateAble, Y: 0, W: XRES, H: YRES, TabH: YRES * TITLESCREEN_BUTTON_HEIGHT_REL}
 	t.tabs = GE.GetTabView(params)
 
 	t.playBtn.Init(nil, nil)
 	t.tabs.Init(nil, nil)
 }
 func (t *PlayMenu) GetCharacterNameList() *GE.ButtonList {
-	charFiles, err := GE.OSReadDir(F_CHARACTER);CheckErr(err)
-	return GE.GetButtonListFromStrings(XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/2, YRES*(1-TITLESCREEN_BUTTON_HEIGHT_REL), YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL*0.3, color.RGBA{0,0,0,255}, color.RGBA{255,255,255,255}, charFiles...)
+	charFiles, err := GE.OSReadDir(F_CHARACTER)
+	CheckErr(err)
+	return GE.GetButtonListFromStrings(XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/2, YRES*(1-TITLESCREEN_BUTTON_HEIGHT_REL), YRES*TITLESCREEN_BUTTON_HEIGHT_REL, XRES/200, YRES*TITLESCREEN_BUTTON_HEIGHT_REL*0.3, color.RGBA{0, 0, 0, 255}, color.RGBA{255, 255, 255, 255}, charFiles...)
 }
 func (t *PlayMenu) Start(oldState int) {
 	Print("--------> PlayMenu   \n")
 	t.oldState = oldState
-	
+
 	sm, err := TNE.GetSmallWorld(0, 0, XRES, YRES, F_TILES, F_STRUCTURES, F_ENTITY)
 	CheckErr(err)
 	sm.RegisterOnEntityChangeListeners()
-	SmallWorld = sm	
-	
+	SmallWorld = sm
+
 	ple, err := sm.Ef.GetByName("Goblin")
 	CheckErr(err)
-	OwnPlayer = &TNE.Player{Entity:ple}
-	
+	OwnPlayer = &TNE.Player{Entity: ple}
+	dialogImg, err := GetEbitenImage(F_UI_ELEMENTS + "/dialog_symbol.png")
+	CheckErr(err)
+	OwnPlayer.DialogSymbol = GE.NewImageObj(nil, dialogImg, 0, 0, 0, 0, 0)
+
 	scrollpannel := t.GetCharacterNameList()
 	t.tabs.Screens.Set(scrollpannel, 0)
-	for _,btn := range scrollpannel.Content() {
+	for _, btn := range scrollpannel.Content() {
 		btn.ChangeDrawDarkOnLeft = true
-		btn.RegisterOnEvent(func(b *GE.Button){
-				if !b.LPressed && !b.RPressed {
-					name := b.Data.(string)
-					data, err := ioutil.ReadFile(F_CHARACTER+"/"+name)
+		btn.RegisterOnEvent(func(b *GE.Button) {
+			if !b.LPressed && !b.RPressed {
+				name := b.Data.(string)
+				data, err := ioutil.ReadFile(F_CHARACTER + "/" + name)
+				if err == nil {
+					char, err := TNE.LoadChar(data)
 					if err == nil {
-						char, err := TNE.LoadChar(data)
+						ent, err := SmallWorld.Ef.GetFromCharacter(char)
 						if err == nil {
-							ent, err := SmallWorld.Ef.GetFromCharacter(char)
-							if err == nil {
-								OwnPlayer.Entity = ent
-								Toaster.New(fmt.Sprintf("Player %s loaded", OwnPlayer.Char.Name), FPS*1.5)
-							}
+							OwnPlayer.Entity = ent
+							Toaster.New(fmt.Sprintf("Player %s loaded", OwnPlayer.Char.Name), FPS*1.5)
 						}
 					}
 				}
+			}
 		})
 	}
 	t.playBtn.Start(nil, nil)

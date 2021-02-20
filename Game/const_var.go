@@ -1,11 +1,12 @@
 package Game
 
 import (
+	"runtime"
+	"sync"
+
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
-	"runtime"
-	"sync"
 )
 
 const (
@@ -14,7 +15,7 @@ const (
 
 	FPS            = 30
 	RES            = "./res"
-	F_Params	   = RES + "/params.txt"
+	F_Params       = RES + "/params.txt"
 	F_KEYLI_MAPPER = RES + "/keyli.txt"
 	F_ICONS        = RES + "/Icons"
 	F_MAPS         = RES + "/Maps"
@@ -31,9 +32,9 @@ const (
 	F_CHARACTERMENU = F_GUI + "/CharacterMenu"
 	F_BUTTONS       = F_GUI + "/Buttons"
 	F_CONNECTING    = F_GUI + "/Connecting"
-	F_UI_ELEMENTS 	= F_GUI + "/Elements"
+	F_UI_ELEMENTS   = F_GUI + "/Elements"
 
-	F_ENTITY   = RES + "/Entities"
+	F_ENTITY = RES + "/Entities"
 
 	ICON_FORMAT = "png"
 
@@ -48,9 +49,9 @@ const (
 	SELSTATS_STATE     = 8
 	TEST_STATE         = 9
 
-	SOUNDTRACK_MAIN         = "Main"
-	SOUNDTRACK_ORK          = "Ork"
-	SOUNDTRACK_BATTLE 		= "Battle"
+	SOUNDTRACK_MAIN   = "Main"
+	SOUNDTRACK_ORK    = "Ork"
+	SOUNDTRACK_BATTLE = "Battle"
 
 	MAP_REQUEST = GC.MESSAGE_TYPES + 0
 	CHAR_SEND   = GC.MESSAGE_TYPES + 1
@@ -59,50 +60,50 @@ const (
 )
 
 var (
-	PARAMETER  *GE.Params
+	PARAMETER       *GE.Params
 	StandardIP_TEXT string
-	XRES, YRES float64
+	XRES, YRES      float64
 
 	ICON_SIZES = []int{16, 32, 48, 64, 128, 256}
 
 	TITLE_BackImg, TITLE_LoadingBar, TITLE_Name *GE.Animation
 
-	Soundtrack *GE.SoundTrack
+	Soundtrack     *GE.SoundTrack
 	StandardVolume float64
 
-	Keyli      *GE.KeyLi
-	
+	Keyli *GE.KeyLi
+
 	USER_INPUT_IP_ADDR string
 
 	Client        *GC.Client
 	ClientManager *GC.ClientManager
 
 	SmallWorld *TNE.SmallWorld
-	OwnPlayer *TNE.Player
-	
-	RecorderLock sync.Mutex
-	Recorder *GE.Recorder
-	RecordAll bool
+	OwnPlayer  *TNE.Player
+
+	RecorderLock                    sync.Mutex
+	Recorder                        *GE.Recorder
+	RecordAll                       bool
 	RecordingLength, RecordingScale float64
-	RecordingFile string
-	
+	RecordingFile                   string
+
 	ServerClosing chan bool
-	
+
 	Toaster *GE.Toaster
 )
 
 //Should be saved to a file
 var (
-	MOVEMENT_SPEED                                    = 0.5
-	MOVEMENT_UPDATE_PERIOD                            = int(1.0 / MOVEMENT_SPEED)
+	MOVEMENT_SPEED         = 0.5
+	MOVEMENT_UPDATE_PERIOD = int(1.0 / MOVEMENT_SPEED)
 )
 
 var (
-	ESC_KEY_ID int
-	left_key_id int
-	right_key_id int
-	up_key_id int
-	down_key_id int
+	ESC_KEY_ID    int
+	left_key_id   int
+	right_key_id  int
+	up_key_id     int
+	down_key_id   int
 	record_key_id int
 )
 
