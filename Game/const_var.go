@@ -81,11 +81,11 @@ var (
 	SmallWorld *TNE.SmallWorld
 	OwnPlayer  *TNE.Player
 
-	RecorderLock                    sync.Mutex
-	Recorder                        *GE.Recorder
-	RecordAll                       bool
-	RecordingLength, RecordingScale float64
-	RecordingFile                   string
+	RecorderLock                      sync.Mutex
+	Recorder                          *GE.Recorder
+	RecordAll                         bool
+	RecordingLength, RecordingScale   float64
+	ScreenCaptureFile, ScreenShotFile string
 
 	ServerClosing chan bool
 
@@ -99,12 +99,14 @@ var (
 )
 
 var (
-	ESC_KEY_ID    int
-	left_key_id   int
-	right_key_id  int
-	up_key_id     int
-	down_key_id   int
-	record_key_id int
+	ESC_KEY_ID          int
+	left_key_id         int
+	right_key_id        int
+	up_key_id           int
+	down_key_id         int
+	record_key_1_id     int
+	record_key_2_id     int
+	screenshot_key_2_id int
 )
 
 func (g *TerraNomina) Layout(outsideWidth, outsideHeight int) (int, int) {

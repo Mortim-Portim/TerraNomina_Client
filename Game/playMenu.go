@@ -100,7 +100,7 @@ func (t *PlayMenu) Start(oldState int) {
 						ent, err := SmallWorld.Ef.GetFromCharacter(char)
 						if err == nil {
 							OwnPlayer.Entity = ent
-							Toaster.New(fmt.Sprintf("Player %s loaded", OwnPlayer.Char.Name), FPS*1.5)
+							Toaster.New(fmt.Sprintf("Player %s loaded", OwnPlayer.Char.Name), FPS*1.5, nil)
 						}
 					}
 				}
