@@ -1,12 +1,13 @@
 package Game
 
 import (
+	"flag"
+	"fmt"
+	"image/color"
+
+	"github.com/hajimehoshi/ebiten"
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
-	"fmt"
-	"flag"
-	"github.com/hajimehoshi/ebiten"
-	"image/color"
 )
 
 var WRITELOGFILE = flag.String("log", "log.txt", "name of the logfile")
@@ -24,11 +25,11 @@ func StartGame(g ebiten.Game) {
 	ebiten.SetWindowTitle("Terra Nomina")
 	if !*WINDOWED {
 		ebiten.SetFullscreen(true)
-	}else{
+	} else {
 		ebiten.SetWindowSize(int(XRES), int(YRES))
 	}
 	ebiten.SetVsyncEnabled(true)
-	ebiten.SetMaxTPS(FPS)
+	ebiten.SetMaxTPS(int(FPS))
 	ebiten.SetRunnableOnUnfocused(true)
 	if err := ebiten.RunGame(g); err != nil {
 		g.(*TerraNomina).Close()
@@ -38,7 +39,7 @@ func StartGame(g ebiten.Game) {
 }
 
 func onUnexpectedError(g ebiten.Game) {
-	if r := recover(); r!= nil {
+	if r := recover(); r != nil {
 		g.(*TerraNomina).Close()
 		panic(fmt.Sprintf("unexpected Error: %v", r))
 	}
@@ -48,13 +49,16 @@ func Start() {
 	flag.Parse()
 	GE.StartProfiling(cpuprofile)
 	GE.SetLogFile(RES + "/" + *WRITELOGFILE)
-	GE.Init("")
+	GE.Init("", FPS)
 	GC.InitSyncVarStandardTypes()
-	
-	x,y := ebiten.ScreenSizeInFullscreen()
-	if *WINDOWED {x = 640;y = 360}
-	InitParams(F_Params,x,y)
-	
+
+	x, y := ebiten.ScreenSizeInFullscreen()
+	if *WINDOWED {
+		x = 640
+		y = 360
+	}
+	InitParams(F_Params, x, y)
+
 	GE.MOVE_A_D = *AUTOMOVE
 
 	tn := &TerraNomina{first: true, States: make(map[int]GameState)}
@@ -67,9 +71,9 @@ func Start() {
 	tn.States[SELCLASS_STATE] = GetSelectClassMenu(tn)
 	tn.States[SELSTATS_STATE] = GetSelectStatsMenu(tn)
 	//tn.States[TEST_STATE] = getTestMenu(tn)
-	
-	Toaster = GE.GetNewToaster(XRES,YRES, 0.5, 0.04, GE.StandardFont, color.RGBA{255,255,255,255}, color.RGBA{0,0,0,255})
-	
+
+	Toaster = GE.GetNewToaster(XRES, YRES, 0.5, 0.04, GE.StandardFont, color.RGBA{255, 255, 255, 255}, color.RGBA{0, 0, 0, 255})
+
 	SetupCharacterMenu()
 	StartGame(tn)
 }

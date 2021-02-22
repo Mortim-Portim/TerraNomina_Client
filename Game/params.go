@@ -3,13 +3,15 @@ package Game
 import (
 	"github.com/mortim-portim/GraphEng/GE"
 )
-const(
-	VOLUME_PARAM = "volume"
-	IS_RECORDING_PARAM = "is_recording"
-	RECORDING_TIME_PARAM = "rec_time"
+
+const (
+	VOLUME_PARAM          = "volume"
+	IS_RECORDING_PARAM    = "is_recording"
+	RECORDING_TIME_PARAM  = "rec_time"
 	RECORDING_SCALE_PARAM = "rec_scale"
-	IP_ADDR_PARAM = "ip_addr"
+	IP_ADDR_PARAM         = "ip_addr"
 )
+
 /**
 volume:0.5
 rec_time:5
@@ -55,6 +57,7 @@ func InitParams(path string, x, y int) {
 	loading, err2 := GetEbitenImage(F_TITLESCREEN + "/loading.png")
 	CheckErr(err2)
 	TITLE_LoadingBar = GE.GetAnimationFromParams(0, 0, XRES, YRES, loadingParams, loading)
+	TITLE_LoadingBar.UpdatePeriod = int(FPS / 3)
 
 	nameParams := &GE.Params{}
 	nameParams.LoadFromFile(F_TITLESCREEN + "/name.txt")
@@ -64,4 +67,3 @@ func InitParams(path string, x, y int) {
 	TITLE_Name.ScaleToOriginalSize()
 	TITLE_Name.ScaleToX(XRES)
 }
-

@@ -1,5 +1,5 @@
 ip_addr:192.168.71.176:8080
 volume:0.17000000
-rec_time:6.00000000
+rec_time:3.00000000
 is_recording:false
-rec_scale:0.60000000
+rec_scale:1.00000000

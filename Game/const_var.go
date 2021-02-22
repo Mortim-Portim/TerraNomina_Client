@@ -12,16 +12,14 @@ import (
 const (
 	STANDARD_SCREEN_WIDTH  = 1920
 	STANDARD_SCREEN_HEIGHT = 1080
-
-	FPS            = 30
-	RES            = "./res"
-	F_Params       = RES + "/params.txt"
-	F_KEYLI_MAPPER = RES + "/keyli.txt"
-	F_ICONS        = RES + "/Icons"
-	F_MAPS         = RES + "/Maps"
-	F_CHARACTER    = RES + "/Character"
-	F_STRUCTURES   = F_MAPS + "/structures"
-	F_TILES        = F_MAPS + "/tiles"
+	RES                    = "./res"
+	F_Params               = RES + "/params.txt"
+	F_KEYLI_MAPPER         = RES + "/keyli.txt"
+	F_ICONS                = RES + "/Icons"
+	F_MAPS                 = RES + "/Maps"
+	F_CHARACTER            = RES + "/Character"
+	F_STRUCTURES           = F_MAPS + "/structures"
+	F_TILES                = F_MAPS + "/tiles"
 
 	F_AUDIO      = RES + "/Audio"
 	F_SOUNDTRACK = F_AUDIO + "/Soundtrack"
@@ -94,8 +92,9 @@ var (
 
 //Should be saved to a file
 var (
-	MOVEMENT_SPEED         = 0.5
-	MOVEMENT_UPDATE_PERIOD = int(1.0 / MOVEMENT_SPEED)
+	FPS = TNE.FPS
+	// MOVEMENT_SPEED         = 0.5
+	// MOVEMENT_UPDATE_PERIOD = int(1.0 / MOVEMENT_SPEED)
 )
 
 var (
@@ -115,7 +114,7 @@ func (g *TerraNomina) Layout(outsideWidth, outsideHeight int) (int, int) {
 func ResetRecorder() {
 	RecorderLock.Lock()
 	Recorder.Delete()
-	Recorder = GE.GetNewRecorder(int(FPS*RecordingLength), int(XRES*RecordingScale), int(YRES*RecordingScale), FPS)
+	Recorder = GE.GetNewRecorder(int(FPS*RecordingLength), int(XRES*RecordingScale), int(YRES*RecordingScale), int(FPS))
 	RecorderLock.Unlock()
 	runtime.GC()
 }

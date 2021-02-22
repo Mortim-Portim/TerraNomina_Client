@@ -78,7 +78,7 @@ func (g *TerraNomina) CheckRecorder(screen *ebiten.Image) {
 		if screenShotDown && screenShotChng && !Recorder.IsSaving() {
 			fileN := fmt.Sprintf("%s_%s", ScreenShotFile, GE.GetTime())
 			go Recorder.SaveScreenShot(fileN)
-			Toaster.New(fmt.Sprintf("Saved Image to %s", fileN), FPS*2, nil)
+			Toaster.New(fmt.Sprintf("Saved Image to %s", fileN), int(FPS*2.0), nil)
 		}
 		down, chng := Keyli.GetMappedKeyState(record_key_1_id, record_key_2_id)
 		if down && chng && !Recorder.IsSaving() {
@@ -146,7 +146,7 @@ func (g *TerraNomina) Init() {
 	g.doneSavingSC = make(chan bool)
 	g.StopPrintSavingTo = make(chan bool)
 
-	Toaster.New("Loading soundtrack", FPS*2, nil)
+	Toaster.New("Loading soundtrack", int(FPS*2), nil)
 	st, err := GE.LoadSoundTrack(F_SOUNDTRACK, 1)
 	CheckErr(err)
 	Soundtrack = st
@@ -161,7 +161,7 @@ func (g *TerraNomina) Init() {
 		Soundtrack.SetVolume(StandardVolume)
 	}()
 
-	Toaster.New("Loading keyboard layout", FPS*2, nil)
+	Toaster.New("Loading keyboard layout", int(FPS*2), nil)
 	Keyli = &GE.KeyLi{}
 	Keyli.Reset()
 
@@ -177,28 +177,28 @@ func (g *TerraNomina) Init() {
 	Keyli.LoadConfig(F_KEYLI_MAPPER)
 	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})
 
-	Toaster.New("Creating client", FPS*2, nil)
+	Toaster.New("Creating client", int(FPS*2), nil)
 	Client = GC.GetNewClient()
 	ClientManager = GC.GetClientManager(Client)
 
-	Toaster.New("Creating recorder", FPS*2, nil)
+	Toaster.New("Creating recorder", int(FPS*2), nil)
 	ScreenCaptureFile = "./screencapture"
 	ScreenShotFile = "./screenshot"
 	ResetRecorder()
 
-	Toaster.New("Initializing gamestates", FPS*2, nil)
+	Toaster.New("Initializing gamestates", int(FPS*2), nil)
 	for _, state := range g.States {
 		state.Init()
 	}
 
-	Toaster.New("Finished", FPS*1, nil)
+	Toaster.New("Finished", int(FPS*1), nil)
 
 	close(done)
 }
 func (g *TerraNomina) OnDoneSaving() {
 	<-g.doneSavingSC
 	g.StopPrintSavingTo <- true
-	Toaster.New(fmt.Sprintf("Saved to %s", g.currentSaveFileSC), FPS*2, nil)
+	Toaster.New(fmt.Sprintf("Saved to %s", g.currentSaveFileSC), int(FPS*2), nil)
 }
 func (g *TerraNomina) ChangeState(newState int) error {
 	if _, ok := g.States[newState]; ok {

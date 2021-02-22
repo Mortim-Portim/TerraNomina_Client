@@ -72,7 +72,7 @@ func (i *InGame) Update() error {
 	}
 
 	if moving && !OwnPlayer.IsMoving() {
-		OwnPlayer.Move()
+		OwnPlayer.Move(0.1)
 	}
 	OwnPlayer.KeepMoving(moving)
 

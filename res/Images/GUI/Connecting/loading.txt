@@ -1,2 +1,2 @@
 spriteWidth:10
-updatePeriod:10
+fps:3

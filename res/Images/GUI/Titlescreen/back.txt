@@ -1,2 +1,2 @@
 spriteWidth:1920
-updatePeriod:0
+fps:1
