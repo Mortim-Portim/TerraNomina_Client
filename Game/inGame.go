@@ -72,7 +72,7 @@ func (i *InGame) Update() error {
 	}
 
 	if moving && !OwnPlayer.IsMoving() {
-		OwnPlayer.Move(0.1)
+		OwnPlayer.Move(0.02)
 	}
 	OwnPlayer.KeepMoving(moving)
 
@@ -81,10 +81,10 @@ func (i *InGame) Update() error {
 	i.sm.UpdateAll(false)
 	OwnPlayer.CheckNearbyDialogs(i.sm.Ents...)
 
-	smMsg, num := i.sm.Print(false)
-	if num > 0 {
-		Println(smMsg)
-	}
+	// smMsg, num := i.sm.Print(false)
+	// if num > 0 {
+	// 	Println(smMsg)
+	// }
 	i.sm.ResetActions()
 
 	delay := time.Now().Sub(i.lastUpdate).Microseconds()
