@@ -1,6 +1,8 @@
 package Game
 
 import (
+	"fmt"
+
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
 	cmp "github.com/mortim-portim/GraphEng/compression"
@@ -63,8 +65,12 @@ func (t *Connecting) Start(oldState int) {
 		}
 
 		err := Client.MakeConn(t.ipAddr)
-		//HANDLE ERR
-		CheckErr(err)
+		if err != nil {
+			msg := fmt.Sprintf("Error connecting: %v", err)
+			fmt.Println(msg)
+			Toaster.New(msg, int(FPS*6), nil)
+			t.parent.ChangeState(t.oldState)
+		}
 	}()
 }
 func (t *Connecting) Stop(newState int) {
