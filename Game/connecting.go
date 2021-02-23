@@ -2,8 +2,8 @@ package Game
 
 import (
 	"github.com/mortim-portim/GameConn/GC"
-	cmp "github.com/mortim-portim/GraphEng/Compression"
 	"github.com/mortim-portim/GraphEng/GE"
+	cmp "github.com/mortim-portim/GraphEng/compression"
 	"github.com/mortim-portim/TN_Engine/TNE"
 
 	"github.com/hajimehoshi/ebiten"
