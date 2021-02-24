@@ -85,6 +85,8 @@ func (i *InGame) Update() error {
 
 	i.UpdateOwnPlayerMovement()
 
+	i.UpdateAttacking()
+
 	//i.UpdateSocialMenu()
 
 	i.sm.ActivePlayer.UpdateChanFromPlayer()
@@ -116,6 +118,25 @@ func (i *InGame) Draw(screen *ebiten.Image) {
 		//Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)
 	}
 	ebitenutil.DebugPrint(screen, msg)
+}
+func (i *InGame) UpdateAttacking() {
+	prim, c1 := Keyli.GetMappedKeyState(attack_key_1)
+	seco, c2 := Keyli.GetMappedKeyState(attack_key_2)
+	tert, c3 := Keyli.GetMappedKeyState(attack_key_3)
+	if prim && c1 {
+		OwnPlayer.ChangeToAttack(0)
+	}
+	if seco && c2 {
+		OwnPlayer.ChangeToAttack(1)
+	}
+	if tert && c3 {
+		OwnPlayer.ChangeToAttack(2)
+	}
+	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
+		x, y := ebiten.CursorPosition()
+		wxf, wyf := SmallWorld.Struct.GetTileOfCoordsFP(float64(x), float64(y))
+		OwnPlayer.StartAttack(wxf, wyf)
+	}
 }
 func (i *InGame) UpdateSocialMenu() {
 	if !i.ShowingSocialMenu {

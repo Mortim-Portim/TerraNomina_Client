@@ -1,0 +1,2 @@
+spriteWidth:100
+fps:6

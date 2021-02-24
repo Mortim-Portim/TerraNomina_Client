@@ -174,6 +174,9 @@ func (g *TerraNomina) Init() {
 	record_key_2_id = Keyli.MappKey(ebiten.KeyControl)
 	screenshot_key_2_id = Keyli.MappKey(ebiten.KeyAlt)
 	interaction_key = Keyli.MappKey(ebiten.KeyI)
+	attack_key_1 = Keyli.MappKey(ebiten.Key1)
+	attack_key_2 = Keyli.MappKey(ebiten.Key2)
+	attack_key_3 = Keyli.MappKey(ebiten.Key3)
 
 	Keyli.LoadConfig(F_KEYLI_MAPPER)
 	//Keyli.RegisterKeyEventListener(ESC_KEY_ID, func(l *GE.KeyLi, state bool){fmt.Printf("Esc is %v\n", state)})

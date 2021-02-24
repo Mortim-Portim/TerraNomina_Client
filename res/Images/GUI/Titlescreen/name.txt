@@ -1,2 +1,2 @@
-spriteWidth:100
-fps:6
+spriteWidth:186
+fps:0

@@ -108,8 +108,9 @@ var (
 	record_key_1_id     int
 	record_key_2_id     int
 	screenshot_key_2_id int
+	interaction_key     int
 
-	interaction_key int
+	attack_key_1, attack_key_2, attack_key_3 int
 )
 
 func (g *TerraNomina) Layout(outsideWidth, outsideHeight int) (int, int) {
