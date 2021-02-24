@@ -2,10 +2,12 @@ package Game
 
 import (
 	"fmt"
+	"image/color"
 	"time"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
+	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
 )
 
@@ -29,11 +31,24 @@ type InGame struct {
 
 	SocialMenu        *SocialMenu
 	ShowingSocialMenu bool
+
+	AbilBars *GE.Group
 }
 
 func (i *InGame) Init() {
 	Println("Initializing InGame")
 	i.SocialMenu = GetNewSocialMenu(F_UI_ELEMENTS + "/dialog_pannel.png")
+
+	healthBarEimg, err := GetEbitenImage(F_InGame + "/health_bar.png")
+	CheckErr(err)
+	staminaBarEimg, err := GetEbitenImage(F_InGame + "/stamina_bar.png")
+	CheckErr(err)
+	manaBarEimg, err := GetEbitenImage(F_InGame + "/mana_bar.png")
+	CheckErr(err)
+	Health := GE.GetAbilbar(healthBarEimg, 0, 0, XRES/3, 16, 5, 108, 6, color.RGBA{255, 0, 0, 255}, color.RGBA{15, 0, 0, 255})
+	Stamina := GE.GetAbilbar(staminaBarEimg, XRES/3, 0, XRES/3, 16, 5, 108, 6, color.RGBA{0, 255, 0, 255}, color.RGBA{0, 15, 0, 255})
+	Mana := GE.GetAbilbar(manaBarEimg, XRES/3*2, 0, XRES/3, 16, 5, 108, 6, color.RGBA{0, 0, 255, 255}, color.RGBA{0, 0, 15, 255})
+	i.AbilBars = GE.GetGroup(Health, Stamina, Mana)
 }
 func (i *InGame) Start(oldState int) {
 	Print("--------> InGame     \n")
@@ -48,6 +63,16 @@ func (i *InGame) Start(oldState int) {
 	i.lastUpdate = time.Now()
 	i.meanDelay = 33288
 	i.ShowingSocialMenu = false
+
+	OwnPlayer.SetOnHealthChange(func(old, new float32) {
+		i.AbilBars.Members[0].(*GE.Abilbar).Set(float64(OwnPlayer.HealthPercent()))
+	})
+	OwnPlayer.SetOnStaminaChange(func(old, new float32) {
+		i.AbilBars.Members[1].(*GE.Abilbar).Set(float64(OwnPlayer.StaminaPercent()))
+	})
+	OwnPlayer.SetOnManaChange(func(old, new float32) {
+		i.AbilBars.Members[2].(*GE.Abilbar).Set(float64(OwnPlayer.ManaPercent()))
+	})
 }
 func (i *InGame) Stop(newState int) {
 	Print("InGame      -------->")
@@ -58,11 +83,41 @@ func (i *InGame) Update() error {
 		i.OpenOptions()
 	}
 
-	//REMOVE IF NOT NEEDED
-	i.sm.Struct.GetFrame(1.0, 255, 1)
-
 	i.UpdateOwnPlayerMovement()
 
+	//i.UpdateSocialMenu()
+
+	i.sm.ActivePlayer.UpdateChanFromPlayer()
+	i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
+	i.sm.UpdateAll(false)
+	smMsg, num := i.sm.Print(false)
+	if num > 0 {
+		Println(smMsg)
+	}
+	i.sm.ResetActions()
+
+	delay := time.Now().Sub(i.lastUpdate).Microseconds()
+	i.lastUpdate = time.Now()
+	i.isDelayed = float64(delay)/float64(i.meanDelay) > 1.2
+	i.meanDelay = int(float64(i.meanDelay)*(9.0/10.0) + float64(delay)*(1.0/10.0))
+	return nil
+}
+func (i *InGame) Draw(screen *ebiten.Image) {
+	i.sm.Draw(screen)
+	i.AbilBars.Draw(screen)
+
+	if i.ShowingSocialMenu {
+		i.SocialMenu.Draw(screen)
+	}
+
+	msg := fmt.Sprintf("Time: %v, TPS: %0.1f, Ping: %v", i.sm.Struct.CurrentTime, ebiten.CurrentTPS(), Client.Ping)
+	if i.isDelayed {
+		msg += fmt.Sprintf(", meanDelay: %v", i.meanDelay)
+		//Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)
+	}
+	ebitenutil.DebugPrint(screen, msg)
+}
+func (i *InGame) UpdateSocialMenu() {
 	if !i.ShowingSocialMenu {
 		OwnPlayer.CheckNearbyDialogs(i.sm.Ents...)
 	}
@@ -76,39 +131,9 @@ func (i *InGame) Update() error {
 			i.SocialMenu.Stop()
 		}
 	}
-
-	i.sm.ActivePlayer.UpdateChanFromPlayer()
-	i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
-	i.sm.UpdateAll(false)
-
 	if i.ShowingSocialMenu {
 		i.SocialMenu.Update()
 	}
-	// smMsg, num := i.sm.Print(false)
-	// if num > 0 {
-	// 	Println(smMsg)
-	// }
-	i.sm.ResetActions()
-
-	delay := time.Now().Sub(i.lastUpdate).Microseconds()
-	i.lastUpdate = time.Now()
-	i.isDelayed = float64(delay)/float64(i.meanDelay) > 1.2
-	i.meanDelay = int(float64(i.meanDelay)*(9.0/10.0) + float64(delay)*(1.0/10.0))
-	return nil
-}
-func (i *InGame) Draw(screen *ebiten.Image) {
-	i.sm.Draw(screen)
-
-	if i.ShowingSocialMenu {
-		i.SocialMenu.Draw(screen)
-	}
-
-	msg := fmt.Sprintf("Time: %v, TPS: %0.1f, Ping: %v", i.sm.Struct.CurrentTime, ebiten.CurrentTPS(), Client.Ping)
-	if i.isDelayed {
-		msg += fmt.Sprintf(", meanDelay: %v", i.meanDelay)
-		//Toaster.New(fmt.Sprintf("%v/%v", i.meanDelay, delay), 6)
-	}
-	ebitenutil.DebugPrint(screen, msg)
 }
 func (i *InGame) UpdateOwnPlayerMovement() {
 	left, lC := Keyli.GetMappedKeyState(left_key_id)

@@ -26,6 +26,7 @@ const (
 
 	F_IMAGES        = RES + "/Images"
 	F_GUI           = F_IMAGES + "/GUI"
+	F_InGame        = F_GUI + "/InGame"
 	F_NPCICON       = F_GUI + "/NPCIcons"
 	F_TITLESCREEN   = F_GUI + "/Titlescreen"
 	F_CHARACTERMENU = F_GUI + "/CharacterMenu"
