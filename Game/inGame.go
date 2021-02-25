@@ -7,6 +7,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
+	"github.com/hajimehoshi/ebiten/inpututil"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
 )
@@ -49,6 +50,12 @@ func (i *InGame) Init() {
 	Stamina := GE.GetAbilbar(staminaBarEimg, XRES/3, 0, XRES/3, 16, 5, 108, 6, color.RGBA{0, 255, 0, 255}, color.RGBA{0, 15, 0, 255})
 	Mana := GE.GetAbilbar(manaBarEimg, XRES/3*2, 0, XRES/3, 16, 5, 108, 6, color.RGBA{0, 0, 255, 255}, color.RGBA{0, 0, 15, 255})
 	i.AbilBars = GE.GetGroup(Health, Stamina, Mana)
+
+	for _, AttackParam := range TNE.Attacks {
+		img, err := GetEbitenImage(fmt.Sprintf("%s/%s.png", F_SKILLS, AttackParam.GetName()))
+		CheckErr(err)
+		AttackParam.Init(img)
+	}
 }
 func (i *InGame) Start(oldState int) {
 	Print("--------> InGame     \n")
@@ -132,7 +139,7 @@ func (i *InGame) UpdateAttacking() {
 	if tert && c3 {
 		OwnPlayer.ChangeToAttack(2)
 	}
-	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
+	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
 		wxf, wyf := SmallWorld.Struct.GetTileOfCoordsFP(float64(x), float64(y))
 		OwnPlayer.StartAttack(wxf, wyf)

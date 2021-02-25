@@ -25,6 +25,7 @@ const (
 	F_SOUNDTRACK = F_AUDIO + "/Soundtrack"
 
 	F_IMAGES        = RES + "/Images"
+	F_SKILLS        = F_IMAGES + "/Skills"
 	F_GUI           = F_IMAGES + "/GUI"
 	F_InGame        = F_GUI + "/InGame"
 	F_NPCICON       = F_GUI + "/NPCIcons"

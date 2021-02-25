@@ -81,6 +81,7 @@ func (t *PlayMenu) Start(oldState int) {
 	ple, err := sm.Ef.GetByName("Goblin")
 	CheckErr(err)
 	OwnPlayer = &TNE.Player{Entity: ple}
+	OwnPlayer.Entity.Char = &TNE.Character{Name: "FetterFireBallCaster", Class: TNE.Classes[0], Race: TNE.Races[0], Attributes: []int8{1, 1, 1, 1}, Proficiencies: []int8{}, Attacks: []byte{byte(TNE.ATTACK_FIREBALL)}}
 	dialogImg, err := GetEbitenImage(F_UI_ELEMENTS + "/dialog_symbol.png")
 	CheckErr(err)
 	OwnPlayer.DialogSymbol = GE.NewImageObj(nil, dialogImg, 0, 0, 0, 0, 0)
@@ -101,6 +102,7 @@ func (t *PlayMenu) Start(oldState int) {
 						if err == nil {
 							OwnPlayer.Entity = ent
 							OwnPlayer.Char.SetEntityValues(OwnPlayer.Entity)
+							OwnPlayer.Char.Attacks = append(OwnPlayer.Char.Attacks, byte(TNE.ATTACK_FIREBALL))
 							Toaster.New(fmt.Sprintf("Player %s loaded", OwnPlayer.Char.Name), int(FPS*1.5), nil)
 						}
 					}
