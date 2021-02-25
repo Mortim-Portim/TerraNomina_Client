@@ -78,7 +78,7 @@ func (t *PlayMenu) Start(oldState int) {
 	sm.RegisterOnEntityChangeListeners()
 	SmallWorld = sm
 
-	ple, err := sm.Ef.GetByName("Goblin")
+	ple, err := sm.Ef.GetByName("Perrin")
 	CheckErr(err)
 	OwnPlayer = &TNE.Player{Entity: ple}
 	OwnPlayer.Entity.Char = &TNE.Character{Name: "FetterFireBallCaster", Class: TNE.Classes[0], Race: TNE.Races[0], Attributes: []int8{1, 1, 1, 1}, Proficiencies: []int8{}, Attacks: []byte{byte(TNE.ATTACK_FIREBALL)}}

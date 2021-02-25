@@ -142,7 +142,7 @@ func (i *InGame) UpdateAttacking() {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
 		wxf, wyf := SmallWorld.Struct.GetTileOfCoordsFP(float64(x), float64(y))
-		OwnPlayer.StartAttack(wxf, wyf)
+		OwnPlayer.StartAttack(wxf, wyf, SmallWorld)
 	}
 }
 func (i *InGame) UpdateSocialMenu() {
