@@ -1,2 +1,2 @@
 spriteWidth:20
-fps:5
+fps:10
