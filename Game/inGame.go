@@ -99,10 +99,10 @@ func (i *InGame) Update() error {
 	i.sm.ActivePlayer.UpdateChanFromPlayer()
 	i.sm.ActivePlayer.UpdateSyncVars(ClientManager)
 	i.sm.UpdateAll(false)
-	smMsg, num := i.sm.Print(false)
-	if num > 0 {
-		Println(smMsg)
-	}
+	// smMsg, num := i.sm.Print(false)
+	// if num > 0 {
+	// 	Println(smMsg)
+	// }
 	i.sm.ResetActions()
 
 	delay := time.Now().Sub(i.lastUpdate).Microseconds()

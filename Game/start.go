@@ -54,8 +54,8 @@ func Start() {
 
 	x, y := ebiten.ScreenSizeInFullscreen()
 	if *WINDOWED {
-		x = 640
-		y = 360
+		x = 960
+		y = 540
 	}
 	InitParams(F_Params, x, y)
 

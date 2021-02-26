@@ -48,7 +48,7 @@ func (t *Connecting) Start(oldState int) {
 	t.loadingAnim.Start(nil, nil)
 
 	ServerClosing = make(chan bool)
-	GC.PRINT_LOG_PRIORITY = 3
+	GC.PRINT_LOG_PRIORITY = 0
 	t.oldState = oldState
 	t.ipAddr = USER_INPUT_IP_ADDR
 
