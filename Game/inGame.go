@@ -7,6 +7,7 @@ import (
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
+	"github.com/hajimehoshi/ebiten/inpututil"
 	"github.com/mortim-portim/GraphEng/GE"
 	"github.com/mortim-portim/TN_Engine/TNE"
 )
@@ -138,7 +139,7 @@ func (i *InGame) UpdateAttacking() {
 	if tert && c3 {
 		OwnPlayer.ChangeToAttack(2)
 	}
-	if ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft) {
+	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
 		wxf, wyf := SmallWorld.Struct.GetTileOfCoordsFP(float64(x), float64(y))
 		OwnPlayer.StartAttack(wxf, wyf, SmallWorld)

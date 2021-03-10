@@ -45,10 +45,8 @@ const (
 	PLAY_MENU_STATE    = 3
 	CONNECTING_STATE   = 4
 	INGAME_STATE       = 5
-	SELRACE_STATE      = 6
-	SELCLASS_STATE     = 7
-	SELSTATS_STATE     = 8
-	TEST_STATE         = 9
+	SELSTATS_STATE     = 6
+	//TEST_STATE         = 9
 
 	SOUNDTRACK_MAIN   = "Main"
 	SOUNDTRACK_ORK    = "Ork"

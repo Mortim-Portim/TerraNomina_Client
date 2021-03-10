@@ -1,6 +1,6 @@
 package Game
 
-import (
+/*import (
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten"
@@ -77,7 +77,7 @@ func (class *Class) getClass(group *GE.Group) {
 	group = GE.GetGroup(append(subclass, title)...)
 	group.Init(nil, nil)
 	return
-}*/
+}
 
 func (menu *SelectClassMenu) changeClass(delta int) {
 	menu.currClass += delta
@@ -117,3 +117,4 @@ func (menu *SelectClassMenu) Draw(screen *ebiten.Image) {
 	menu.classes[menu.currClass].Draw(screen)
 	menu.classthing.Draw(screen)
 }
+*/
