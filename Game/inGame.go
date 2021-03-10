@@ -71,14 +71,14 @@ func (i *InGame) Start(oldState int) {
 	i.meanDelay = 33288
 	i.ShowingSocialMenu = false
 
-	OwnPlayer.SetOnHealthChange(func(old, new float32) {
-		i.AbilBars.Members[0].(*GE.Abilbar).Set(float64(OwnPlayer.HealthPercent()))
+	OwnPlayer.SetOnHealthChange(func(old, new float64) {
+		i.AbilBars.Members[0].(*GE.Abilbar).Set(OwnPlayer.HealthPercent())
 	})
-	OwnPlayer.SetOnStaminaChange(func(old, new float32) {
-		i.AbilBars.Members[1].(*GE.Abilbar).Set(float64(OwnPlayer.StaminaPercent()))
+	OwnPlayer.SetOnStaminaChange(func(old, new float64) {
+		i.AbilBars.Members[1].(*GE.Abilbar).Set(OwnPlayer.StaminaPercent())
 	})
-	OwnPlayer.SetOnManaChange(func(old, new float32) {
-		i.AbilBars.Members[2].(*GE.Abilbar).Set(float64(OwnPlayer.ManaPercent()))
+	OwnPlayer.SetOnManaChange(func(old, new float64) {
+		i.AbilBars.Members[2].(*GE.Abilbar).Set(OwnPlayer.ManaPercent())
 	})
 }
 func (i *InGame) Stop(newState int) {
