@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/hajimehoshi/ebiten"
+	"github.com/hajimehoshi/ebiten/ebitenutil"
 	"github.com/mortim-portim/GameConn/GC"
 	"github.com/mortim-portim/GraphEng/GE"
 )
@@ -58,6 +59,8 @@ func (g *TerraNomina) Draw(screen *ebiten.Image) {
 	}()
 	if g.initializing {
 		g.Initializing(screen)
+		msg := fmt.Sprintf("TPS: %0.1f, FPS: %0.1f", ebiten.CurrentTPS(), ebiten.CurrentFPS())
+		ebitenutil.DebugPrint(screen, msg)
 		return
 	}
 	state, ok := g.States[g.currentState]
@@ -67,6 +70,8 @@ func (g *TerraNomina) Draw(screen *ebiten.Image) {
 			g.HasUpdatedLastFrame = false
 			g.CheckRecorder(screen)
 		}
+		msg := fmt.Sprintf("TPS: %0.1f, FPS: %0.1f", ebiten.CurrentTPS(), ebiten.CurrentFPS())
+		ebitenutil.DebugPrint(screen, msg)
 	}
 }
 func (g *TerraNomina) CheckRecorder(screen *ebiten.Image) {
@@ -138,6 +143,7 @@ func (g *TerraNomina) Init() {
 	signal.Notify(g.interrupt, os.Interrupt)
 	go func() {
 		<-g.interrupt
+		log.Println("User Interrupt")
 		g.Close()
 		log.Fatal("User Termination")
 		return

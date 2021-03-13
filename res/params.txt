@@ -1,5 +1,5 @@
-ip_addr:192.168.178.51:8080
-volume:0.00000000
-rec_time:3.00000000
+rec_time:5.00000000
 is_recording:false
 rec_scale:1.00000000
+ip_addr:
+volume:0.44000000

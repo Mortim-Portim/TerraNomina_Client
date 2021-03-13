@@ -12,7 +12,7 @@ import (
 
 var WRITELOGFILE = flag.String("log", "log.txt", "name of the logfile")
 var AUTOMOVE = flag.Bool("mv", false, "presses D and A")
-var WINDOWED = flag.Bool("win", false, "starts Terra Nomina in window mode")
+var WINDOWED = flag.Bool("win", true, "starts Terra Nomina in window mode")
 
 var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to `file`")
 var memprofile = flag.String("memprofile", "", "write memory profile to `file`")
@@ -32,6 +32,7 @@ func StartGame(g ebiten.Game) {
 	ebiten.SetMaxTPS(int(FPS))
 	ebiten.SetRunnableOnUnfocused(true)
 	if err := ebiten.RunGame(g); err != nil {
+		fmt.Printf("Error: %v\n", err)
 		g.(*TerraNomina).Close()
 		CheckErr(err)
 	}
@@ -40,6 +41,7 @@ func StartGame(g ebiten.Game) {
 
 func onUnexpectedError(g ebiten.Game) {
 	if r := recover(); r != nil {
+		fmt.Printf("unexpected Error: %v\n", r)
 		g.(*TerraNomina).Close()
 		panic(fmt.Sprintf("unexpected Error: %v", r))
 	}
