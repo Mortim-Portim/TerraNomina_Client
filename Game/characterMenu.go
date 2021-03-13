@@ -1,5 +1,7 @@
 package Game
 
+/*
+
 import (
 	"fmt"
 	"image/color"
@@ -471,3 +473,4 @@ func (menu *CharacterMenu) GetBack() {
 	Soundtrack.Play("main")
 	menu.parent.ChangeState(TITLESCREEN_STATE)
 }
+*/

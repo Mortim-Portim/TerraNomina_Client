@@ -1,5 +1,5 @@
+rec_scale:0.00000000
 ip_addr:192.168.178.51:8080
+is_recording:true
 volume:0.00000000
-rec_time:3.00000000
-is_recording:false
-rec_scale:1.00000000
+rec_time:0.00000000
