@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/hajimehoshi/ebiten/v2"
+	ebiten "github.com/hajimehoshi/ebiten/v2"
 	"github.com/mortim-portim/GraphEng/GE"
 )
 

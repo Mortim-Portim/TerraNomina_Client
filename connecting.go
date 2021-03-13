@@ -8,7 +8,7 @@ import (
 	cmp "github.com/mortim-portim/GraphEng/compression"
 	"github.com/mortim-portim/TN_Engine/TNE"
 
-	"github.com/hajimehoshi/ebiten/v2"
+	ebiten "github.com/hajimehoshi/ebiten/v2"
 )
 
 func GetConnecting(g *TerraNomina) *Connecting {
