@@ -1,6 +1,6 @@
 package Game
 
-import (
+/*import (
 	"image/color"
 
 	"github.com/hajimehoshi/ebiten"
@@ -20,8 +20,6 @@ type SelectRaceMenu struct {
 	races       []*GE.Group
 	currRace    int
 }
-
-var charinmaking *TNE.Character
 
 //var arrow *ebiten.Image
 
@@ -96,7 +94,7 @@ func (race *Race) getRace(group *GE.Group) {
 	group.Init(nil, nil)
 	return
 }
-*/
+
 //Change which race is displayed
 func (menu *SelectRaceMenu) changeRace(delta int) {
 	menu.currRace += delta
@@ -140,3 +138,4 @@ func (menu *SelectRaceMenu) Draw(screen *ebiten.Image) {
 	menu.races[menu.currRace].Draw(screen)
 	menu.racething.Draw(screen)
 }
+*/
